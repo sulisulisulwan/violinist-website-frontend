@@ -1,0 +1,99 @@
+body {
+  overscroll-behavior: none;
+  margin: 0px;
+  font-family: 'Poppins', 'sans-serif';
+}
+
+a:link {
+  text-decoration: none;
+  color: black;
+}
+
+a:visited {
+  color: black;
+}
+
+.text-required {
+  color: gray;
+  font-size: 11px;
+}
+
+@keyframes fadeOutShrink {
+  0% {
+    /* opacity: 1; */
+    opacity: .8;
+    height: 100%;
+    width: 100%;
+  }
+  100% {
+    height: 0%;
+    width: 0%;
+    opacity: 0;
+  }
+}
+
+@keyframes fadeInGrow {
+  0% {
+    opacity: 0;
+    height: 0%;
+    width: 0%;
+  }
+  100% {
+    height: 100%;
+    width: 100%;
+    opacity: .8;
+    /* opacity: 1; */
+  }
+}
+
+@keyframes fadeIn {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+@keyframes fadeOut {
+  0% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+  }
+}
+
+#fader {
+  position: fixed;
+  /* top: 0;
+  left: 0; */
+  width: 100%;
+  height: 100%;
+  z-index: 999999;
+  animation-duration: 300ms;
+  animation-timing-function: ease-in-out;
+  background: white;
+  pointer-events: none;
+
+}
+
+@keyframes fade-out {
+  from { opacity: 1 }
+    to { opacity: 0 }
+}
+
+@keyframes fade-in {
+  from { opacity: 0 }
+    to { opacity: 1 }
+}
+
+#fader.fade-out {
+  opacity: 0;
+  animation-name: fade-out;
+}
+
+#fader.fade-in {
+  opacity: 1;
+  animation-name: fade-in;
+}
