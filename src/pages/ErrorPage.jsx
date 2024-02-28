@@ -7,13 +7,10 @@ import Header from '../header/Header'
 import Footer from '../footer/Footer'
 import { GlobalAppState } from '../Layout'
 import { useRouteError } from 'react-router-dom'
+import { heroPhotos1 } from '../hero-photos'
 
 
 const ErrorPage = () => {
-
-  const heroPhotos1 = [
-    '/images/SESSION/adjusted_for_hero_DSCF1527.jpg',
-  ]
 
   const windowWidth = useWindowWidth()
 

@@ -2,12 +2,9 @@ import * as React from 'react'
 import ContactForm from './ContactForm'
 import HeroImageSlideshow from '../../sharedComponents/HeroImageSlideshow'
 import MainWrapper from '../../sharedComponents/MainWrapper'
+import { heroPhotos1 } from '../../hero-photos'
 
 const ContactMain = () => {
-
-  const heroPhotos1 = [
-    './images/SESSION/adjusted_for_hero_DSCF1527.jpg',
-  ]
 
   return (
     <MainWrapper>

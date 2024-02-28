@@ -6,10 +6,9 @@ import HeroImageSlideshow from '../../sharedComponents/HeroImageSlideshow'
 import HoverLink from '../../sharedComponents/HoverLink'
 import { NAVY_BLUE_LIGHT, NAVY_BLUE_MED } from '../../sharedStyles/colors'
 import MainWrapper from '../../sharedComponents/MainWrapper'
+import { heroPhotos1 } from '../../hero-photos'
 
 const MediaMain = () => {
-
-  const heroPhotos1 = [ '/images/SESSION/adjusted_for_hero_DSCF1527.jpg' ]
 
   return (
     <MainWrapper paddingBottom={30}>

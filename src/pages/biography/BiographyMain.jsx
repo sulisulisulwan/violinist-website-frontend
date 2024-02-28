@@ -2,13 +2,11 @@ import React, { useContext, useEffect, useState } from 'react'
 import HeroImageSlideshow from '../../sharedComponents/HeroImageSlideshow'
 import MainWrapper from '../../sharedComponents/MainWrapper'
 import { GlobalAppState } from '../../Layout'
+import { heroPhotos1 } from '../../hero-photos'
 
 const BiographyMain = () => {
 
   const { fetchedData } = useContext(GlobalAppState)
-  const heroPhotos1 = [
-    './images/SESSION/adjusted_for_hero_DSCF1527.jpg',
-  ]
 
   return (
     <MainWrapper>

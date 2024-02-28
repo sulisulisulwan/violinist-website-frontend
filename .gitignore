@@ -1,5 +1,5 @@
 node_modules
-dist
+dist/images
 .git
 dist/main.js
 config/config.json

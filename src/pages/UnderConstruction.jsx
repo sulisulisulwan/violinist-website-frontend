@@ -1,14 +1,11 @@
 import React, { useContext } from 'react'
 import { GlobalAppState } from '../Layout'
 import HeroImageSlideshow from '../sharedComponents/HeroImageSlideshow'
+import { heroPhotos1 } from '../hero-photos'
 
 const UnderConstruction = () => {
 
   const { globalSidePadding } = useContext(GlobalAppState)
-  const heroPhotos1 = [
-    '/images/SESSION/adjusted_for_hero_DSCF1527.jpg',
-  ]
-
 
   return (
     <main style={{
