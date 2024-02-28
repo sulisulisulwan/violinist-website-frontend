@@ -44,7 +44,7 @@ const VideoThumbnail = ({ videoId, caption, youtubeCode, setModalIsOpen, setCurr
           }}
         />
         <img
-          src={'/images/thumbnails/play-button-overlay.png'}
+          src={'/images/play-button-overlay.png'}
           style={{
             position: 'absolute',
             margin: 'auto',

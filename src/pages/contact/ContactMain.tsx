@@ -1,10 +1,24 @@
 import * as React from 'react'
+const { useContext } = React
 import ContactForm from './ContactForm'
 import HeroImageSlideshow from '../../sharedComponents/HeroImageSlideshow'
 import MainWrapper from '../../sharedComponents/MainWrapper'
 import { heroPhotos1 } from '../../hero-photos'
+import { GlobalAppState } from '../../Layout'
 
 const ContactMain = () => {
+
+  const { windowWidth } = useContext(GlobalAppState)
+
+  const isCollapsed = windowWidth <= 800
+
+  const layoutStyle: React.CSSProperties = isCollapsed ? {
+    display: 'flex',
+    flexDirection: 'column'
+  } : {
+    display: 'grid',
+    gridTemplateColumns: '50% 50%'
+  }
 
   return (
     <MainWrapper>
@@ -13,10 +27,7 @@ const ContactMain = () => {
       </section>
       <section  id="contact" className="contact">
         <h1>CONTACT</h1>
-        <div style={{
-          display: 'grid',
-          gridTemplateColumns: '50% 50%'
-        }}>
+        <div style={layoutStyle}>
           <div>
             <h2>For bookings within the U.S. contact:</h2>
             <ul 
@@ -35,7 +46,7 @@ const ContactMain = () => {
           <div>
             <h3>Get in touch with me personally by filling out the form below or emailing at sulimantekalli@gmail.com</h3>
             <br/>
-            <ContactForm/>
+            <ContactForm windowWidth={windowWidth}/>
           </div>
         </div>
       </section>
