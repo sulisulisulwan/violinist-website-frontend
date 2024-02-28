@@ -14,7 +14,7 @@ const ShopHomeListItem = () => {
   const isReverseFlexWrap = windowWidth < 1280
 
   const featuredItem = {
-    img: './images/shop/le-tombeau-cover.jpg',
+    img: './images/le-tombeau-cover.jpg',
     name: 'MAURICE RAVEL: Le tombeau de Couperin, transcription for violin and piano',
     description: 'A challenging transcription of a work by one of my all time favorite composers Maurice Ravel' 
   }

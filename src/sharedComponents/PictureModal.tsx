@@ -1,5 +1,6 @@
 import * as React from 'react'
 import { PhotoDataAPI } from 'suli-violin-website-types/src'
+import config from '../../config'
 const { useState } = React
 
 interface pictureModalPropsIF {
@@ -49,7 +50,7 @@ const PictureModal = ({ initIndex, picDataArray, setModalClosed }: pictureModalP
             maxHeight: '90vh',
             padding: .5,
           }}
-          src={`http://localhost:1337/v1/media/photos?id=${currPic.id}&isCropped=true`}
+          src={`${config.BACKEND_API_BASE_URL}/media/photos?id=${currPic.id}&isCropped=true`}
         />
         <HoverCarouselIcon
           onClickHandler={prev}

@@ -4,6 +4,7 @@ import { GlobalAppState } from '../../Layout'
 import MediaModalWrapper from '../../sharedComponents/MediaModalWrapper'
 import PictureModal from '../../sharedComponents/PictureModal'
 import { PhotoDataAPI } from 'suli-violin-website-types/src'
+import config from '../../../config'
 
 
 
@@ -105,7 +106,7 @@ const MediaPhotos = () => {
       
               return (
                 <li
-                  key={`http://localhost:1337/v1/media/photos?id=${picture.id}&isCropped=true`}
+                  key={`${config.BACKEND_API_BASE_URL}/media/photos?id=${picture.id}&isCropped=true`}
                   style={{
                     display: 'grid',
                     width: '100%',
@@ -137,7 +138,7 @@ const MediaPhotos = () => {
                       >
                         <img 
                           onClick={() => { setClickedPicIndex(i); setModalIsOpen(true) } }
-                          src={`http://localhost:1337/v1/media/photos?id=${picture.id}&isCropped=true`}
+                          src={`${config.BACKEND_API_BASE_URL}/media/photos?id=${picture.id}&isCropped=true`}
                           style={{
                             maxWidth: '100%',
                             maxHeight: '100%',

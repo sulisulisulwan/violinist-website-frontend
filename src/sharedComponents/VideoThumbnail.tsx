@@ -3,6 +3,7 @@ const { useContext} = React
 import { pausePlayWithFadeOut } from '../audioPlayer/audioControls'
 import { GlobalAppState } from '../Layout'
 import { NAVY_BLUE_MED } from '../sharedStyles/colors'
+import config from '../../config'
 
 interface videoThumbnailPropsIF {
   videoId: number
@@ -35,7 +36,7 @@ const VideoThumbnail = ({ videoId, caption, youtubeCode, setModalIsOpen, setCurr
         left: 0
       }}>
         <img 
-          src={`http://localhost:1337/v1/media/videos/thumbnail?id=${videoId}`}
+          src={`${config.BACKEND_API_BASE_URL}/media/videos/thumbnail?id=${videoId}`}
           style={{
             maxWidth: '100%',
             aspectRatio: '2 / 1.1',
