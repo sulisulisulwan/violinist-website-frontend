@@ -18,7 +18,7 @@ const HomeListItemsWrapper = ({ position, children }: homeListItemsWrapperPropsI
 
   const baseStyle = {
     // width: isFlexWrap ? '67%' : '33%',
-    width: isFlexWrap ? '80%' : '33%',
+    width: isFlexWrap ? '100%' : '33%',
     paddingBottom: 50
   }
 
