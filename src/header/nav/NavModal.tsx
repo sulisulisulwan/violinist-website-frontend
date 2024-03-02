@@ -62,6 +62,7 @@ const NavModal = ({ toggled, toggleModal, links }: navModalPropsIF) => {
             fontSize: '30px',
             listStyleType:'none',
             marginTop: '100px',
+            padding: 0
           }}>
             { links.map((link, i) => { 
                 return (

@@ -32,7 +32,7 @@ const Header = () => {
   }
   
   const styleHeaderName = {
-    minWidth: 350,
+    minWidth: 320,
   }
   
   return (
