@@ -5,65 +5,34 @@ import MediaModalWrapper from '../../sharedComponents/MediaModalWrapper'
 import PictureModal from '../../sharedComponents/PictureModal'
 import { PhotoDataAPI } from 'suli-violin-website-types/src'
 import config from '../../../config'
+import LazyImage from '../../sharedComponents/LazyImage'
+import axios from 'axios'
 
 
+const useFetchPhotos = () => {
+
+  const [ photoData, setPhotoData ] = useState(null)
+
+  useEffect(() => {
+    const getPhotoData = async () => {
+      const fetchedPhotoData = await axios.get(config.BACKEND_API_BASE_URL + '/media/photos')
+      setPhotoData(fetchedPhotoData.data)
+    }
+    getPhotoData()
+  }, [])
+
+  return photoData
+}
 
 const MediaPhotos = () => {
 
-  const { windowWidth, fetchedData } = useContext(GlobalAppState)
+  const photoData = useFetchPhotos()
+
+  const { windowWidth } = useContext(GlobalAppState)
   const [ modalIsOpen, setModalIsOpen ] = useState(false)
   const [ clickedPicIndex, setClickedPicIndex ] = useState(null)
 
-
-  const photos = fetchedData.media.photos
-
-  /**
-  
-  id: 11,
-  originalFileName: 'asdfasdf',
-  photoCred: 'cresdfaf'
-  
-   */
-  
-
-  // const data = [
-  //   {
-  //     id: 1,
-  //     src: '/images/violin-photos/st_violin_1.jpg',
-  //     croppedSrc: '/images/violin-photos/st_violin_1_thumbnail.jpg',
-  //     photoCred: 'David Fung'
-  //   },
-  //   {
-  //     id: 2,
-  //     src: '/images/violin-photos/st_violin_2.jpg',
-  //     croppedSrc: '/images/violin-photos/st_violin_2_thumbnail.jpg',
-  //     photoCred: 'David Fung'
-  //   },
-  //   {
-  //     id: 3,
-  //     src: '/images/violin-photos/st_violin_3.jpg',
-  //     croppedSrc: '/images/violin-photos/st_violin_3_thumbnail.jpg',
-  //     photoCred: 'David Fung'
-  //   },
-  //   {
-  //     id: 4,
-  //     src: '/images/violin-photos/st_violin_4.jpg',
-  //     croppedSrc: '/images/violin-photos/st_violin_4_thumbnail.jpg',
-  //     photoCred: 'David Fung'
-  //   },
-  //   {
-  //     id: 5,
-  //     src: '/images/violin-photos/st_violin_5.jpg',
-  //     croppedSrc: '/images/violin-photos/st_violin_5_thumbnail.jpg',
-  //     photoCred: 'David Fung'
-  //   },
-  //   {
-  //     id: 6,
-  //     src: '/images/violin-photos/st_violin_6.jpg',
-  //     croppedSrc: '/images/violin-photos/st_violin_6_thumbnail.jpg',
-  //     photoCred: 'David Fung'
-  //   },
-  // ] 
+  const photos = photoData
   
   const isThreeColumns = windowWidth > 769
 
@@ -88,7 +57,7 @@ const MediaPhotos = () => {
           width: '100%',
         }}>
           {
-            photos.map((picture: PhotoDataAPI, i: number) => {
+            photos ? photos.map((picture: PhotoDataAPI, i: number) => {
               let column = isThreeColumns ? i % 3 : i % 2
         
               let textAlignStyle: 'left' | 'center' | 'right'
@@ -136,22 +105,17 @@ const MediaPhotos = () => {
                           maxHeight: '100%'
                         }}
                       >
-                        <img 
-                          onClick={() => { setClickedPicIndex(i); setModalIsOpen(true) } }
+                        <LazyImage 
+                          onClickHandler={() => { setClickedPicIndex(i); setModalIsOpen(true) } }
                           src={`${config.BACKEND_API_BASE_URL}/media/photos?id=${picture.id}&isCropped=true`}
-                          style={{
-                            maxWidth: '100%',
-                            maxHeight: '100%',
-                            overflow: 'clip',
-                            overflowClipMargin: 'content-box'
-                          }}
+                          alt={'Media photo gallery image'}
                         />
                       </div>
                     </div>
                   </div>
                 </li>
               )
-            })
+            }) : '...Loading'
           }
         </ul>
         <MediaModalWrapper isOpen={modalIsOpen} setModalClosed={() => setModalIsOpen(false)}>

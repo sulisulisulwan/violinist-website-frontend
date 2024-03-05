@@ -2,7 +2,7 @@ import * as React from 'react'
 const { createContext } = React
 import { Outlet } from 'react-router-dom'
 import { useWindowWidth } from './hooks/useWindowWidth'
-import { useFetchAllData } from './hooks/useFetchAllData'
+import { useFetchAudioData } from './hooks/useFetchAudioData'
 import { audioTrackDataIF } from './audioPlayer/dummyPlaylist'
 import AudioPlayerWrapper from './audioPlayer/AudioPlayerWrapper'
 import Header from './header/Header'
@@ -29,13 +29,11 @@ export interface audioPlayerStateIF {
 const Layout = () => {
 
   const windowWidth = useWindowWidth()
-  
-  const { fetchedData, audioPlayerStateManagement } = useFetchAllData()
+  const [ audioPlayerState, setAudioPlayerState ] = useFetchAudioData()
   
   const globalAppState = { 
-    fetchedData,
     windowWidth, 
-    audioPlayerStateManagement,
+    audioPlayerStateManagement: [ audioPlayerState, setAudioPlayerState ],
     globalSidePadding: windowWidth <= 600 ? '22px' 
     : windowWidth <= 800 ? '32px' 
     : windowWidth <= 1000 ? '42px' 
@@ -44,10 +42,7 @@ const Layout = () => {
     navBarIsWide: windowWidth > 1080,
   }
 
-  if (globalAppState.fetchedData === null) return null
-
-  return fetchedData === null ? <div>... Loading</div> :
-    <GlobalAppState.Provider value={globalAppState}>
+  return <GlobalAppState.Provider value={globalAppState}>
       <div id="isLoaded"></div>
       <Header/>
       <Outlet/>

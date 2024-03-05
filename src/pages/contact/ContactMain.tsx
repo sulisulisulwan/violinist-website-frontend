@@ -1,7 +1,7 @@
 import * as React from 'react'
 const { useContext } = React
 import ContactForm from './ContactForm'
-import HeroImageSlideshow from '../../sharedComponents/HeroImageSlideshow'
+import HeroImageSlideshow from '../../sharedComponents/heroImageSlideshow/HeroImageSlideshow'
 import MainWrapper from '../../sharedComponents/MainWrapper'
 import { heroPhotos1 } from '../../hero-photos'
 import { GlobalAppState } from '../../Layout'

@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import HeroImageSlideshow from '../sharedComponents/HeroImageSlideshow'
+import HeroImageSlideshow from '../sharedComponents/heroImageSlideshow/HeroImageSlideshow'
 import { useWindowWidth } from '../hooks/useWindowWidth'
 import playlist from '../audioPlayer/dummyPlaylist'
 import AudioPlayerWrapper from '../audioPlayer/AudioPlayerWrapper'

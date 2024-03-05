@@ -2,7 +2,7 @@ import * as React from 'react'
 const { useContext } = React
 
 import { Outlet } from 'react-router-dom'
-import HeroImageSlideshow from '../../sharedComponents/HeroImageSlideshow'
+import HeroImageSlideshow from '../../sharedComponents/heroImageSlideshow/HeroImageSlideshow'
 import HoverLink from '../../sharedComponents/HoverLink'
 import { NAVY_BLUE_LIGHT, NAVY_BLUE_MED } from '../../sharedStyles/colors'
 import MainWrapper from '../../sharedComponents/MainWrapper'

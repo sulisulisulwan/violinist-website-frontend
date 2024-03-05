@@ -1,6 +1,6 @@
 import * as React from 'react' 
 const { useState } = React
-import HeroImageSlideshow from '../../sharedComponents/HeroImageSlideshow'
+import HeroImageSlideshow from '../../sharedComponents/heroImageSlideshow/HeroImageSlideshow'
 import { Outlet } from 'react-router-dom'
 import { heroPhotos1 } from '../../hero-photos'
 import HoverLink from '../../sharedComponents/HoverLink'

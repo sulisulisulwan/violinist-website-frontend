@@ -1,52 +1,35 @@
 import * as React from 'react'
-const { useState, useContext } = React
+const { useState, useContext, useEffect } = React
 import MediaModalWrapper from '../../sharedComponents/MediaModalWrapper'
 import YouTubeModal from '../../sharedComponents/YouTubeModal'
 import VideoThumbnail from '../../sharedComponents/VideoThumbnail'
 import { GlobalAppState } from '../../Layout'
 import { VideoDataAPI } from 'suli-violin-website-types/src'
+import axios from 'axios'
+import config from '../../../config'
 
+
+const useFetchVideos = () => {
+  const [ videoData, setVideoData ] = useState(null)
+  useEffect(() => {
+    const getVideoData = async () => {
+      const fetchedVideoData = await axios.get(config.BACKEND_API_BASE_URL + '/media/videos')
+      setVideoData(fetchedVideoData.data)
+    }
+    getVideoData()
+  }, [])
+  return videoData
+}
 
 export const MediaVideos = () => {
 
   const [ modalIsOpen, setModalIsOpen ] = useState(false)
   const [ currYoutubeCode, setCurrYoutubeCode ] = useState(null)
-  const { windowWidth, fetchedData } = useContext(GlobalAppState)
+  const { windowWidth } = useContext(GlobalAppState)
 
-  // const data = [
-  //   {
-  //     youtubeCode: '76R5L8hdv0M',
-  //     thumbnail: '/images/thumbnails/ravel-tombeau-prelude.png',
-  //     caption: 'Suliman Tekalli plays Le tombeau de Couperin with Tekalli Duo'
-  //   }, 
-  //   {
-  //     youtubeCode: '6ascGMsV1lM',
-  //     thumbnail: '/images/thumbnails/vivaldi-concerto-310.png',
-  //     caption: 'Suliman Tekalli plays Vivaldi Violin Concerto in G major RV 310'
-  //   }, 
-  //   {
-  //     youtubeCode: 'OgM1TrZ1Tl0',
-  //     thumbnail: '/images/thumbnails/ravel-tombeau-prelude.png',
-  //     caption: 'Suliman Tekalli plays Brahms Violin Concerto (Mvt. 3)'
-  //   }, 
-  //   {
-  //     youtubeCode: 'GtcgqiBGE7g',
-  //     thumbnail: '/images/thumbnails/messiaen-theme-et-variations.png',
-  //     caption: 'Suliman Tekalli plays Messiaen\'s Thème et variations'
-  //   }, 
-  //   {
-  //     youtubeCode: 'mUbH8tOVh28',
-  //     thumbnail: '/images/thumbnails/franck-sonata-mvt-4.png',
-  //     caption: 'Suliman Tekalli plays Franck\'s Violin Sonata 4th movement'
-  //   }, 
-  //   {
-  //     youtubeCode: 'J7iMLe9tybE',
-  //     thumbnail: '/images/thumbnails/mozart-concerto-1-1.png',
-  //     caption: 'Suliman Tekalli plays Mozart\'s Violin Concerto No. 1 [FULL]'
-  //   }, 
-  // ]
+  const videoData = useFetchVideos()
 
-  const videos = fetchedData.media.videos
+  const videos = videoData?.results
 
   return (
     <div>
@@ -58,7 +41,7 @@ export const MediaVideos = () => {
         gridTemplateColumns: windowWidth > 769 ? '1fr 1fr 1fr' : '1fr 1fr'
       }}>
         {
-          videos.map((video: VideoDataAPI, i: number) => {
+          videos ? videos.map((video: VideoDataAPI, i: number) => {
             return (
               <li 
                 key={video.caption + i}
@@ -75,7 +58,7 @@ export const MediaVideos = () => {
                 />
               </li>
             )
-          })
+          }) : '...Loading'
         }
       </ul>
       <MediaModalWrapper isOpen={modalIsOpen} setModalClosed={() => setModalIsOpen(false)}>

@@ -2,16 +2,29 @@ import * as React from 'react'
 import { parseDateToString } from '../../../utils/date'
 import { NAVY_BLUE_LIGHT, NAVY_BLUE_MED } from '../../../sharedStyles/colors'
 import HoverLink from '../../../sharedComponents/HoverLink'
-import { FEData } from 'suli-violin-website-types/src'
+const { useState, useEffect } = React
+import axios from 'axios'
+import config from '../../../../config'
 
-interface calendarHomeListItemPropsIF {
-  fetchedData: FEData
+const useFetchCalendarData = () => {
+  const [ calendarData, setCalendarData ] = useState(null)
+  useEffect(() => {
+    const getCalendarData = async () => {
+      const calendarData = await axios.get(`${config.BACKEND_API_BASE_URL}/calendar`)
+      setCalendarData (calendarData.data)
+    }
+    getCalendarData()
+  }, [])
+  return calendarData
 }
 
-const CalendarHomeListItem = ({ fetchedData }: calendarHomeListItemPropsIF) => {
-  
-  const sortedCalendarData = transformAndSortCalendarData(fetchedData.calendar.results.upcoming)
-  const abbreviatedData = sortedCalendarData.slice(0, 4)
+
+const CalendarHomeListItem = () => {
+
+  const calendarData = useFetchCalendarData()
+  const upcomingDates = calendarData?.results.upcoming
+  const sortedCalendarData = upcomingDates ? transformAndSortCalendarData(upcomingDates) : null
+  const abbreviatedData = sortedCalendarData ? sortedCalendarData.slice(0, 4) : null
 
   return (
     <>
@@ -20,7 +33,7 @@ const CalendarHomeListItem = ({ fetchedData }: calendarHomeListItemPropsIF) => {
         listStyleType: 'none',
         padding: 0
       }}>
-        { abbreviatedData.map((event: any, i: number) =>  <MiniDateListItem key={'event-' + i} eventData={event}/>) }
+          { abbreviatedData ? abbreviatedData.map((event: any, i: number) =>  <MiniDateListItem key={'event-' + i} eventData={event}/>) : '...Loading'}
       </ul>
       <div 
         className="more"

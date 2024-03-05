@@ -1,7 +1,5 @@
 import * as React from 'react'
-const { useContext } = React
-import { GlobalAppState } from '../../Layout'
-import HeroImageSlideshow from '../../sharedComponents/HeroImageSlideshow'
+import HeroImageSlideshow from '../../sharedComponents/heroImageSlideshow/HeroImageSlideshow'
 import HomeGroup from './HomeGroup'
 import BioHomeListItem from './homeListItems/BioHomeListItem'
 import CalendarHomeListItem from './homeListItems/CalendarHomeListItem'
@@ -14,36 +12,27 @@ import MainWrapper from '../../sharedComponents/MainWrapper'
 
 const HomeMain = () => {
 
-  const { globalSidePadding, fetchedData } = useContext(GlobalAppState)
-
   return (
     <MainWrapper>
-      <section 
-        className="hero-img"
-      >
+      <section className="hero-img">
         <HeroImageSlideshow imageSrcArray={heroPhotos1}/>
       </section>
       <section className="home-group-1">
         <HomeGroup
           listItemComponents={[
-            <BioHomeListItem fetchedData={fetchedData}/>,
-            <CalendarHomeListItem fetchedData={fetchedData}/>,
-            <MediaHomeListItem fetchedData={fetchedData}/>
+            <BioHomeListItem/>,
+            <CalendarHomeListItem/>,
+            <MediaHomeListItem/>
           ]}
         />
       </section>
-      <section 
-        className="hero-img"
-        style={{
-          paddingTop: '60px',
-        }}
-      >
+      <section className="hero-img">
         <HeroImageSlideshow imageSrcArray={heroPhotos2}/>
       </section>
       <section className="home-group-2">
         <HomeGroup
           listItemComponents={[
-            <BlogHomeListItem fetchedData={fetchedData}/>,
+            <BlogHomeListItem/>,
             <ShopHomeListItem/>,
             <SocialsHomeListItem/>,
           ]}

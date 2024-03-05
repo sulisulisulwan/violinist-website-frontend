@@ -1,12 +1,29 @@
 import React, { useContext, useEffect, useState } from 'react'
-import HeroImageSlideshow from '../../sharedComponents/HeroImageSlideshow'
+import HeroImageSlideshow from '../../sharedComponents/heroImageSlideshow/HeroImageSlideshow'
 import MainWrapper from '../../sharedComponents/MainWrapper'
 import { GlobalAppState } from '../../Layout'
 import { heroPhotos1 } from '../../hero-photos'
+import axios from 'axios'
+import config from '../../../config'
+
+const useFetchLongFormBio = () => {
+
+  const [ longFormBioData, setLongFormBioData ] = useState(null)
+
+  useEffect(() => {
+    const getLongFormBio = async () => {
+      const longFormData = await axios.get(config.BACKEND_API_BASE_URL + '/bio/longForm')
+      setLongFormBioData(longFormData.data)
+    }
+    getLongFormBio()
+  }, [])
+
+  return longFormBioData
+}
 
 const BiographyMain = () => {
 
-  const { fetchedData } = useContext(GlobalAppState)
+  const longForm = useFetchLongFormBio()
 
   return (
     <MainWrapper>
@@ -18,9 +35,9 @@ const BiographyMain = () => {
 
         <h1>BIOGRAPHY</h1>
         {
-          !fetchedData.bio.longForm ? null :
-          !fetchedData.bio.longForm.components ? null :
-          fetchedData.bio.longForm.components.map((component, i) => {
+          !longForm ? '...Loading' :
+          !longForm.components ? null :
+          longForm.components.map((component, i) => {
             if (component.type === 'p') {
               return <p key={component.type + i}>{component.content}</p>
             }

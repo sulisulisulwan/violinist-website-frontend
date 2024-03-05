@@ -28,7 +28,7 @@ const Header = () => {
     paddingRight: globalSidePadding,
     minHeight: '70px',
     backgroundColor: 'white',
-    zIndex: 1,
+    zIndex: 100,
   }
   
   const styleHeaderName = {

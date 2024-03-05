@@ -1,25 +1,38 @@
 import * as React from 'react'
-const { useContext, useState } = React
-import { GlobalAppState } from '../../../Layout'
+const { useEffect, useState } = React
 import HoverLink from '../../../sharedComponents/HoverLink'
 import EventListing from './EventListing'
 import { NAVY_BLUE_LIGHT, NAVY_BLUE_MED } from '../../../sharedStyles/colors'
+import config from '../../../../config'
+import axios from 'axios'
 
 interface eventsListPropsIF {
   listKey: string
+}
+
+const useFetchCalendarData = () => {
+  const [ calendarData, setCalendarData ] = useState(null)
+  useEffect(() => {
+    const getCalendarData = async () => {
+      const calendarData = await axios.get(`${config.BACKEND_API_BASE_URL}/calendar`)
+      setCalendarData (calendarData.data)
+    }
+    getCalendarData()
+  }, [])
+  return calendarData
 }
 
 const EventsList = ({ listKey }: eventsListPropsIF) => {
 
   const lowerBounds = 10
 
-  const { fetchedData } = useContext(GlobalAppState)
-  const calendarData = fetchedData.calendar.results[listKey]
+  const fetchedCalendarData = useFetchCalendarData()
+  const calendarData = fetchedCalendarData?.results[listKey]
 
   const [ accordionOpenId, setAccordionOpenId ] = useState(null)
   const [ listLimit, setListLimit ] = useState(lowerBounds)
 
-  const flattenedCalendarData = calendarData.reduce((memo: any, eventGroupData: any) => {
+  const flattenedCalendarData = !calendarData ? null : calendarData.reduce((memo: any, eventGroupData: any) => {
     const mapped = eventGroupData.eventDates.length ? eventGroupData.eventDates.map((eventDate: any) => {
       return {
         id: eventDate.id,
@@ -53,8 +66,8 @@ const EventsList = ({ listKey }: eventsListPropsIF) => {
     return memo.concat(mapped)
   }, [])
 
-  const finalList = flattenedCalendarData.slice(0, listLimit)
-  const listControls = finalList.length < flattenedCalendarData.length ? { text: 'SHOW MORE', onClickHandler: () => { setListLimit(listLimit + lowerBounds) } }
+  const finalList = !flattenedCalendarData ? null : flattenedCalendarData.slice(0, listLimit)
+  const listControls = !finalList ? null : finalList.length < flattenedCalendarData.length ? { text: 'SHOW MORE', onClickHandler: () => { setListLimit(listLimit + lowerBounds) } }
     : finalList.length > lowerBounds ? { text: 'SHOW LESS', onClickHandler: () => { setListLimit(listLimit - lowerBounds) }} : { text: '', onClickHandler: () => {}}
 
   return (
@@ -68,27 +81,30 @@ const EventsList = ({ listKey }: eventsListPropsIF) => {
         borderTop: `1px dotted ${NAVY_BLUE_MED}`
       }}>
         { 
-          finalList.map((concertsDatum: any, i: number) =>
+          finalList ? finalList.map((concertsDatum: any, i: number) =>
             <EventListing 
               key={'eventSummary' + i} 
               eventData={concertsDatum}
               accordionOpenId={accordionOpenId}
               setAccordionOpenId={setAccordionOpenId}
             />
-          )
+          ) : null
         }
       </ul>
       <div style={{
         textAlign: 'center'
       }}>
-        <HoverLink 
-          cls="details-button"
-          href=""
-          openInNewTab={false}
-          linkText={listControls.text}
-          offColor={NAVY_BLUE_MED}
-          overColor={NAVY_BLUE_LIGHT}
-          onClickHandler={listControls.onClickHandler}/>
+        {
+          listControls ?
+          <HoverLink 
+            cls="details-button"
+            href=""
+            openInNewTab={false}
+            linkText={listControls.text}
+            offColor={NAVY_BLUE_MED}
+            overColor={NAVY_BLUE_LIGHT}
+            onClickHandler={listControls.onClickHandler}/> : null
+        }
       </div>
     </>
   )

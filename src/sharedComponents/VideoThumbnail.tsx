@@ -29,6 +29,9 @@ const VideoThumbnail = ({ videoId, caption, youtubeCode, setModalIsOpen, setCurr
   return (
     <div 
       onClick={ () => playYoutubeVideo() }
+      style={{
+        animation: 'fadeIn 1s linear'
+      }}
     >
       <div style={{
         position: 'relative',
@@ -40,7 +43,8 @@ const VideoThumbnail = ({ videoId, caption, youtubeCode, setModalIsOpen, setCurr
           style={{
             maxWidth: '100%',
             aspectRatio: '2 / 1.1',
-            position: 'relative'
+            position: 'relative',
+            
           }}
         />
         <img
@@ -53,6 +57,7 @@ const VideoThumbnail = ({ videoId, caption, youtubeCode, setModalIsOpen, setCurr
             marginLeft: -30,
             top: '50%',
             left: '50%',
+            animation: 'fadeIn 1s linear'
             // zIndex: 2
           }}
         />

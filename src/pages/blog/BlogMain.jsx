@@ -1,14 +1,30 @@
 import * as React from 'react'
 import MainWrapper from '../../sharedComponents/MainWrapper'
-import HeroImageSlideshow from '../../sharedComponents/HeroImageSlideshow'
+import HeroImageSlideshow from '../../sharedComponents/heroImageSlideshow/HeroImageSlideshow'
 import { heroPhotos1 } from '../../hero-photos'
-import { GlobalAppState } from '../../Layout'
 import { getDisplayDate } from '../../utils/date'
-const { useContext } = React
+import axios from 'axios'
+import config from '../../../config'
+const { useState, useEffect } = React
+
+const useFetchBlog = () => {
+
+  const [ blogData, setBlogData ] = useState(null)
+
+  useEffect(() => {
+    const getBlogData = async () => {
+      const fetchedBlogData = await axios.get(config.BACKEND_API_BASE_URL + '/blog')
+      setBlogData(fetchedBlogData.data)
+    }
+    getBlogData()
+  }, [])
+
+  return blogData
+}
 
 const BlogMain = () => {
 
-  const { fetchedData } = useContext(GlobalAppState)
+  const blogData = useFetchBlog()
 
   return (
     <MainWrapper>
@@ -18,8 +34,8 @@ const BlogMain = () => {
       <section id="blog" className="blog">
         <h1>BLOG</h1>
         {
-          !fetchedData.blog ? null :
-          fetchedData.blog.results.map((post, i) => {
+          !blogData ? '...Loading' :
+          blogData.results.map((post, i) => {
             
             return (
               <React.Fragment key={i}>

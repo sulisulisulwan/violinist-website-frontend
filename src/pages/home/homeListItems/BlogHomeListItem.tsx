@@ -2,17 +2,27 @@ import * as React from 'react'
 import HoverLink from '../../../sharedComponents/HoverLink'
 import { NAVY_BLUE_LIGHT } from '../../../sharedStyles/colors'
 import { getDisplayDate } from '../../../utils/date'
-import { FEData, ParsedHTMLComponent } from 'suli-violin-website-types/src'
+import { ParsedHTMLComponent } from 'suli-violin-website-types/src'
+import axios from 'axios'
+import config from '../../../../config'
+const { useState, useEffect } = React
 
-interface blogHomeListItemPropsIF {
-  fetchedData: FEData
+const useFetchBlogData = () => {
+  const [ blogData, setBlogData ] = useState(null)
+  useEffect(() => {
+    const getBlogData = async () => {
+      const fetchedBlogData = await axios.get(`${config.BACKEND_API_BASE_URL}/blog`)
+      setBlogData (fetchedBlogData.data)
+    }
+    getBlogData()
+  }, [])
+
+  return blogData
 }
+const BlogHomeListItem = () => {
 
-const BlogHomeListItem = ({ fetchedData }: blogHomeListItemPropsIF) => {
-
-  const blogPreview = fetchedData?.blog?.results[0] || null
-
-  if (blogPreview === null) return null
+  const blogData = useFetchBlogData()
+  const blogPreview = blogData?.results[0] || null
 
   return (
     <>
@@ -28,7 +38,7 @@ const BlogHomeListItem = ({ fetchedData }: blogHomeListItemPropsIF) => {
               {blogPreview.components.map((component: ParsedHTMLComponent, i: number) => { return <p key={i}>{component.content}</p>})} 
             </div>
           </>
-          : null
+          : '...Loading'
         }
 
       </div>

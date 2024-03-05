@@ -1,6 +1,6 @@
 import React, { useContext } from 'react'
 import { GlobalAppState } from '../Layout'
-import HeroImageSlideshow from '../sharedComponents/HeroImageSlideshow'
+import HeroImageSlideshow from '../sharedComponents/heroImageSlideshow/HeroImageSlideshow'
 import { heroPhotos1 } from '../hero-photos'
 
 const UnderConstruction = () => {
