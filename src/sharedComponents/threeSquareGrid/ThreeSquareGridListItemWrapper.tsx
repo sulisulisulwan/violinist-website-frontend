@@ -2,13 +2,13 @@ import * as React from 'react'
 const { useContext } = React
 import { GlobalAppState } from '../../Layout'
 
-interface homeListItemsWrapperPropsIF {
+interface threeSquareGridListItemWrapperPropsIF {
   position: number
   children: React.ReactNode
 }
 
 
-const HomeListItemsWrapper = ({ position, children }: homeListItemsWrapperPropsIF) => {
+const ThreeSquareGridListItemWrapper = ({ position, children }: threeSquareGridListItemWrapperPropsIF) => {
 
   const { windowWidth } = useContext(GlobalAppState)
   const isFlexWrap = windowWidth < 600
@@ -17,9 +17,10 @@ const HomeListItemsWrapper = ({ position, children }: homeListItemsWrapperPropsI
 
 
   const baseStyle = {
-    // width: isFlexWrap ? '67%' : '33%',
     width: isFlexWrap ? '100%' : '33%',
-    paddingBottom: 50
+    paddingBottom: 50,
+    alignItems: isFlexWrap ? 'center' : '',
+    alignContent: isFlexWrap ? 'center' : '',
   }
 
   let computedStyle = baseStyle
@@ -82,4 +83,4 @@ const getSidePadding = (windowWidth: number, position: number) => {
   return sidePadding
 }
 
-export default HomeListItemsWrapper
+export default ThreeSquareGridListItemWrapper

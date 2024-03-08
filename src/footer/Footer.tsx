@@ -3,10 +3,13 @@ const { useContext } = React
 import { NAVY_BLUE_MED } from '../sharedStyles/colors'
 import getSocialIcons from '../socialIcons'
 import { GlobalAppState } from '../Layout'
+import DarkModeToggler from '../sharedComponents/DarkModeToggler'
 
 const Footer = () => {
   
-  const { globalSidePadding } = useContext(GlobalAppState)
+
+  const { globalSidePadding, darkModeStateManagement } = useContext(GlobalAppState)
+  const { isDarkMode } = darkModeStateManagement
   const socialIcons = getSocialIcons('white')
 
   return (
@@ -15,7 +18,7 @@ const Footer = () => {
         className="footer-body"
         style={{
           borderTop: '5px solid gray',
-          background: NAVY_BLUE_MED,
+          background: isDarkMode ? 'rgb(15, 14, 32)' : NAVY_BLUE_MED,
           paddingLeft: globalSidePadding,
           paddingRight: globalSidePadding,
         }}
@@ -45,6 +48,7 @@ const Footer = () => {
           <div
             className='credits'
             style={{
+              display: 'flex',
               color: 'white'
             }}
           >
@@ -61,11 +65,13 @@ const Footer = () => {
                 </a>
               )
             }) }
+            <DarkModeToggler/>
           </div>
         </div>
       </div>
     </footer>
   )
 }
+
 
 export default Footer

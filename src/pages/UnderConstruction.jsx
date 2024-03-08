@@ -2,21 +2,14 @@ import React, { useContext } from 'react'
 import { GlobalAppState } from '../Layout'
 import HeroImageSlideshow from '../sharedComponents/heroImageSlideshow/HeroImageSlideshow'
 import { heroPhotos1 } from '../hero-photos'
+import MainWrapper from '../sharedComponents/MainWrapper'
 
 const UnderConstruction = () => {
 
   const { globalSidePadding } = useContext(GlobalAppState)
 
   return (
-    <main style={{
-      paddingLeft: globalSidePadding,
-      paddingRight: globalSidePadding,
-      paddingBottom: 30,
-      fontSize: 13
-    }}>
-      <section className="hero-img">
-        <HeroImageSlideshow imageSrcArray={heroPhotos1}/>
-      </section>
+    <MainWrapper heroPhotos={heroPhotos1}>
       <section 
         id="under-construction" 
         className="under-construction"
@@ -28,8 +21,7 @@ const UnderConstruction = () => {
       >
         This section will be coming soon...
       </section>
-
-    </main>
+    </MainWrapper>
   )
 }
 

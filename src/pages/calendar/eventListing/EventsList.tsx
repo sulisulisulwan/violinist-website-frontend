@@ -5,28 +5,22 @@ import EventListing from './EventListing'
 import { NAVY_BLUE_LIGHT, NAVY_BLUE_MED } from '../../../sharedStyles/colors'
 import config from '../../../../config'
 import axios from 'axios'
+import { useFetchApiData } from '../../../hooks/useFetcher'
+import { GlobalAppState } from '../../../Layout'
 
 interface eventsListPropsIF {
   listKey: string
 }
 
-const useFetchCalendarData = () => {
-  const [ calendarData, setCalendarData ] = useState(null)
-  useEffect(() => {
-    const getCalendarData = async () => {
-      const calendarData = await axios.get(`${config.BACKEND_API_BASE_URL}/calendar`)
-      setCalendarData (calendarData.data)
-    }
-    getCalendarData()
-  }, [])
-  return calendarData
-}
 
 const EventsList = ({ listKey }: eventsListPropsIF) => {
 
+  const { darkModeStateManagement } = React.useContext(GlobalAppState)
+  const { isDarkMode } = darkModeStateManagement
+
   const lowerBounds = 10
 
-  const fetchedCalendarData = useFetchCalendarData()
+  const fetchedCalendarData = useFetchApiData('calendar')
   const calendarData = fetchedCalendarData?.results[listKey]
 
   const [ accordionOpenId, setAccordionOpenId ] = useState(null)
@@ -78,7 +72,7 @@ const EventsList = ({ listKey }: eventsListPropsIF) => {
         minWidth: '100%',
         display: 'table',
         maxWidth: '950px',
-        borderTop: `1px dotted ${NAVY_BLUE_MED}`
+        borderTop: `1px dotted ${isDarkMode ? 'white' : NAVY_BLUE_MED}`
       }}>
         { 
           finalList ? finalList.map((concertsDatum: any, i: number) =>

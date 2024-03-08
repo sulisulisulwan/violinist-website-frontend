@@ -1,36 +1,14 @@
-import React, { useContext, useEffect, useState } from 'react'
-import HeroImageSlideshow from '../../sharedComponents/heroImageSlideshow/HeroImageSlideshow'
+import React, { useEffect, useState } from 'react'
 import MainWrapper from '../../sharedComponents/MainWrapper'
-import { GlobalAppState } from '../../Layout'
 import { heroPhotos1 } from '../../hero-photos'
-import axios from 'axios'
-import config from '../../../config'
-
-const useFetchLongFormBio = () => {
-
-  const [ longFormBioData, setLongFormBioData ] = useState(null)
-
-  useEffect(() => {
-    const getLongFormBio = async () => {
-      const longFormData = await axios.get(config.BACKEND_API_BASE_URL + '/bio/longForm')
-      setLongFormBioData(longFormData.data)
-    }
-    getLongFormBio()
-  }, [])
-
-  return longFormBioData
-}
+import { useFetchApiData } from '../../hooks/useFetcher'
 
 const BiographyMain = () => {
 
-  const longForm = useFetchLongFormBio()
+  const longForm = useFetchApiData('longBio')
 
   return (
-    <MainWrapper>
-      <section className="hero-img">
-        <HeroImageSlideshow imageSrcArray={heroPhotos1}/>
-      </section>
-      
+    <MainWrapper heroPhotos={heroPhotos1}>
       <section  id="bio" className="bio">
 
         <h1>BIOGRAPHY</h1>

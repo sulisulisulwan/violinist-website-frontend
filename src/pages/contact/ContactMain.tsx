@@ -21,10 +21,7 @@ const ContactMain = () => {
   }
 
   return (
-    <MainWrapper>
-      <section className="hero-img">
-        <HeroImageSlideshow imageSrcArray={heroPhotos1}/>
-      </section>
+    <MainWrapper heroPhotos={heroPhotos1}>
       <section  id="contact" className="contact">
         <h1>CONTACT</h1>
         <div style={layoutStyle}>

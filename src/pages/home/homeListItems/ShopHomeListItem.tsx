@@ -9,7 +9,8 @@ import HoverLink from '../../../sharedComponents/HoverLink'
 
 const ShopHomeListItem = () => {
   
-  const { windowWidth } = useContext(GlobalAppState)
+  const { windowWidth, darkModeStateManagement } = useContext(GlobalAppState)
+  const { isDarkMode } = darkModeStateManagement
 
   const isReverseFlexWrap = windowWidth < 1280
 
@@ -43,7 +44,7 @@ const ShopHomeListItem = () => {
           paddingLeft: isReverseFlexWrap ? 0 : 20,
         }}>
           <span style={{
-            color: NAVY_BLUE_MED,
+            color: isDarkMode ? 'silver' : NAVY_BLUE_MED,
             fontSize: 20,
             fontFamily: 'Mate, serif',
           }}>

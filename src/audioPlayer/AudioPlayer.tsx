@@ -13,7 +13,9 @@ interface audioPlayerPropsIF {
 
 const AudioPlayer = ({ isMobile }: audioPlayerPropsIF) => {
 
-  const [ audioPlayerState, setAudioPlayerState ] = useContext(GlobalAppState).audioPlayerStateManagement
+  const { audioPlayerStateManagement, darkModeStateManagement } = useContext(GlobalAppState)
+  const [ audioPlayerState, setAudioPlayerState ] = audioPlayerStateManagement
+  const { isDarkMode } = darkModeStateManagement
   const audioTagRef = useRef(null)
 
   // to give space at the bottom of the site for the mobile player without obstructing the footer
@@ -32,7 +34,8 @@ const AudioPlayer = ({ isMobile }: audioPlayerPropsIF) => {
       <div className="player"
         style={{
           width: '100%',
-          borderTop: isMobile ? `solid 2px ${NAVY_BLUE_MED}` : 0,
+          backgroundColor: isDarkMode ? 'rgb(15, 14, 32)' : 'white',
+          borderTop: isMobile ? `solid 2px ${isDarkMode ? 'white' : NAVY_BLUE_MED }` : 0,
           paddingTop: isMobile ? 15: 0,
           paddingBottom: isMobile ? 15: 0,
           paddingLeft: isMobile ? 20: 0,

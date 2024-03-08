@@ -15,7 +15,9 @@ interface videoThumbnailPropsIF {
 
 const VideoThumbnail = ({ videoId, caption, youtubeCode, setModalIsOpen, setCurrYoutubeCode }: videoThumbnailPropsIF) => {
   
-  const [ audioPlayerState, setAudioPlayerState ] = useContext(GlobalAppState).audioPlayerStateManagement
+  const { audioPlayerStateManagement, darkModeStateManagement } = useContext(GlobalAppState)
+  const { isDarkMode } = darkModeStateManagement
+  const [ audioPlayerState, setAudioPlayerState ] = audioPlayerStateManagement
 
   const playYoutubeVideo = () => {
     const audioPlayer = document.getElementById('player') as HTMLAudioElement
@@ -36,7 +38,8 @@ const VideoThumbnail = ({ videoId, caption, youtubeCode, setModalIsOpen, setCurr
       <div style={{
         position: 'relative',
         top: 0,
-        left: 0
+        left: 0,
+        border: isDarkMode ? 'solid .5px darkgray' : ''
       }}>
         <img 
           src={`${config.BACKEND_API_BASE_URL}/media/videos/thumbnail?id=${videoId}`}
@@ -64,7 +67,7 @@ const VideoThumbnail = ({ videoId, caption, youtubeCode, setModalIsOpen, setCurr
       </div>
       <div
         style={{
-        color: NAVY_BLUE_MED,
+        color: isDarkMode ? 'silver' : NAVY_BLUE_MED,
         fontFamily: "Mate, serif",
         fontWeight: 900,
         fontSize: 20,

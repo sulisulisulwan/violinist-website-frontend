@@ -7,6 +7,8 @@ interface dateIconPropsIF {
 }
 
 const DateIcon = ({ day, month, year }: dateIconPropsIF) => {
+
+
   return (
     <div style={{
       display: 'flex',

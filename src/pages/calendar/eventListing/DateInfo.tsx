@@ -1,6 +1,7 @@
 import * as React from 'react'
 import DateIcon from './DateIcon'
-import { NAVY_BLUE_MED } from '../../../sharedStyles/colors'
+import { NAVY_BLUE_LIGHT, NAVY_BLUE_MED } from '../../../sharedStyles/colors'
+import { GlobalAppState } from '../../../Layout'
 
 type fullMonth = 'January' | 'February' | 'March' | 'April' | 'May' | 'June' | 'July' | 'August' | 'September' | 'October' | 'November' | 'December'
 
@@ -26,6 +27,10 @@ interface dateInfoPropsIF {
 }
 
 const DateInfo = ({ eventData }: dateInfoPropsIF) => {
+
+  const { darkModeStateManagement } = React.useContext(GlobalAppState)
+  const { isDarkMode } = darkModeStateManagement
+
   let startMonth, startDay, startYear
   let endMonth, endDay, endYear
   const isEventGroupOnly = eventData.dataType === 'eventGroup'
@@ -45,13 +50,13 @@ const DateInfo = ({ eventData }: dateInfoPropsIF) => {
 
   return (
     <div className="date" style={{
-      color: NAVY_BLUE_MED,
+      color: isDarkMode ? 'white' : NAVY_BLUE_MED,
       fontFamily: 'Mate, serif',
       width: '30%',
       paddingTop: 10,
       verticalAlign: 'top',
       display: 'table-cell',
-      borderBottom: `1px dotted ${NAVY_BLUE_MED}`,
+      borderBottom: `1px dotted ${isDarkMode ? 'white' : NAVY_BLUE_MED}`,
       cursor: 'pointer'
     }}>
         <div style={{ display: 'flex' }}>

@@ -4,29 +4,15 @@ const { useState, useEffect } = React
 
 import { NAVY_BLUE_LIGHT } from '../../../sharedStyles/colors'
 import HoverLink from '../../../sharedComponents/HoverLink'
-import MediaModalWrapper from '../../../sharedComponents/MediaModalWrapper'
-import YouTubeModal from '../../../sharedComponents/YouTubeModal'
+import ModalWrapper from '../../../sharedComponents/modals/ModalWrapper'
+import YouTubeModal from '../../../sharedComponents/modals/YouTubeModal'
 import VideoThumbnail from '../../../sharedComponents/VideoThumbnail'
-import axios from 'axios'
-import config from '../../../../config'
+import { useFetchApiData } from '../../../hooks/useFetcher'
 
-
-const useFetchVideoData = () => {
-  const [ videoData, setVideoData ] = useState(null)
-  useEffect(() => {
-    const getVideoData = async () => {
-      const fetchedVideoData = await axios.get(`${config.BACKEND_API_BASE_URL}/media/videos`)
-      setVideoData (fetchedVideoData.data)
-    }
-    getVideoData()
-  }, [])
-
-  return videoData
-}
 
 export const MediaHomeListItem = () => {
 
-  const videoData = useFetchVideoData()
+  const videoData = useFetchApiData('videos')
   const [ modalIsOpen, setModalIsOpen ] = useState(false)
 
   const firstVideo = videoData ? (videoData.results.length ? videoData.results[0] : null) : null
@@ -62,9 +48,9 @@ export const MediaHomeListItem = () => {
       </div>
       {
         firstVideo ?
-        <MediaModalWrapper isOpen={modalIsOpen} setModalClosed={() => setModalIsOpen(false)}>
+        <ModalWrapper modalName={'media'} isOpen={modalIsOpen} setModalClosed={() => setModalIsOpen(false)}>
           <YouTubeModal youtubeCode={videoData.youtubeCode}/>
-        </MediaModalWrapper> : null
+        </ModalWrapper> : null
 
       } 
     </>

@@ -1,7 +1,7 @@
 import * as React from 'react'
-const  { useEffect } = React
+const  { useEffect, useContext } = React
 import HoverButton from '../sharedComponents/HoverButtons'
-import { audioPlayerStateIF } from '../Layout'
+import { GlobalAppState, audioPlayerStateIF } from '../Layout'
 
 interface audioPlayerButtonsPropsIF {
   next: Function
@@ -37,11 +37,14 @@ const AudioPlayerButtons = ({
     }
   }, [audioPlayerState.playerStatus])
   
+  const { darkModeStateManagement } = useContext(GlobalAppState)
 
-  const prevIcon = '/images/audio-player-icons/prev-512.png'
-  const nextIcon = '/images/audio-player-icons/next-512.png'
-  const playIcon = '/images/audio-player-icons/play-512.png'
-  const pauseIcon = '/images/audio-player-icons/pause-512.png'
+  const { isDarkMode } = darkModeStateManagement
+
+  const prevIcon = `/images/audio-player-icons/media-step-backward-${isDarkMode ? 'white' : 'blue'}.png`
+  const nextIcon = `/images/audio-player-icons/media-step-forward-${isDarkMode ? 'white' : 'blue'}.png`
+  const playIcon = `/images/audio-player-icons/media-play-${isDarkMode ? 'white' : 'blue'}.png`
+  const pauseIcon = `/images/audio-player-icons/media-pause-${isDarkMode ? 'white' : 'blue'}.png`
 
   const handlePlayPauseStop = () => { 
     const action = audioPlayerState.playerStatus === 'play' ? pausePlay : startPlay

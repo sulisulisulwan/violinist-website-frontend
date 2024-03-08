@@ -2,9 +2,14 @@ import * as React from 'react'
 import * as ReactDom from 'react-dom'
 import axios from 'axios'
 import config from '../../../config'
-const { useState } = React
+import { NAVY_BLUE_MED } from '../../sharedStyles/colors'
+import { GlobalAppState } from '../../Layout'
+const { useState, useContext } = React
 
 const ContactForm = ({ windowWidth }: any) => {
+
+  const { darkModeStateManagement } = useContext(GlobalAppState)
+  const { isDarkMode } = darkModeStateManagement
 
   const [ modalOpen, setModalOpen ] = useState(false)
   const [ emailSentIsError, setEmailSentIsError ] = useState(false)
@@ -138,7 +143,8 @@ const ContactForm = ({ windowWidth }: any) => {
             minWidth: '250px',
             width: '50%',
             color: 'white',
-            backgroundColor: '#191970',
+            // backgroundColor: '#191970',
+            backgroundColor: isDarkMode ? 'gray' : NAVY_BLUE_MED,
             fontSize: '15px',
             fontFamily: 'Gill Sans, sans-serif',
             padding: '10px',

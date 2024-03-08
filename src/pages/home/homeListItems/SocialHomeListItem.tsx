@@ -1,8 +1,13 @@
 import * as React from 'react'
 import getSocialIcons from '../../../socialIcons'
+import { GlobalAppState } from '../../../Layout'
 
 export const SocialsHomeListItem = () => {
-  const socialIcons = getSocialIcons('light')
+
+  const { darkModeStateManagement } = React.useContext(GlobalAppState)
+  const { isDarkMode } = darkModeStateManagement
+
+  const socialIcons = getSocialIcons(isDarkMode ? 'white' : 'light')
   return (
     <>
       <h2>SOCIALS</h2>

@@ -5,9 +5,10 @@ import { navLinkDataIF } from './nav-links'
 
 interface topNavBarPropsIF {
   links: navLinkDataIF[]
+  isDarkMode: boolean
 }
 
-const TopNavBar = ({ links }: topNavBarPropsIF) => {
+const TopNavBar = ({ links, isDarkMode }: topNavBarPropsIF) => {
 
   const styleTopNavUl: React.CSSProperties = {
     display: 'flex',
@@ -17,6 +18,7 @@ const TopNavBar = ({ links }: topNavBarPropsIF) => {
     listStyleType: 'none',
     fontFamily: 'Poppins',
     marginTop: 8, // to accomodate the audio component above.  Remove to center
+    
   }
 
   const linkStyle: React.CSSProperties = {
@@ -36,7 +38,7 @@ const TopNavBar = ({ links }: topNavBarPropsIF) => {
             href={link.href} 
             linkText={link.label} 
             overColor={NAVY_BLUE_LIGHT} 
-            offColor={'black'}
+            offColor={isDarkMode ? 'white' : 'black'}
           />
         </li>
         

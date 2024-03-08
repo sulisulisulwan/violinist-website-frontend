@@ -19,6 +19,7 @@ import BlogMain from './pages/blog/BlogMain'
 // import ShopMain from './pages/shop/ShopMain'
 import ErrorPage from './pages/ErrorPage'
 import UnderConstruction from './pages/UnderConstruction';
+import ShopMain from './pages/shop/ShopMain';
 
 
 
@@ -79,8 +80,8 @@ const router = createBrowserRouter([
       },
       {
         path: 'shop',
-        // element: <ShopMain/>
-        element: <UnderConstruction/>
+        element: <ShopMain/>
+        // element: <UnderConstruction/>
       },
       {
         path: 'contact',

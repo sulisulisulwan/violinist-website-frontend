@@ -1,20 +1,20 @@
 import * as React from 'react'
-const { useContext } = React
-
+const { useState, useContext } = React
 import { Outlet } from 'react-router-dom'
-import HeroImageSlideshow from '../../sharedComponents/heroImageSlideshow/HeroImageSlideshow'
 import HoverLink from '../../sharedComponents/HoverLink'
-import { NAVY_BLUE_LIGHT, NAVY_BLUE_MED } from '../../sharedStyles/colors'
 import MainWrapper from '../../sharedComponents/MainWrapper'
+import { NAVY_BLUE_LIGHT, NAVY_BLUE_MED } from '../../sharedStyles/colors'
 import { heroPhotos1 } from '../../hero-photos'
+import { GlobalAppState } from '../../Layout'
 
 const MediaMain = () => {
 
+  const [ pathName, setPathName ] = useState('/media')
+  const { darkModeStateManagement } = useContext(GlobalAppState)
+  const { isDarkMode } = darkModeStateManagement
+
   return (
-    <MainWrapper paddingBottom={30}>
-      <section className="hero-img">
-        <HeroImageSlideshow imageSrcArray={heroPhotos1}/>
-      </section>
+    <MainWrapper paddingBottom={30} heroPhotos={heroPhotos1}>
       <section  id="media" className="media">
         <h1>MEDIA</h1>
         <div>
@@ -26,26 +26,32 @@ const MediaMain = () => {
             <li style={{
               paddingRight: 20
             }}>
+              { pathName === '/media' || pathName === '/photos' ? 
+              <span style={{ color: isDarkMode ? 'white' : 'black' }}>PHOTOS</span> :
               <HoverLink
                 cls="photos-grid-link"
                 linkText={'PHOTOS'}
                 href="photos"
                 overColor={NAVY_BLUE_LIGHT}
-                offColor={NAVY_BLUE_MED}
-                onClickHandler={() => {}}
+                offColor={isDarkMode ? 'silver' : NAVY_BLUE_MED}
+                onClickHandler={() => { setPathName('/photos') }}
                 openInNewTab={false}
                 />
+              }
             </li>
             <li>
-              <HoverLink
+              { pathName === '/videos' ? 
+                <span style={{ color: isDarkMode ? 'white' : 'black' }}>VIDEOS</span> :
+                <HoverLink
                 cls="videos-grid-link"
                 linkText={'VIDEOS'}
                 href="videos"
                 overColor={NAVY_BLUE_LIGHT}
-                offColor={NAVY_BLUE_MED}
-                onClickHandler={() => {}}
+                offColor={isDarkMode ? 'silver' : NAVY_BLUE_MED}
+                onClickHandler={() => { setPathName('/videos') }}
                 openInNewTab={false}
-              />
+                />
+              }
             </li>
           </ul>
         </div>

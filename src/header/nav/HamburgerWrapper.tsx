@@ -1,5 +1,6 @@
 import * as React from 'react'
 import { Sling as Hamburger } from 'hamburger-react'
+import { GlobalAppState } from '../../Layout'
 
 interface hamburgerWrapperPropsIF {
   toggle: React.Dispatch<React.SetStateAction<boolean>>
@@ -7,6 +8,9 @@ interface hamburgerWrapperPropsIF {
 }
 
 const HamburgerWrapper = ({ toggle, toggled }: hamburgerWrapperPropsIF) => {
+
+  const { darkModeStateManagement } = React.useContext(GlobalAppState)
+  const { isDarkMode } = darkModeStateManagement
 
   const styleHamburgerWrapper = {
     display: 'flex',
@@ -25,7 +29,7 @@ const HamburgerWrapper = ({ toggle, toggled }: hamburgerWrapperPropsIF) => {
         direction="right"
         duration={0.8}
         distance="lg"
-        color="black"
+        color={ isDarkMode ? 'white' : 'black' }
         easing="ease-in"
       /> 
     </div>

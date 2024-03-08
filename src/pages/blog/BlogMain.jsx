@@ -3,34 +3,14 @@ import MainWrapper from '../../sharedComponents/MainWrapper'
 import HeroImageSlideshow from '../../sharedComponents/heroImageSlideshow/HeroImageSlideshow'
 import { heroPhotos1 } from '../../hero-photos'
 import { getDisplayDate } from '../../utils/date'
-import axios from 'axios'
-import config from '../../../config'
-const { useState, useEffect } = React
-
-const useFetchBlog = () => {
-
-  const [ blogData, setBlogData ] = useState(null)
-
-  useEffect(() => {
-    const getBlogData = async () => {
-      const fetchedBlogData = await axios.get(config.BACKEND_API_BASE_URL + '/blog')
-      setBlogData(fetchedBlogData.data)
-    }
-    getBlogData()
-  }, [])
-
-  return blogData
-}
+import { useFetchApiData } from '../../hooks/useFetcher'
 
 const BlogMain = () => {
 
-  const blogData = useFetchBlog()
+  const blogData = useFetchApiData('blog')
 
   return (
-    <MainWrapper>
-      <section className="hero-img">
-        <HeroImageSlideshow imageSrcArray={heroPhotos1}/>
-      </section>
+    <MainWrapper heroPhotos={heroPhotos1}>
       <section id="blog" className="blog">
         <h1>BLOG</h1>
         {

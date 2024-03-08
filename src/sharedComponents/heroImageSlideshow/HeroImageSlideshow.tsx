@@ -1,5 +1,6 @@
 import * as React from 'react'
 import { useHeroWrapperSizer, useImageSlider } from './hooks'
+import { GlobalAppState } from '../../Layout'
 
 interface heroImageSlideshowPropsIF {
   imageSrcArray: string[]
@@ -9,6 +10,8 @@ const HeroImageSlideshow = ({ imageSrcArray }: heroImageSlideshowPropsIF) => {
 
   const { heroPhotoRef, wrapperHeight } = useHeroWrapperSizer()
   const { imgArrayIndex, afterFirstTransition } = useImageSlider(imageSrcArray)
+  const { darkModeStateManagement } = React.useContext(GlobalAppState)
+  const { isDarkMode } = darkModeStateManagement
   
   return (
     <div style={{ 
@@ -41,6 +44,7 @@ const HeroImageSlideshow = ({ imageSrcArray }: heroImageSlideshowPropsIF) => {
                       width: '100%',
                       margin: 0,
                       padding: 0,
+                      border: isDarkMode ? '.2px solid darkgray' : '',
                       zIndex: index === imgArrayIndex ? 5 : index === prevIdx ? 4 : 0,
                       animation: index === imgArrayIndex && afterFirstTransition ? 'fadeIn 1s linear' : ''
                     }}

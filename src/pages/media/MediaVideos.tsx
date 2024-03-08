@@ -1,25 +1,13 @@
 import * as React from 'react'
 const { useState, useContext, useEffect } = React
-import MediaModalWrapper from '../../sharedComponents/MediaModalWrapper'
-import YouTubeModal from '../../sharedComponents/YouTubeModal'
+import ModalWrapper from '../../sharedComponents/modals/ModalWrapper'
+import YouTubeModal from '../../sharedComponents/modals/YouTubeModal'
 import VideoThumbnail from '../../sharedComponents/VideoThumbnail'
 import { GlobalAppState } from '../../Layout'
 import { VideoDataAPI } from 'suli-violin-website-types/src'
-import axios from 'axios'
-import config from '../../../config'
+import { useFetchApiData } from '../../hooks/useFetcher'
 
 
-const useFetchVideos = () => {
-  const [ videoData, setVideoData ] = useState(null)
-  useEffect(() => {
-    const getVideoData = async () => {
-      const fetchedVideoData = await axios.get(config.BACKEND_API_BASE_URL + '/media/videos')
-      setVideoData(fetchedVideoData.data)
-    }
-    getVideoData()
-  }, [])
-  return videoData
-}
 
 export const MediaVideos = () => {
 
@@ -27,8 +15,7 @@ export const MediaVideos = () => {
   const [ currYoutubeCode, setCurrYoutubeCode ] = useState(null)
   const { windowWidth } = useContext(GlobalAppState)
 
-  const videoData = useFetchVideos()
-
+  const videoData = useFetchApiData('videos')
   const videos = videoData?.results
 
   return (
@@ -48,7 +35,7 @@ export const MediaVideos = () => {
                 style={{
                   padding: 10
                 }}
-              >'
+              >
                 <VideoThumbnail 
                   setCurrYoutubeCode={setCurrYoutubeCode}
                   youtubeCode={video.youtubeCode}
@@ -61,9 +48,9 @@ export const MediaVideos = () => {
           }) : '...Loading'
         }
       </ul>
-      <MediaModalWrapper isOpen={modalIsOpen} setModalClosed={() => setModalIsOpen(false)}>
+      <ModalWrapper modalName={'videos'} isOpen={modalIsOpen} setModalClosed={() => setModalIsOpen(false)}>
         <YouTubeModal youtubeCode={currYoutubeCode}/>
-      </MediaModalWrapper>
+      </ModalWrapper>
     </div>
   )
 }

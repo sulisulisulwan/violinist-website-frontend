@@ -2,25 +2,12 @@ import * as React from 'react'
 import { NAVY_BLUE_LIGHT } from '../../../sharedStyles/colors'
 import HoverLink from '../../../sharedComponents/HoverLink'
 import { ParsedHTMLComponent } from 'suli-violin-website-types/src'
-import axios from 'axios'
-import config from '../../../../config'
-const { useState, useEffect } = React
-
-const useFetchBioData = () => {
-  const [ shortFormBioData, setShortFormBioData ] = useState(null)
-  useEffect(() => {
-    const getShortFormBioData = async () => {
-      const bioDataShortForm = await axios.get(`${config.BACKEND_API_BASE_URL}/bio/shortForm`)
-      setShortFormBioData (bioDataShortForm.data)
-    }
-    getShortFormBioData()
-  }, [])
-  return shortFormBioData
-}
+import { useFetchApiData } from '../../../hooks/useFetcher'
+import { GlobalAppState } from '../../../Layout'
 
 export const BioHomeListItem = () => {
 
-  const shortFormBioData = useFetchBioData()
+  const shortFormBioData = useFetchApiData('shortBio')
 
   return (
     <>

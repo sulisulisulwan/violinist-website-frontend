@@ -11,11 +11,11 @@ const Header = () => {
 
   const [ hamburgerOpen, setHamburgerOpen ] = React.useState(false)
   
-  const { globalSidePadding, navBarIsWide }= useContext(GlobalAppState)
+  const { globalSidePadding, navBarIsWide, darkModeStateManagement } = useContext(GlobalAppState)
 
-  if (navBarIsWide && hamburgerOpen) {
-    setHamburgerOpen(false)
-  }
+  const { isDarkMode } = darkModeStateManagement
+
+  if (navBarIsWide && hamburgerOpen)  setHamburgerOpen(false)
 
   const styleTopBanner = {
     paddingTop: navBarIsWide ? 30 : 5,
@@ -27,8 +27,10 @@ const Header = () => {
     paddingLeft: globalSidePadding,
     paddingRight: globalSidePadding,
     minHeight: '70px',
-    backgroundColor: 'white',
+    backgroundColor: isDarkMode ? 'rgb(15, 14, 32)' : 'white',
+    color: isDarkMode ? 'white' : 'black',
     zIndex: 100,
+
   }
   
   const styleHeaderName = {
@@ -48,6 +50,7 @@ const Header = () => {
           <Link to="/">
             <span style={{
               fontSize: 25,
+              color: isDarkMode ? 'white' : 'black'
             }}>SULIMAN TEKALLI</span>
             <span style={{ 
               color: 'gray',
@@ -61,8 +64,7 @@ const Header = () => {
           flexDirection: 'column',
           justifyContent: 'flex-end',
         }}>
-          {/* <AudioPlayer/> */}
-          { navBarIsWide ? <NavLinks links={links}/> : <HamburgerWrapper toggle={setHamburgerOpen} toggled={hamburgerOpen}/> }
+          { navBarIsWide ? <NavLinks isDarkMode={isDarkMode} links={links}/> : <HamburgerWrapper toggle={setHamburgerOpen} toggled={hamburgerOpen}/> }
         </div>
       </header>
       <NavModal toggled={hamburgerOpen} toggleModal={setHamburgerOpen} links={links}/>

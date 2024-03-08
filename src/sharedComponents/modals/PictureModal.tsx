@@ -1,6 +1,7 @@
 import * as React from 'react'
 import { PhotoDataAPI } from 'suli-violin-website-types/src'
-import config from '../../config'
+import config from '../../../config'
+import HoverPopIcon from '../HoverPopIcon'
 const { useState } = React
 
 interface pictureModalPropsIF {
@@ -52,7 +53,7 @@ const PictureModal = ({ initIndex, picDataArray, setModalClosed }: pictureModalP
           }}
           src={`${config.BACKEND_API_BASE_URL}/media/photos?id=${currPic.id}&isCropped=true`}
         />
-        <HoverCarouselIcon
+        <HoverPopIcon
           onClickHandler={prev}
           cls={"prev-picture-carousel-icon"}
           top={'45%'}
@@ -63,7 +64,7 @@ const PictureModal = ({ initIndex, picDataArray, setModalClosed }: pictureModalP
           width={50}
           growth={10}
           />
-        <HoverCarouselIcon
+        <HoverPopIcon
           onClickHandler={next}
           cls={"next-picture-carousel-icon"}
           top={'45%'}
@@ -81,7 +82,7 @@ const PictureModal = ({ initIndex, picDataArray, setModalClosed }: pictureModalP
           }}>
             Photo Credit: {currPic.photoCred}
         </div>
-        <HoverCarouselIcon
+        <HoverPopIcon
           onClickHandler={() => setModalClosed(false)}
           cls={"close-button"}
           right={0}
@@ -93,56 +94,6 @@ const PictureModal = ({ initIndex, picDataArray, setModalClosed }: pictureModalP
           imgSrc={'/images/carousel-icons/close-button.png'}
         />
       </div>
-    </div>
-  )
-}
-
-interface hoverCarouselIconPropsIF {
-  imgSrc: string
-  cls: string
-  onClickHandler: React.MouseEventHandler<HTMLDivElement>
-  top: string | number
-  left: string | number
-  right: string | number
-  bottom: string | number
-  width: number
-  growth: number
-}
-
-const HoverCarouselIcon = ({ 
-  cls, 
-  imgSrc, 
-  onClickHandler, 
-  top = '', 
-  left = '', 
-  right = '', 
-  bottom = '', 
-  width, 
-  growth 
-}: hoverCarouselIconPropsIF) => {
-
-  const [ isHovering, setIsHovering ] = useState(false)
-
-  return (
-    <div 
-      className={cls} 
-      onMouseEnter={() => { setIsHovering(true) }}
-      onMouseLeave={() => { setIsHovering(false) }}
-      style={{
-        position: 'absolute',
-        cursor: 'pointer',
-        borderRadius: 100,
-        top: isHovering && top ? '44%' : top,
-        bottom,
-        right,
-        left
-      }}
-      onClick={onClickHandler}
-    >
-      <img
-        src={imgSrc}
-        width={isHovering ? width + growth : width}
-      />
     </div>
   )
 }

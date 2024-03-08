@@ -2,26 +2,13 @@ import * as React from 'react'
 import { parseDateToString } from '../../../utils/date'
 import { NAVY_BLUE_LIGHT, NAVY_BLUE_MED } from '../../../sharedStyles/colors'
 import HoverLink from '../../../sharedComponents/HoverLink'
-const { useState, useEffect } = React
-import axios from 'axios'
-import config from '../../../../config'
-
-const useFetchCalendarData = () => {
-  const [ calendarData, setCalendarData ] = useState(null)
-  useEffect(() => {
-    const getCalendarData = async () => {
-      const calendarData = await axios.get(`${config.BACKEND_API_BASE_URL}/calendar`)
-      setCalendarData (calendarData.data)
-    }
-    getCalendarData()
-  }, [])
-  return calendarData
-}
+import { useFetchApiData } from '../../../hooks/useFetcher'
+import { GlobalAppState } from '../../../Layout'
 
 
 const CalendarHomeListItem = () => {
 
-  const calendarData = useFetchCalendarData()
+  const calendarData = useFetchApiData('calendar')
   const upcomingDates = calendarData?.results.upcoming
   const sortedCalendarData = upcomingDates ? transformAndSortCalendarData(upcomingDates) : null
   const abbreviatedData = sortedCalendarData ? sortedCalendarData.slice(0, 4) : null
@@ -60,6 +47,8 @@ interface miniDateListItemPropsIF {
 }
 
 const MiniDateListItem = ({ eventData }: miniDateListItemPropsIF ) => {
+  const { darkModeStateManagement } = React.useContext(GlobalAppState)
+  const { isDarkMode } = darkModeStateManagement
 
   let dateTime = eventData.dateTime
 
@@ -93,12 +82,12 @@ const MiniDateListItem = ({ eventData }: miniDateListItemPropsIF ) => {
       <span style={{
         fontFamily: "Mate, serif",
         fontWeight: 900,
-        color: NAVY_BLUE_MED,
+        color: isDarkMode ? 'silver' : NAVY_BLUE_MED,
         fontSize: 17,
         paddingBottom: 5
       }}>{day + ' ' + month + ', ' + year + ' - ' + computedLocation}</span>
       <span style={{
-        color: NAVY_BLUE_LIGHT,
+        color: isDarkMode ? 'white' : NAVY_BLUE_LIGHT,
         fontSize: 13,
         paddingBottom: 10
       }}>{computedVenue.toUpperCase()}</span>

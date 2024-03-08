@@ -1,6 +1,7 @@
 import * as React from 'react'
 import HoverLink from "../../../sharedComponents/HoverLink"
 import { NAVY_BLUE_LIGHT, NAVY_BLUE_MED } from "../../../sharedStyles/colors"
+import { GlobalAppState } from '../../../Layout'
 
 interface eventListingContentPropsIF {
   eventData: any
@@ -8,6 +9,8 @@ interface eventListingContentPropsIF {
 }
 
 const Content = ({ eventData, accordionIsOpen }: eventListingContentPropsIF) => {
+  const { darkModeStateManagement } = React.useContext(GlobalAppState)
+  const { isDarkMode } = darkModeStateManagement
 
   let city, region, venue
 
@@ -69,9 +72,9 @@ const Content = ({ eventData, accordionIsOpen }: eventListingContentPropsIF) => 
         paddingBottom: 20,
         verticalAlign: 'top',
         display: 'table-cell',
-        borderBottom: `1px dotted ${NAVY_BLUE_MED}`,
+        borderBottom: `1px dotted ${isDarkMode ? 'white' : NAVY_BLUE_MED}`,
         cursor: 'pointer',
-        color: NAVY_BLUE_MED,
+        color: isDarkMode ? 'white' : NAVY_BLUE_MED,
         fontFamily: 'Mate, serif',
       }}
     >
@@ -130,7 +133,7 @@ const Content = ({ eventData, accordionIsOpen }: eventListingContentPropsIF) => 
                 cls={'no-accordion-action'}
                 onClickHandler={() => {}}
                 linkText={'GET TICKETS'} 
-                offColor={NAVY_BLUE_MED}
+                offColor={isDarkMode ? 'white' : NAVY_BLUE_MED}
                 overColor={NAVY_BLUE_LIGHT}
                 href={link} 
                 openInNewTab={true}

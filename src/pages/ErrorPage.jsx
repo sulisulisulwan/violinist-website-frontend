@@ -8,6 +8,7 @@ import Footer from '../footer/Footer'
 import { GlobalAppState } from '../Layout'
 import { useRouteError } from 'react-router-dom'
 import { heroPhotos1 } from '../hero-photos'
+import MainWrapper from '../sharedComponents/MainWrapper'
 
 
 const ErrorPage = () => {
@@ -55,13 +56,7 @@ const ErrorPage = () => {
     <GlobalAppState.Provider value={globalAppState}>
       <div id="isLoaded"></div>
       <Header/>
-      <main style={{
-        paddingLeft: globalAppState.globalSidePadding,
-        paddingRight: globalAppState.globalSidePadding,
-        paddingBottom: 30,
-        fontSize: 13
-      }}>
-        <HeroImageSlideshow imageSrcArray={heroPhotos1}/>
+      <MainWrapper heroPhotos={heroPhotos1}>
         <div
           style={{
             fontFamily: 'Mate',
@@ -72,7 +67,7 @@ const ErrorPage = () => {
         >
           {errorCode ? errorCode + ': ' : ''} {message}
         </div>
-      </main>
+      </MainWrapper>
       <Footer/>
       <AudioPlayerWrapper/>
     </GlobalAppState.Provider>

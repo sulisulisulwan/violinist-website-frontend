@@ -1,13 +1,13 @@
 import * as React from 'react'
 const { useContext } = React
-import HomeListItemsWrapper from './HomeListItemsWrapper'
 import { GlobalAppState } from '../../Layout'
+import ThreeSquareGridListItemWrapper from './ThreeSquareGridListItemWrapper'
 
-interface homeGroupPropsIF {
+interface threeSquareGridGroupPropsIF {
   listItemComponents: React.ReactNode[]
 }
 
-const HomeGroup = ({ listItemComponents }: homeGroupPropsIF) => {
+const ThreeSquareGridGroup = ({ listItemComponents }: threeSquareGridGroupPropsIF) => {
 
   
   const { windowWidth } = useContext(GlobalAppState)
@@ -23,18 +23,20 @@ const HomeGroup = ({ listItemComponents }: homeGroupPropsIF) => {
         flexDirection: isFlexWrap ? 'column' :  'row',
         listStyleType: 'none',
         alignItems: isFlexWrap ? 'center' : '',
+        alignContent: isFlexWrap ? 'center' : '',
+        justifyContent: 'center',
         padding: 0,
       }}
     >
       {
         listItemComponents.map((listItem, i) => {
           return (
-            <HomeListItemsWrapper
+            <ThreeSquareGridListItemWrapper
               key={i} 
               position={i}
             >
               {listItem}
-            </HomeListItemsWrapper>
+            </ThreeSquareGridListItemWrapper>
           )
         })
       }
@@ -44,4 +46,4 @@ const HomeGroup = ({ listItemComponents }: homeGroupPropsIF) => {
 }
 
 
-export default HomeGroup
+export default ThreeSquareGridGroup

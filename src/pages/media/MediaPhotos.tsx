@@ -1,34 +1,22 @@
 import * as React from 'react'
 const { useContext, useEffect, useState } = React
 import { GlobalAppState } from '../../Layout'
-import MediaModalWrapper from '../../sharedComponents/MediaModalWrapper'
-import PictureModal from '../../sharedComponents/PictureModal'
+import ModalWrapper from '../../sharedComponents/modals/ModalWrapper'
+import PictureModal from '../../sharedComponents/modals/PictureModal'
 import { PhotoDataAPI } from 'suli-violin-website-types/src'
 import config from '../../../config'
 import LazyImage from '../../sharedComponents/LazyImage'
-import axios from 'axios'
+import { useFetchApiData } from '../../hooks/useFetcher'
 
 
-const useFetchPhotos = () => {
 
-  const [ photoData, setPhotoData ] = useState(null)
-
-  useEffect(() => {
-    const getPhotoData = async () => {
-      const fetchedPhotoData = await axios.get(config.BACKEND_API_BASE_URL + '/media/photos')
-      setPhotoData(fetchedPhotoData.data)
-    }
-    getPhotoData()
-  }, [])
-
-  return photoData
-}
 
 const MediaPhotos = () => {
 
-  const photoData = useFetchPhotos()
+  const photoData = useFetchApiData('photos')
 
-  const { windowWidth } = useContext(GlobalAppState)
+  const { windowWidth, darkModeStateManagement } = useContext(GlobalAppState)
+  const { isDarkMode } = darkModeStateManagement
   const [ modalIsOpen, setModalIsOpen ] = useState(false)
   const [ clickedPicIndex, setClickedPicIndex ] = useState(null)
 
@@ -79,7 +67,6 @@ const MediaPhotos = () => {
                   style={{
                     display: 'grid',
                     width: '100%',
-                    overflow: 'clip',
                   }}
                   >
                   <div 
@@ -102,10 +89,11 @@ const MediaPhotos = () => {
                         className="inner-most-wrapper"
                         style={{
                           paddingBottom: 15,
-                          maxHeight: '100%'
+                          maxHeight: '100%',
                         }}
                       >
                         <LazyImage 
+                          addedStyle={{ border: isDarkMode ? '.5px darkgray solid' : '' }}
                           onClickHandler={() => { setClickedPicIndex(i); setModalIsOpen(true) } }
                           src={`${config.BACKEND_API_BASE_URL}/media/photos?id=${picture.id}&isCropped=true`}
                           alt={'Media photo gallery image'}
@@ -118,9 +106,9 @@ const MediaPhotos = () => {
             }) : '...Loading'
           }
         </ul>
-        <MediaModalWrapper isOpen={modalIsOpen} setModalClosed={() => setModalIsOpen(false)}>
+        <ModalWrapper modalName={'photos'} isOpen={modalIsOpen} setModalClosed={() => setModalIsOpen(false)}>
           <PictureModal initIndex={clickedPicIndex} picDataArray={photos} setModalClosed={() => setModalIsOpen(false)}/>
-        </MediaModalWrapper>
+        </ModalWrapper>
       </div>
     </div>
   )

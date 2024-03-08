@@ -8,14 +8,19 @@ import AudioPlayerWrapper from './audioPlayer/AudioPlayerWrapper'
 import Header from './header/Header'
 import Footer from './footer/Footer'
 
+const { useState } = React
+
 export const GlobalAppState = createContext(null)
 
 export interface globalAppStateIF {
-  data: any,
   windowWidth: number 
+  darkModeStateManagement: { 
+    isDarkMode: boolean
+    setIsDarkMode: React.Dispatch<React.SetStateAction<boolean>>
+  }
+  audioPlayerStateManagement: [audioPlayerStateIF, React.Dispatch<React.SetStateAction<audioPlayerStateIF>>]
   globalSidePadding: string
   navBarIsWide: boolean
-  audioPlayerStateManagement: [audioPlayerStateIF, React.Dispatch<React.SetStateAction<audioPlayerStateIF>>]
 }
 
 export interface audioPlayerStateIF {
@@ -29,10 +34,12 @@ export interface audioPlayerStateIF {
 const Layout = () => {
 
   const windowWidth = useWindowWidth()
+  const [ isDarkMode, setIsDarkMode ] = useState(true)
   const [ audioPlayerState, setAudioPlayerState ] = useFetchAudioData()
   
   const globalAppState = { 
     windowWidth, 
+    darkModeStateManagement: { isDarkMode, setIsDarkMode },
     audioPlayerStateManagement: [ audioPlayerState, setAudioPlayerState ],
     globalSidePadding: windowWidth <= 600 ? '22px' 
     : windowWidth <= 800 ? '32px' 
