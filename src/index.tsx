@@ -58,7 +58,6 @@ const router = createBrowserRouter([
       {
         path: 'blog',
         element: <BlogMain/>
-        // element: <UnderConstruction/>
       },
       {
         path: 'media',
@@ -80,8 +79,8 @@ const router = createBrowserRouter([
       },
       {
         path: 'shop',
-        element: <ShopMain/>
-        // element: <UnderConstruction/>
+        // element: <ShopMain/>
+        element: <UnderConstruction/>
       },
       {
         path: 'contact',

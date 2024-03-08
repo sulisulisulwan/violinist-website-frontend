@@ -31,15 +31,28 @@ export interface audioPlayerStateIF {
   progress: number
 }
 
+const useDarkMode = () => {
+  const initState = localStorage.getItem('darkMode') === 'true' ? true : false
+  const [ isDarkMode, setIsDarkMode ] = useState(initState)
+
+  const darkModeStateSetter = (value: boolean) => {
+    localStorage.setItem('darkMode', value.toString())
+
+    setIsDarkMode(value)
+  }
+
+  return { isDarkMode, setIsDarkMode: darkModeStateSetter }
+}
+
 const Layout = () => {
 
   const windowWidth = useWindowWidth()
-  const [ isDarkMode, setIsDarkMode ] = useState(true)
+
   const [ audioPlayerState, setAudioPlayerState ] = useFetchAudioData()
   
   const globalAppState = { 
     windowWidth, 
-    darkModeStateManagement: { isDarkMode, setIsDarkMode },
+    darkModeStateManagement: useDarkMode(),
     audioPlayerStateManagement: [ audioPlayerState, setAudioPlayerState ],
     globalSidePadding: windowWidth <= 600 ? '22px' 
     : windowWidth <= 800 ? '32px' 
