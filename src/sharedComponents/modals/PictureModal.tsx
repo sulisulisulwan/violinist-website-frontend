@@ -51,7 +51,7 @@ const PictureModal = ({ initIndex, picDataArray, setModalClosed }: pictureModalP
             maxHeight: '90vh',
             padding: .5,
           }}
-          src={`${config.BACKEND_API_BASE_URL}/media/photos?id=${currPic.id}&isCropped=true`}
+          src={`${config.BACKEND_API_BASE_URL}/photos?id=${currPic.id}&isCropped=true`}
         />
         <HoverPopIcon
           onClickHandler={prev}

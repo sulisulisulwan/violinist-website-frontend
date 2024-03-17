@@ -42,7 +42,7 @@ const VideoThumbnail = ({ videoId, caption, youtubeCode, setModalIsOpen, setCurr
         border: isDarkMode ? 'solid .5px darkgray' : ''
       }}>
         <img 
-          src={`${config.BACKEND_API_BASE_URL}/media/videos/thumbnail?id=${videoId}`}
+          src={`${config.BACKEND_API_BASE_URL}/videos/thumbnail?id=${videoId}`}
           style={{
             maxWidth: '100%',
             aspectRatio: '2 / 1.1',

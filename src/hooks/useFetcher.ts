@@ -43,7 +43,7 @@ const useFetchPhotos = () => {
   const [ photoData, setPhotoData ] = useState(null)
   useEffect(() => {
     const getPhotoData = async () => {
-      const fetchedPhotoData = await axios.get(config.BACKEND_API_BASE_URL + '/media/photos')
+      const fetchedPhotoData = await axios.get(config.BACKEND_API_BASE_URL + '/photos')
       setPhotoData(fetchedPhotoData.data)
     }
     getPhotoData()
@@ -55,7 +55,7 @@ const useFetchVideos = () => {
   const [ videoData, setVideoData ] = useState(null)
   useEffect(() => {
     const getVideoData = async () => {
-      const fetchedVideoData = await axios.get(config.BACKEND_API_BASE_URL + '/media/videos')
+      const fetchedVideoData = await axios.get(config.BACKEND_API_BASE_URL + '/videos')
       setVideoData(fetchedVideoData.data)
     }
     getVideoData()

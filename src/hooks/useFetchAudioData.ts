@@ -17,10 +17,10 @@ export const useFetchAudioData = (): [any, React.Dispatch<React.SetStateAction<a
     
     const fetchAudioData = async () => {
 
-      const mediaData = await axios.get(BACKEND_API_BASE_URL + '/media')
-      let playlist = mediaData.data.playlists[0]
+      const playlistsData = await axios.get(BACKEND_API_BASE_URL + '/audio/playlists')
+      let playlist = playlistsData.data.playlists[0]
       playlist = playlist ? playlist.playlistTracks.map((track: any) => {
-        const file = config.BACKEND_API_BASE_URL + '/media/audio?id=' + track.audioTrackId
+        const file = config.BACKEND_API_BASE_URL + '/audio?id=' + track.audioTrackId
         return {
           file: file, 
           author: track.author, 

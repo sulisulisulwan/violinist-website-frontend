@@ -63,7 +63,7 @@ const MediaPhotos = () => {
       
               return (
                 <li
-                  key={`${config.BACKEND_API_BASE_URL}/media/photos?id=${picture.id}&isCropped=true`}
+                  key={`${config.BACKEND_API_BASE_URL}/photos?id=${picture.id}&isCropped=true`}
                   style={{
                     display: 'grid',
                     width: '100%',
