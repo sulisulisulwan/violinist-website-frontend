@@ -46,6 +46,7 @@ const MediaPhotos = () => {
         }}>
           {
             photos ? photos.map((picture: PhotoDataAPI, i: number) => {
+              console.log('picture', picture)
               let column = isThreeColumns ? i % 3 : i % 2
         
               let textAlignStyle: 'left' | 'center' | 'right'
