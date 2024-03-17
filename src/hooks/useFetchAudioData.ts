@@ -18,7 +18,8 @@ export const useFetchAudioData = (): [any, React.Dispatch<React.SetStateAction<a
     const fetchAudioData = async () => {
 
       const playlistsData = await axios.get(BACKEND_API_BASE_URL + '/audio/playlists')
-      let playlist = playlistsData.data.playlists[0]
+      let playlist = playlistsData.data[0]
+      console.log(playlist)
       playlist = playlist ? playlist.playlistTracks.map((track: any) => {
         const file = config.BACKEND_API_BASE_URL + '/audio?id=' + track.audioTrackId
         return {
