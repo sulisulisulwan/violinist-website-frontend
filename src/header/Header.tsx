@@ -6,13 +6,13 @@ import HamburgerWrapper from './nav/HamburgerWrapper'
 import NavModal from './nav/NavModal'
 import { GlobalAppState } from '../Layout'
 import { Link } from 'react-router-dom'
+import { DARK_MODE_BACKGROUND_COLOR } from '../sharedStyles/colors'
 
 const Header = () => {
 
   const [ hamburgerOpen, setHamburgerOpen ] = React.useState(false)
   
   const { globalSidePadding, navBarIsWide, darkModeStateManagement } = useContext(GlobalAppState)
-
   const { isDarkMode } = darkModeStateManagement
 
   if (navBarIsWide && hamburgerOpen)  setHamburgerOpen(false)
@@ -27,7 +27,7 @@ const Header = () => {
     paddingLeft: globalSidePadding,
     paddingRight: globalSidePadding,
     minHeight: '70px',
-    backgroundColor: isDarkMode ? 'rgb(15, 14, 32)' : 'white',
+    backgroundColor: isDarkMode ? DARK_MODE_BACKGROUND_COLOR : 'white',
     color: isDarkMode ? 'white' : 'black',
     zIndex: 100,
 

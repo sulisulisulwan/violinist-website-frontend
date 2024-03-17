@@ -7,7 +7,8 @@ const __dirname = dirname(fileURLToPath(import.meta.url))
 import.meta
 
 export default {
-  mode: 'production',
+  mode: 'development',
+  // mode: 'production',
   entry: __dirname + '/src/index.tsx',
   module: {
     rules: [

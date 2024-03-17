@@ -16,10 +16,11 @@ import MediaVideos from './pages/media/MediaVideos'
 import MediaPhotos from './pages/media/MediaPhotos'
 import ContactMain from './pages/contact/ContactMain'
 import BlogMain from './pages/blog/BlogMain'
-// import ShopMain from './pages/shop/ShopMain'
 import ErrorPage from './pages/ErrorPage'
 import UnderConstruction from './pages/UnderConstruction';
 import ShopMain from './pages/shop/ShopMain';
+import ShopItemsDisplay from './pages/shop/ShopItemsDisplay';
+import Checkout from './pages/shop/Checkout';
 
 
 
@@ -79,8 +80,18 @@ const router = createBrowserRouter([
       },
       {
         path: 'shop',
-        // element: <ShopMain/>
-        element: <UnderConstruction/>
+        element: <ShopMain/>,
+        // element: <UnderConstruction/>
+        children: [
+          {
+            index: true,
+            element: <ShopItemsDisplay/>
+          },
+          {
+            path: 'checkout',
+            element: <Checkout/>
+          }
+        ]
       },
       {
         path: 'contact',

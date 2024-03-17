@@ -31,10 +31,13 @@ const HeroImageSlideshow = ({ imageSrcArray }: heroImageSlideshowPropsIF) => {
 
             const prevIdx = imgArrayIndex - 1 < 0 ? imageSrcArray.length - 1 : imgArrayIndex - 1
             return (
-              <li style={{
-                margin: 0,
-                padding: 0,
-              }}>
+              <li 
+                key={imgSrc + index}
+                style={{
+                  margin: 0,
+                  padding: 0,
+                }}
+              >
                   <img 
                     ref={index === 0 ? heroPhotoRef : null}
                     className="hero-slideshow-fade-out"

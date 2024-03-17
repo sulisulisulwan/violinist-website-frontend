@@ -1,6 +1,6 @@
 import * as React from 'react'
 const  { useEffect, useContext } = React
-import HoverButton from '../sharedComponents/HoverButtons'
+import HoverButtonWithImage from '../sharedComponents/HoverButtonWithImage'
 import { GlobalAppState, audioPlayerStateIF } from '../Layout'
 
 interface audioPlayerButtonsPropsIF {
@@ -61,9 +61,9 @@ const AudioPlayerButtons = ({
             listStyleType: 'none'
           }}
           >
-          <li><HoverButton imgSrc={prevIcon} onClickHandler={() => prev(audioPlayer, setAudioPlayerState, audioPlayerState)}/></li>
-          <li><HoverButton imgSrc={nextIcon} onClickHandler={() => next(audioPlayer, setAudioPlayerState, audioPlayerState)}/></li>
-          <li><HoverButton imgSrc={audioPlayerState.playerStatus === 'play' ? pauseIcon : playIcon } onClickHandler={handlePlayPauseStop}/></li>
+          <li><HoverButtonWithImage imgSrc={prevIcon} onClickHandler={() => prev(audioPlayer, setAudioPlayerState, audioPlayerState)}/></li>
+          <li><HoverButtonWithImage imgSrc={nextIcon} onClickHandler={() => next(audioPlayer, setAudioPlayerState, audioPlayerState)}/></li>
+          <li><HoverButtonWithImage imgSrc={audioPlayerState.playerStatus === 'play' ? pauseIcon : playIcon } onClickHandler={handlePlayPauseStop}/></li>
         </ul>
       </span>
     </li>

@@ -7,8 +7,8 @@ import { audioTrackDataIF } from './audioPlayer/dummyPlaylist'
 import AudioPlayerWrapper from './audioPlayer/AudioPlayerWrapper'
 import Header from './header/Header'
 import Footer from './footer/Footer'
-
-const { useState } = React
+import { useDarkMode } from './hooks/useDarkMode'
+import { useCart } from './hooks/useCart'
 
 export const GlobalAppState = createContext(null)
 
@@ -17,6 +17,10 @@ export interface globalAppStateIF {
   darkModeStateManagement: { 
     isDarkMode: boolean
     setIsDarkMode: React.Dispatch<React.SetStateAction<boolean>>
+  }
+  cartStateManagement: {
+    cart: any
+    setCart: React.Dispatch<React.SetStateAction<any>>
   }
   audioPlayerStateManagement: [audioPlayerStateIF, React.Dispatch<React.SetStateAction<audioPlayerStateIF>>]
   globalSidePadding: string
@@ -31,19 +35,6 @@ export interface audioPlayerStateIF {
   progress: number
 }
 
-const useDarkMode = () => {
-  const initState = localStorage.getItem('darkMode') === 'true' ? true : false
-  const [ isDarkMode, setIsDarkMode ] = useState(initState)
-
-  const darkModeStateSetter = (value: boolean) => {
-    localStorage.setItem('darkMode', value.toString())
-
-    setIsDarkMode(value)
-  }
-
-  return { isDarkMode, setIsDarkMode: darkModeStateSetter }
-}
-
 const Layout = () => {
 
   const windowWidth = useWindowWidth()
@@ -53,6 +44,7 @@ const Layout = () => {
   const globalAppState = { 
     windowWidth, 
     darkModeStateManagement: useDarkMode(),
+    cartStateManagement: useCart(),
     audioPlayerStateManagement: [ audioPlayerState, setAudioPlayerState ],
     globalSidePadding: windowWidth <= 600 ? '22px' 
     : windowWidth <= 800 ? '32px' 
@@ -61,6 +53,8 @@ const Layout = () => {
     : '62px',
     navBarIsWide: windowWidth > 1080,
   }
+
+  
 
   return <GlobalAppState.Provider value={globalAppState}>
       <div id="isLoaded"></div>

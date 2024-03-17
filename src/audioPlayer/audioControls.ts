@@ -3,7 +3,6 @@ import { audioPlayerStateIF } from "../Layout"
 type audioPlayerStateSSA = React.Dispatch<React.SetStateAction<audioPlayerStateIF>>
 
 export const startPlay = (audioPlayer: HTMLAudioElement, setAudioPlayerState: audioPlayerStateSSA, audioPlayerState: audioPlayerStateIF): void => {
-  console.log(audioPlayerState.playList)
   audioPlayer.src = (audioPlayerState.playList as any)[audioPlayerState.currentTrack].file
   audioPlayer.currentTime = audioPlayerState.progress
   audioPlayer.volume = 1
