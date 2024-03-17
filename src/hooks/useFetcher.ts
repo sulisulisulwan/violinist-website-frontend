@@ -43,7 +43,7 @@ const useFetchPhotos = () => {
   const [ photoData, setPhotoData ] = useState(null)
   useEffect(() => {
     const getPhotoData = async () => {
-      const fetchedPhotoData = await axios.get(config.BACKEND_API_BASE_URL + '/photos')
+      const fetchedPhotoData = await axios.get(config.BACKEND_API_BASE_URL + '/photos?type=media-photo')
       setPhotoData(fetchedPhotoData.data)
     }
     getPhotoData()
