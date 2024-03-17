@@ -95,7 +95,7 @@ const MediaPhotos = () => {
                         <LazyImage 
                           addedStyle={{ border: isDarkMode ? '.5px darkgray solid' : '' }}
                           onClickHandler={() => { setClickedPicIndex(i); setModalIsOpen(true) } }
-                          src={`${config.BACKEND_API_BASE_URL}/media/photos?id=${picture.id}&isCropped=true`}
+                          src={`${config.BACKEND_API_BASE_URL}/photos?id=${picture.id}&isCropped=true`}
                           alt={'Media photo gallery image'}
                         />
                       </div>
