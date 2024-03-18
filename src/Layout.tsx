@@ -75,7 +75,8 @@ const Layout = () => {
     navBarIsWide: windowWidth > 1080,
   }
   
-  return <GlobalAppState.Provider value={globalAppState}>
+  return (
+    <GlobalAppState.Provider value={globalAppState}>
       <div id="isLoaded"></div>
       { 
         config ?
@@ -90,6 +91,7 @@ const Layout = () => {
         null
       }
     </GlobalAppState.Provider>
+  )
 
 }
 
