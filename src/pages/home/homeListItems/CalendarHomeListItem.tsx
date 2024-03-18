@@ -4,11 +4,10 @@ import { NAVY_BLUE_LIGHT, NAVY_BLUE_MED } from '../../../sharedStyles/colors'
 import HoverLink from '../../../sharedComponents/HoverLink'
 import { useFetchApiData } from '../../../hooks/useFetcher'
 import { GlobalAppState } from '../../../Layout'
-
+import config from '../../../config/config'
 
 const CalendarHomeListItem = () => {
 
-  const { config } = React.useContext(GlobalAppState)
   const calendarData = useFetchApiData('calendar', config)
   const upcomingDates = calendarData?.results.upcoming
   const sortedCalendarData = upcomingDates ? transformAndSortCalendarData(upcomingDates) : null

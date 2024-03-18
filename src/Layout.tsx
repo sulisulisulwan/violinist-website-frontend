@@ -43,30 +43,30 @@ const useDarkMode = () => {
   return { isDarkMode, setIsDarkMode: darkModeStateSetter }
 }
 
-const useConfig = () => {
-  const [ configuration, setConfiguration ] = useState(null)
-  React.useEffect(() => {
-    const initiateConfiguration = async () => {
-      const initializedConfig = await configInstance.initConfig()
-      setConfiguration(initializedConfig)
-    }
-    initiateConfiguration()
-  }, [])
+// const useConfig = () => {
+//   const [ configuration, setConfiguration ] = useState(null)
+//   React.useEffect(() => {
+//     const initiateConfiguration = async () => {
+//       const initializedConfig = await configInstance.initConfig()
+//       setConfiguration(initializedConfig)
+//     }
+//     initiateConfiguration()
+//   }, [])
 
-  return configuration
-}
+//   return configuration
+// }
 
 const Layout = () => {
 
-  const config = useConfig()
+  // const config = useConfig()
   
   const windowWidth = useWindowWidth()
   
   const globalAppState = { 
-    config,
+    // config,
     windowWidth: windowWidth,
     darkModeStateManagement: useDarkMode(),
-    audioPlayerStateManagement: useFetchAudioData(config),
+    audioPlayerStateManagement: useFetchAudioData(configInstance),
     globalSidePadding: windowWidth <= 600 ? '22px' 
     : windowWidth <= 800 ? '32px' 
     : windowWidth <= 1000 ? '42px' 
@@ -78,18 +78,16 @@ const Layout = () => {
   return (
     <GlobalAppState.Provider value={globalAppState}>
       <div id="isLoaded"></div>
-      { 
-        config ?
+        {/* // config ? */}
         <>
           <Header/>
           <Outlet/>
           <Footer/>
           <AudioPlayerWrapper/>
         </>
-
-        : 
-        null
-      }
+{/* 
+        // : 
+        // null */}
     </GlobalAppState.Provider>
   )
 

@@ -1,19 +1,18 @@
 import * as React from 'react'
 
-const { useState, useEffect } = React
+const { useState } = React
 
+import config from '../../../config/config'
 import { NAVY_BLUE_LIGHT } from '../../../sharedStyles/colors'
 import HoverLink from '../../../sharedComponents/HoverLink'
 import ModalWrapper from '../../../sharedComponents/modals/ModalWrapper'
 import YouTubeModal from '../../../sharedComponents/modals/YouTubeModal'
 import VideoThumbnail from '../../../sharedComponents/VideoThumbnail'
 import { useFetchApiData } from '../../../hooks/useFetcher'
-import { GlobalAppState } from '../../../Layout'
 
 
 export const MediaHomeListItem = () => {
 
-  const { config } = React.useContext(GlobalAppState)
   const videoData = useFetchApiData('videos', config)
   const [ modalIsOpen, setModalIsOpen ] = useState(false)
 

@@ -5,6 +5,7 @@ import EventListing from './EventListing'
 import { NAVY_BLUE_LIGHT, NAVY_BLUE_MED } from '../../../sharedStyles/colors'
 import { useFetchApiData } from '../../../hooks/useFetcher'
 import { GlobalAppState } from '../../../Layout'
+import config from '../../../config/config'
 
 interface eventsListPropsIF {
   listKey: string
@@ -13,7 +14,7 @@ interface eventsListPropsIF {
 
 const EventsList = ({ listKey }: eventsListPropsIF) => {
 
-  const { darkModeStateManagement, config } = React.useContext(GlobalAppState)
+  const { darkModeStateManagement } = React.useContext(GlobalAppState)
   const { isDarkMode } = darkModeStateManagement
 
   const lowerBounds = 10

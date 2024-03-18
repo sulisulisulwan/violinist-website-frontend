@@ -3,14 +3,11 @@ import { NAVY_BLUE_LIGHT } from '../../../sharedStyles/colors'
 import HoverLink from '../../../sharedComponents/HoverLink'
 import { ParsedHTMLComponent } from 'suli-violin-website-types/src'
 import { useFetchApiData } from '../../../hooks/useFetcher'
-import { GlobalAppState } from '../../../Layout'
+import config from '../../../config/config'
 
 export const BioHomeListItem = () => {
 
-  const { config } = React.useContext(GlobalAppState)
   const shortFormBioData = useFetchApiData('shortBio', config)
-
-  console.log(shortFormBioData)
 
   return (
     <>

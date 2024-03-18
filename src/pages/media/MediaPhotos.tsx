@@ -6,10 +6,11 @@ import PictureModal from '../../sharedComponents/modals/PictureModal'
 import { PhotoDataAPI } from 'suli-violin-website-types/src'
 import LazyImage from '../../sharedComponents/LazyImage'
 import { useFetchApiData } from '../../hooks/useFetcher'
+import config from '../../config/config'
 
 const MediaPhotos = () => {
 
-  const { windowWidth, darkModeStateManagement, config } = useContext(GlobalAppState)
+  const { windowWidth, darkModeStateManagement } = useContext(GlobalAppState)
   const photoData = useFetchApiData('photos', config)
 
   const { isDarkMode } = darkModeStateManagement

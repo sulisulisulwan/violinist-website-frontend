@@ -3,6 +3,7 @@ const { useContext} = React
 import { pausePlayWithFadeOut } from '../audioPlayer/audioControls'
 import { GlobalAppState } from '../Layout'
 import { NAVY_BLUE_MED } from '../sharedStyles/colors'
+import config from '../config/config'
 
 interface videoThumbnailPropsIF {
   videoId: number
@@ -14,7 +15,7 @@ interface videoThumbnailPropsIF {
 
 const VideoThumbnail = ({ videoId, caption, youtubeCode, setModalIsOpen, setCurrYoutubeCode }: videoThumbnailPropsIF) => {
   
-  const { audioPlayerStateManagement, darkModeStateManagement, config } = useContext(GlobalAppState)
+  const { audioPlayerStateManagement, darkModeStateManagement } = useContext(GlobalAppState)
   const { isDarkMode } = darkModeStateManagement
   const [ audioPlayerState, setAudioPlayerState ] = audioPlayerStateManagement
 

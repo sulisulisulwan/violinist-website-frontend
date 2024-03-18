@@ -3,11 +3,12 @@ import * as ReactDom from 'react-dom'
 import axios from 'axios'
 import { NAVY_BLUE_MED } from '../../sharedStyles/colors'
 import { GlobalAppState } from '../../Layout'
+import config from '../../config/config'
 const { useState, useContext } = React
 
 const ContactForm = ({ windowWidth }: any) => {
 
-  const { darkModeStateManagement, config } = useContext(GlobalAppState)
+  const { darkModeStateManagement } = useContext(GlobalAppState)
   const { isDarkMode } = darkModeStateManagement
 
   const [ modalOpen, setModalOpen ] = useState(false)

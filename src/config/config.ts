@@ -24,16 +24,19 @@ class Config {
     return level
   }
 
-  public async initConfig() {
+  public initConfig() {
 
-    const configJson = await fetch('/config/config.json')
-    const json = await configJson.json()
+    // const configJson = await fetch('/config/config.json')
+    // const json = await configJson.json()
 
-    const config: any = {}
+    const config: any = {
+      'BACKEND_API_BASE_URL': 'https://sulimantekalliviolin-backend.com/v2/'
+      // 'BACKEND_API_BASE_URL': 'http:localhost:1337/v2/'
+    }
 
-    this.keys.forEach(key => {
-      config[key] = json[key]
-    })
+    // this.keys.forEach(key => {
+    //   config[key] = json[key]
+    // })
 
     this.config = config
     return this
@@ -47,4 +50,5 @@ const config = new Config([
 
 export { Config }
 
+config.initConfig()
 export default config
