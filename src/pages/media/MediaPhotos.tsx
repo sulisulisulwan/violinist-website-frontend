@@ -4,18 +4,14 @@ import { GlobalAppState } from '../../Layout'
 import ModalWrapper from '../../sharedComponents/modals/ModalWrapper'
 import PictureModal from '../../sharedComponents/modals/PictureModal'
 import { PhotoDataAPI } from 'suli-violin-website-types/src'
-import config from '../../../config'
 import LazyImage from '../../sharedComponents/LazyImage'
 import { useFetchApiData } from '../../hooks/useFetcher'
 
-
-
-
 const MediaPhotos = () => {
 
-  const photoData = useFetchApiData('photos')
+  const { windowWidth, darkModeStateManagement, config } = useContext(GlobalAppState)
+  const photoData = useFetchApiData('photos', config)
 
-  const { windowWidth, darkModeStateManagement } = useContext(GlobalAppState)
   const { isDarkMode } = darkModeStateManagement
   const [ modalIsOpen, setModalIsOpen ] = useState(false)
   const [ clickedPicIndex, setClickedPicIndex ] = useState(null)
@@ -64,7 +60,7 @@ const MediaPhotos = () => {
       
               return (
                 <li
-                  key={`${config.BACKEND_API_BASE_URL}/photos?id=${picture.id}&isCropped=true`}
+                  key={`${config.getField('BACKEND_API_BASE_URL')}/photos?id=${picture.id}&isCropped=true`}
                   style={{
                     display: 'grid',
                     width: '100%',
@@ -96,7 +92,7 @@ const MediaPhotos = () => {
                         <LazyImage 
                           addedStyle={{ border: isDarkMode ? '.5px darkgray solid' : '' }}
                           onClickHandler={() => { setClickedPicIndex(i); setModalIsOpen(true) } }
-                          src={`${config.BACKEND_API_BASE_URL}/photos?id=${picture.id}&isCropped=true`}
+                          src={`${config.getField('BACKEND_API_BASE_URL')}/photos?id=${picture.id}&isCropped=true`}
                           alt={'Media photo gallery image'}
                         />
                       </div>

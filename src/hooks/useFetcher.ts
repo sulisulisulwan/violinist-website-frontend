@@ -1,13 +1,13 @@
 import axios from "axios"
 import { useEffect, useState } from "react"
-import config from "../../config"
+import { Config } from "../config/config"
 
 
-const useFetchLongFormBio = () => {
+const useFetchLongFormBio = (config: Config) => {
   const [ longFormBioData, setLongFormBioData ] = useState(null)
   useEffect(() => {
     const getLongFormBio = async () => {
-      const longFormData = await axios.get(config.BACKEND_API_BASE_URL + '/bio/longForm')
+      const longFormData = await axios.get(config.getField('BACKEND_API_BASE_URL') + '/bio/longForm')
       setLongFormBioData(longFormData.data)
     }
     getLongFormBio()
@@ -15,11 +15,11 @@ const useFetchLongFormBio = () => {
   return longFormBioData
 }
 
-const useFetchBlog = () => {
+const useFetchBlog = (config: Config) => {
   const [ blogData, setBlogData ] = useState(null)
   useEffect(() => {
     const getBlogData = async () => {
-      const fetchedBlogData = await axios.get(config.BACKEND_API_BASE_URL + '/blog')
+      const fetchedBlogData = await axios.get(config.getField('BACKEND_API_BASE_URL') + '/blog')
       setBlogData(fetchedBlogData.data)
     }
     getBlogData()
@@ -27,11 +27,11 @@ const useFetchBlog = () => {
   return blogData
 }
 
-const useFetchCalendarData = () => {
+const useFetchCalendarData = (config: Config) => {
   const [ calendarData, setCalendarData ] = useState(null)
   useEffect(() => {
     const getCalendarData = async () => {
-      const calendarData = await axios.get(`${config.BACKEND_API_BASE_URL}/calendar`)
+      const calendarData = await axios.get(`${config.getField('BACKEND_API_BASE_URL') }/calendar`)
       setCalendarData (calendarData.data)
     }
     getCalendarData()
@@ -39,11 +39,11 @@ const useFetchCalendarData = () => {
   return calendarData
 }
 
-const useFetchPhotos = () => {
+const useFetchPhotos = (config: Config) => {
   const [ photoData, setPhotoData ] = useState(null)
   useEffect(() => {
     const getPhotoData = async () => {
-      const fetchedPhotoData = await axios.get(config.BACKEND_API_BASE_URL + '/photos?type=media-photo')
+      const fetchedPhotoData = await axios.get(config.getField('BACKEND_API_BASE_URL')  + '/photos?type=media-photo')
       setPhotoData(fetchedPhotoData.data)
     }
     getPhotoData()
@@ -51,11 +51,11 @@ const useFetchPhotos = () => {
   return photoData
 }
 
-const useFetchVideos = () => {
+const useFetchVideos = (config: Config) => {
   const [ videoData, setVideoData ] = useState(null)
   useEffect(() => {
     const getVideoData = async () => {
-      const fetchedVideoData = await axios.get(config.BACKEND_API_BASE_URL + '/videos')
+      const fetchedVideoData = await axios.get(config.getField('BACKEND_API_BASE_URL')  + '/videos')
       setVideoData(fetchedVideoData.data)
     }
     getVideoData()
@@ -64,11 +64,11 @@ const useFetchVideos = () => {
 }
 
 
-const useFetchShortBioData = () => {
+const useFetchShortBioData = (config: Config) => {
   const [ shortFormBioData, setShortFormBioData ] = useState(null)
   useEffect(() => {
     const getShortFormBioData = async () => {
-      const bioDataShortForm = await axios.get(`${config.BACKEND_API_BASE_URL}/bio/shortForm`)
+      const bioDataShortForm = await axios.get(`${config.getField('BACKEND_API_BASE_URL') }/bio/shortForm`)
       setShortFormBioData (bioDataShortForm.data)
     }
     getShortFormBioData()
@@ -86,8 +86,8 @@ const fetcherMap: any = {
 }
 
 
-export const useFetchApiData = (context: string) => {
+export const useFetchApiData = (context: string, config: Config) => {
   const fetcher = fetcherMap[context]
-  const data = fetcher()
+  const data = fetcher(config)
   return data
 }

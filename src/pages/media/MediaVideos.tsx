@@ -13,9 +13,9 @@ export const MediaVideos = () => {
 
   const [ modalIsOpen, setModalIsOpen ] = useState(false)
   const [ currYoutubeCode, setCurrYoutubeCode ] = useState(null)
-  const { windowWidth } = useContext(GlobalAppState)
+  const { windowWidth, config } = useContext(GlobalAppState)
 
-  const videoData = useFetchApiData('videos')
+  const videoData = useFetchApiData('videos', config)
   const videos = videoData?.results
 
   return (

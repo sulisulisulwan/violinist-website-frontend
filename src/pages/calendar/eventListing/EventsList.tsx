@@ -1,10 +1,8 @@
 import * as React from 'react'
-const { useEffect, useState } = React
+const { useState } = React
 import HoverLink from '../../../sharedComponents/HoverLink'
 import EventListing from './EventListing'
 import { NAVY_BLUE_LIGHT, NAVY_BLUE_MED } from '../../../sharedStyles/colors'
-import config from '../../../../config'
-import axios from 'axios'
 import { useFetchApiData } from '../../../hooks/useFetcher'
 import { GlobalAppState } from '../../../Layout'
 
@@ -15,12 +13,12 @@ interface eventsListPropsIF {
 
 const EventsList = ({ listKey }: eventsListPropsIF) => {
 
-  const { darkModeStateManagement } = React.useContext(GlobalAppState)
+  const { darkModeStateManagement, config } = React.useContext(GlobalAppState)
   const { isDarkMode } = darkModeStateManagement
 
   const lowerBounds = 10
 
-  const fetchedCalendarData = useFetchApiData('calendar')
+  const fetchedCalendarData = useFetchApiData('calendar', config)
   const calendarData = fetchedCalendarData?.results[listKey]
 
   const [ accordionOpenId, setAccordionOpenId ] = useState(null)

@@ -7,7 +7,10 @@ import { GlobalAppState } from '../../../Layout'
 
 export const BioHomeListItem = () => {
 
-  const shortFormBioData = useFetchApiData('shortBio')
+  const { config } = React.useContext(GlobalAppState)
+  const shortFormBioData = useFetchApiData('shortBio', config)
+
+  console.log(shortFormBioData)
 
   return (
     <>

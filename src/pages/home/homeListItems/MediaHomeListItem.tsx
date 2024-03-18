@@ -8,11 +8,13 @@ import ModalWrapper from '../../../sharedComponents/modals/ModalWrapper'
 import YouTubeModal from '../../../sharedComponents/modals/YouTubeModal'
 import VideoThumbnail from '../../../sharedComponents/VideoThumbnail'
 import { useFetchApiData } from '../../../hooks/useFetcher'
+import { GlobalAppState } from '../../../Layout'
 
 
 export const MediaHomeListItem = () => {
 
-  const videoData = useFetchApiData('videos')
+  const { config } = React.useContext(GlobalAppState)
+  const videoData = useFetchApiData('videos', config)
   const [ modalIsOpen, setModalIsOpen ] = useState(false)
 
   const firstVideo = videoData ? (videoData.results.length ? videoData.results[0] : null) : null

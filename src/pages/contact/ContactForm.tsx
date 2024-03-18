@@ -1,14 +1,13 @@
 import * as React from 'react'
 import * as ReactDom from 'react-dom'
 import axios from 'axios'
-import config from '../../../config'
 import { NAVY_BLUE_MED } from '../../sharedStyles/colors'
 import { GlobalAppState } from '../../Layout'
 const { useState, useContext } = React
 
 const ContactForm = ({ windowWidth }: any) => {
 
-  const { darkModeStateManagement } = useContext(GlobalAppState)
+  const { darkModeStateManagement, config } = useContext(GlobalAppState)
   const { isDarkMode } = darkModeStateManagement
 
   const [ modalOpen, setModalOpen ] = useState(false)
@@ -20,7 +19,7 @@ const ContactForm = ({ windowWidth }: any) => {
     try {
       const [ firstName, lastName, email, message] = e.target
   
-      const url = config.BACKEND_API_BASE_URL + '/contact'
+      const url = config.getField('BACKEND_API_BASE_URL') + '/contact'
       const body = {
         data: {
           firstName: firstName.value,

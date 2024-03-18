@@ -8,7 +8,8 @@ import { GlobalAppState } from '../../../Layout'
 
 const CalendarHomeListItem = () => {
 
-  const calendarData = useFetchApiData('calendar')
+  const { config } = React.useContext(GlobalAppState)
+  const calendarData = useFetchApiData('calendar', config)
   const upcomingDates = calendarData?.results.upcoming
   const sortedCalendarData = upcomingDates ? transformAndSortCalendarData(upcomingDates) : null
   const abbreviatedData = sortedCalendarData ? sortedCalendarData.slice(0, 4) : null

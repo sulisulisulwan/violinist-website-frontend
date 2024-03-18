@@ -7,6 +7,7 @@ import { audioTrackDataIF } from './audioPlayer/dummyPlaylist'
 import AudioPlayerWrapper from './audioPlayer/AudioPlayerWrapper'
 import Header from './header/Header'
 import Footer from './footer/Footer'
+import configInstance from './config/config'
 
 const { useState } = React
 
@@ -37,23 +38,35 @@ const useDarkMode = () => {
 
   const darkModeStateSetter = (value: boolean) => {
     localStorage.setItem('darkMode', value.toString())
-
     setIsDarkMode(value)
   }
-
   return { isDarkMode, setIsDarkMode: darkModeStateSetter }
+}
+
+const useConfig = () => {
+  const [ configuration, setConfiguration ] = useState(null)
+  React.useEffect(() => {
+    const initiateConfiguration = async () => {
+      const initializedConfig = await configInstance.initConfig()
+      setConfiguration(initializedConfig)
+    }
+    initiateConfiguration()
+  }, [])
+
+  return configuration
 }
 
 const Layout = () => {
 
+  const config = useConfig()
+  
   const windowWidth = useWindowWidth()
-
-  const [ audioPlayerState, setAudioPlayerState ] = useFetchAudioData()
   
   const globalAppState = { 
-    windowWidth, 
+    config,
+    windowWidth: windowWidth,
     darkModeStateManagement: useDarkMode(),
-    audioPlayerStateManagement: [ audioPlayerState, setAudioPlayerState ],
+    audioPlayerStateManagement: useFetchAudioData(config),
     globalSidePadding: windowWidth <= 600 ? '22px' 
     : windowWidth <= 800 ? '32px' 
     : windowWidth <= 1000 ? '42px' 
@@ -61,13 +74,21 @@ const Layout = () => {
     : '62px',
     navBarIsWide: windowWidth > 1080,
   }
-
+  
   return <GlobalAppState.Provider value={globalAppState}>
       <div id="isLoaded"></div>
-      <Header/>
-      <Outlet/>
-      <Footer/>
-      <AudioPlayerWrapper/>
+      { 
+        config ?
+        <>
+          <Header/>
+          <Outlet/>
+          <Footer/>
+          <AudioPlayerWrapper/>
+        </>
+
+        : 
+        null
+      }
     </GlobalAppState.Provider>
 
 }
