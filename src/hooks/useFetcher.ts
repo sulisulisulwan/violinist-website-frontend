@@ -1,9 +1,7 @@
 import axios from "axios"
 import { useEffect, useState } from "react"
-import { Config } from "../config/config"
 
-
-const useFetchLongFormBio = (config: Config) => {
+const useFetchLongFormBio = (config: any) => {
   const [ longFormBioData, setLongFormBioData ] = useState(null)
   useEffect(() => {
     const getLongFormBio = async () => {
@@ -15,7 +13,7 @@ const useFetchLongFormBio = (config: Config) => {
   return longFormBioData
 }
 
-const useFetchBlog = (config: Config) => {
+const useFetchBlog = (config: any) => {
   const [ blogData, setBlogData ] = useState(null)
   useEffect(() => {
     const getBlogData = async () => {
@@ -27,7 +25,7 @@ const useFetchBlog = (config: Config) => {
   return blogData
 }
 
-const useFetchCalendarData = (config: Config) => {
+const useFetchCalendarData = (config: any) => {
   const [ calendarData, setCalendarData ] = useState(null)
   useEffect(() => {
     const getCalendarData = async () => {
@@ -39,7 +37,7 @@ const useFetchCalendarData = (config: Config) => {
   return calendarData
 }
 
-const useFetchPhotos = (config: Config) => {
+const useFetchPhotos = (config: any) => {
   const [ photoData, setPhotoData ] = useState(null)
   useEffect(() => {
     const getPhotoData = async () => {
@@ -51,7 +49,7 @@ const useFetchPhotos = (config: Config) => {
   return photoData
 }
 
-const useFetchVideos = (config: Config) => {
+const useFetchVideos = (config: any) => {
   const [ videoData, setVideoData ] = useState(null)
   useEffect(() => {
     const getVideoData = async () => {
@@ -64,7 +62,7 @@ const useFetchVideos = (config: Config) => {
 }
 
 
-const useFetchShortBioData = (config: Config) => {
+const useFetchShortBioData = (config: any) => {
   const [ shortFormBioData, setShortFormBioData ] = useState(null)
   useEffect(() => {
     const getShortFormBioData = async () => {
@@ -86,7 +84,7 @@ const fetcherMap: any = {
 }
 
 
-export const useFetchApiData = (context: string, config: Config) => {
+export const useFetchApiData = (context: string, config: any) => {
   const fetcher = fetcherMap[context]
   const data = fetcher(config)
   return data
