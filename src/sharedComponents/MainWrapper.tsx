@@ -18,6 +18,7 @@ const MainWrapper = ({ children, paddingBottom = 30, heroPhotos }: mainWrapperPr
     <main style={{
       paddingLeft: globalSidePadding,
       paddingRight: globalSidePadding,
+      paddingTop: 2,
       paddingBottom,
       fontSize: 13,
       backgroundColor: isDarkMode ? 'rgb(15, 14, 32)' : 'white',

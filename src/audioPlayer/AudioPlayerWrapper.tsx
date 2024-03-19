@@ -21,7 +21,8 @@ const AudioPlayerWrapper = () => {
     width: '100%'
   } : {
     ...style,
-    top: navBarIsWide ? 15 : 0,
+    // top: navBarIsWide ? 15 : 0,
+    top: navBarIsWide ? 5 : 5,
   }
 
   return <div className="audio-player-wrapper" style={computed}><AudioPlayer isMobile={isMobile}/></div>

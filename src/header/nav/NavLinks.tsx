@@ -14,10 +14,11 @@ const TopNavBar = ({ links, isDarkMode }: topNavBarPropsIF) => {
     display: 'flex',
     flexDirection: 'row',
     justifyContent: 'space-between',
+    margin: 0,
     alignItems: 'center',
     listStyleType: 'none',
     fontFamily: 'Poppins',
-    marginTop: 8, // to accomodate the audio component above.  Remove to center
+    // marginTop: 8, // to accomodate the audio component above.  Remove to center
     
   }
 

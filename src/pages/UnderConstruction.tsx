@@ -1,12 +1,8 @@
-import React, { useContext } from 'react'
-import { GlobalAppState } from '../Layout'
-import HeroImageSlideshow from '../sharedComponents/heroImageSlideshow/HeroImageSlideshow'
+import * as React from 'react'
 import { heroPhotos1 } from '../hero-photos'
 import MainWrapper from '../sharedComponents/MainWrapper'
 
 const UnderConstruction = () => {
-
-  const { globalSidePadding } = useContext(GlobalAppState)
 
   return (
     <MainWrapper heroPhotos={heroPhotos1}>

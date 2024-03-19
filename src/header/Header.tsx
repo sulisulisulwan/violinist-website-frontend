@@ -18,8 +18,10 @@ const Header = () => {
   if (navBarIsWide && hamburgerOpen)  setHamburgerOpen(false)
 
   const styleTopBanner = {
-    paddingTop: navBarIsWide ? 30 : 5,
-    paddingBottom: navBarIsWide ? 0 : 5,
+    // paddingTop: navBarIsWide ? 30 : 5,
+    paddingTop: navBarIsWide ? 20 : 20,
+    // paddingBottom: navBarIsWide ? 0 : 5,
+    paddingBottom: navBarIsWide ? 15 : 15,
     display: 'flex',
     alignItems: 'center',
     top: 0,

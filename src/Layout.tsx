@@ -11,18 +11,17 @@ import { Outlet } from 'react-router-dom'
 import AudioPlayerWrapper from './audioPlayer/AudioPlayerWrapper'
 import Header from './header/Header'
 import Footer from './footer/Footer'
+import { Config } from './config/config'
 
-export const GlobalAppState = createContext(null)
+export const GlobalAppState: React.Context<globalAppStateIF> = createContext(null)
 
 export interface globalAppStateIF {
-  windowWidth: number 
-  darkModeStateManagement: { 
-    isDarkMode: boolean
-    setIsDarkMode: React.Dispatch<React.SetStateAction<boolean>>
-  }
   audioPlayerStateManagement: [audioPlayerStateIF, React.Dispatch<React.SetStateAction<audioPlayerStateIF>>]
+  config: Config
+  darkModeStateManagement: { isDarkMode: boolean, setIsDarkMode: React.Dispatch<React.SetStateAction<boolean>> }
   globalSidePadding: string
   navBarIsWide: boolean
+  windowWidth: number 
 }
 
 const Layout = () => {
@@ -42,6 +41,9 @@ const Layout = () => {
     : '62px',
     navBarIsWide: windowWidth > 1080,
   }
+
+  const html = document.querySelector('html')
+  html.style.backgroundColor = globalAppState.darkModeStateManagement.isDarkMode === true ? 'rgb(15, 14, 32)' : 'white'
   
   return (
     <GlobalAppState.Provider value={globalAppState}>
