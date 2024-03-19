@@ -6,11 +6,11 @@ import PictureModal from '../../sharedComponents/modals/PictureModal'
 import { PhotoDataAPI } from 'suli-violin-website-types/src'
 import LazyImage from '../../sharedComponents/LazyImage'
 import { useFetchApiData } from '../../hooks/useFetcher'
-import config from '../../config/config'
+// import config from '../../config/config'
 
 const MediaPhotos = () => {
 
-  const { windowWidth, darkModeStateManagement } = useContext(GlobalAppState)
+  const { windowWidth, darkModeStateManagement, config } = useContext(GlobalAppState)
   const photoData = useFetchApiData('photos', config)
 
   const { isDarkMode } = darkModeStateManagement
@@ -91,7 +91,10 @@ const MediaPhotos = () => {
                         }}
                       >
                         <LazyImage 
-                          addedStyle={{ border: isDarkMode ? '.5px darkgray solid' : '' }}
+                          addedStyle={{ 
+                            border: isDarkMode ? '.5px darkgray solid' : '', 
+                            backgroundColor: isDarkMode ? 'black' : 'white'
+                          }}
                           onClickHandler={() => { setClickedPicIndex(i); setModalIsOpen(true) } }
                           src={`${config.getField('BACKEND_API_BASE_URL')}/photos?id=${picture.id}&isCropped=true`}
                           alt={'Media photo gallery image'}

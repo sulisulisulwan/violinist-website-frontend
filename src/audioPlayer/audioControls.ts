@@ -1,4 +1,4 @@
-import { audioPlayerStateIF } from "../Layout"
+import { audioPlayerStateIF } from "./AudioPlayer"
 
 type audioPlayerStateSSA = React.Dispatch<React.SetStateAction<audioPlayerStateIF>>
 
@@ -8,7 +8,7 @@ export const startPlay = (audioPlayer: HTMLAudioElement, setAudioPlayerState: au
   audioPlayer.volume = 1
   audioPlayer.play()
 
-  setAudioPlayerState((pS) => ({
+  setAudioPlayerState((pS: audioPlayerStateIF) => ({
     ...pS,
     hasPlayedOnce: true,
     playerStatus: 'play'
@@ -21,7 +21,7 @@ export const pausePlay = async (audioPlayer: HTMLAudioElement, setAudioPlayerSta
 
   audioPlayer.pause()
 
-  setAudioPlayerState((pS) => ({
+  setAudioPlayerState((pS: audioPlayerStateIF) => ({
     ...pS,
     playerStatus: 'stop',
     progress: currentProgress
@@ -36,7 +36,7 @@ export const pausePlayWithFadeOut = async(audioPlayer: HTMLAudioElement, setAudi
   await adjustVolume(audioPlayer, 0)
   audioPlayer.pause()
   
-  setAudioPlayerState((pS) => ({
+  setAudioPlayerState((pS: audioPlayerStateIF) => ({
     ...pS,
     playerStatus: 'stop',
     progress: currentProgress
@@ -54,7 +54,7 @@ export const next = (audioPlayer: HTMLAudioElement, setAudioPlayerState: audioPl
     newTrack = 0
   }
 
-  setAudioPlayerState((pS) => ({
+  setAudioPlayerState((pS: audioPlayerStateIF) => ({
     ...pS,
     progress: 0,
     playerStatus: 'next',
@@ -73,7 +73,7 @@ export const prev = (audioPlayer: HTMLAudioElement, setAudioPlayerState: audioPl
     newTrack = (audioPlayerState.playList as any).length - 1
   }
 
-  setAudioPlayerState((pS) => ({
+  setAudioPlayerState((pS: audioPlayerStateIF) => ({
     ...pS,
     progress: 0,
     playerStatus: 'prev',

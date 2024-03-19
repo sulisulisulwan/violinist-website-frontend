@@ -6,14 +6,14 @@ import VideoThumbnail from '../../sharedComponents/VideoThumbnail'
 import { GlobalAppState } from '../../Layout'
 import { VideoDataAPI } from 'suli-violin-website-types/src'
 import { useFetchApiData } from '../../hooks/useFetcher'
-import config from '../../config/config'
+// import config from '../../config/config'
 
 
 export const MediaVideos = () => {
 
   const [ modalIsOpen, setModalIsOpen ] = useState(false)
   const [ currYoutubeCode, setCurrYoutubeCode ] = useState(null)
-  const { windowWidth } = useContext(GlobalAppState)
+  const { windowWidth, config } = useContext(GlobalAppState)
 
   const videoData = useFetchApiData('videos', config)
   const videos = videoData?.results

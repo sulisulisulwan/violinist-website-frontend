@@ -3,12 +3,12 @@ import * as ReactDom from 'react-dom'
 import axios from 'axios'
 import { NAVY_BLUE_MED } from '../../sharedStyles/colors'
 import { GlobalAppState } from '../../Layout'
-import config from '../../config/config'
+// import config from '../../config/config'
 const { useState, useContext } = React
 
 const ContactForm = ({ windowWidth }: any) => {
 
-  const { darkModeStateManagement } = useContext(GlobalAppState)
+  const { darkModeStateManagement, config } = useContext(GlobalAppState)
   const { isDarkMode } = darkModeStateManagement
 
   const [ modalOpen, setModalOpen ] = useState(false)
@@ -20,6 +20,7 @@ const ContactForm = ({ windowWidth }: any) => {
     try {
       const [ firstName, lastName, email, message] = e.target
   
+      if (!config || !config.isLoaded) return // TODO: add fallback ui informing client
       const url = config.getField('BACKEND_API_BASE_URL') + '/contact'
       const body = {
         data: {

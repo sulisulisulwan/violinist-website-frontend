@@ -1,7 +1,8 @@
 import * as React from 'react'
 const  { useEffect, useContext } = React
 import HoverButton from '../sharedComponents/HoverButtons'
-import { GlobalAppState, audioPlayerStateIF } from '../Layout'
+import { GlobalAppState } from '../Layout'
+import { audioPlayerStateIF } from './AudioPlayer'
 
 interface audioPlayerButtonsPropsIF {
   next: Function

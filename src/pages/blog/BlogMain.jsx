@@ -1,13 +1,14 @@
 import * as React from 'react'
 import MainWrapper from '../../sharedComponents/MainWrapper'
-import HeroImageSlideshow from '../../sharedComponents/heroImageSlideshow/HeroImageSlideshow'
 import { heroPhotos1 } from '../../hero-photos'
 import { getDisplayDate } from '../../utils/date'
 import { useFetchApiData } from '../../hooks/useFetcher'
+import { GlobalAppState } from '../../Layout'
 
 const BlogMain = () => {
 
-  const blogData = useFetchApiData('blog')
+  const { config } = React.useContext(GlobalAppState)
+  const blogData = useFetchApiData('blog', config)
 
   return (
     <MainWrapper heroPhotos={heroPhotos1}>

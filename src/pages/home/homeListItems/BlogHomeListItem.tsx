@@ -4,11 +4,12 @@ import { NAVY_BLUE_LIGHT } from '../../../sharedStyles/colors'
 import { getDisplayDate } from '../../../utils/date'
 import { ParsedHTMLComponent } from 'suli-violin-website-types/src'
 import { useFetchApiData } from '../../../hooks/useFetcher'
-import config from '../../../config/config'
+import { GlobalAppState } from '../../../Layout'
+// import config from '../../../config/config'
 
 const BlogHomeListItem = () => {
 
-
+  const { config } = React.useContext(GlobalAppState)
   const blogData = useFetchApiData('blog', config)
   const blogPreview = blogData?.results[0] || null
 

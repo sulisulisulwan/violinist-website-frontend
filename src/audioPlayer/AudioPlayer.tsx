@@ -6,10 +6,20 @@ import { NAVY_BLUE_MED } from '../sharedStyles/colors'
 import { next, prev, startPlay, pausePlay, } from './audioControls'
 
 import { GlobalAppState } from '../Layout'
+import { audioTrackDataIF } from './dummyPlaylist'
 
 interface audioPlayerPropsIF {
   isMobile: boolean
 }
+
+export interface audioPlayerStateIF {
+  hasPlayedOnce: boolean,
+  playList: audioTrackDataIF,
+  playerStatus: string,
+  currentTrack: number,
+  progress: number
+}
+
 
 const AudioPlayer = ({ isMobile }: audioPlayerPropsIF) => {
 

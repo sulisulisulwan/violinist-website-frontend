@@ -3,15 +3,20 @@ class Config {
   protected config: any
   protected keys: string[]
   protected configPaths: { pathToEnv: string, pathToConfigDir: string }
+  protected _isLoaded: boolean
 
   constructor(keys: string[]) {
 
     this.keys = keys
     this.config = null 
+    this._isLoaded = false
+  }
+
+  get isLoaded () {
+    return this._isLoaded
   }
 
   public getField(field: string | string[]) {
-
     if (!Array.isArray(field)) {
       return this.config[field]
     }
@@ -24,21 +29,20 @@ class Config {
     return level
   }
 
-  public initConfig() {
+  public async initConfig() {
 
-    // const configJson = await fetch('/config/config.json')
-    // const json = await configJson.json()
+    const configJson = await fetch('/config.json')
+    // const configJson = await fetch('/alt.config.json')
+    const json = await configJson.json()
 
-    const config: any = {
-      'BACKEND_API_BASE_URL': 'https://sulimantekalliviolin-backend.com/v2/'
-      // 'BACKEND_API_BASE_URL': 'http:localhost:1337/v2/'
-    }
+    const config: any = {}
 
-    // this.keys.forEach(key => {
-    //   config[key] = json[key]
-    // })
+    this.keys.forEach(key => {
+      config[key] = json[key]
+    })
 
     this.config = config
+    this._isLoaded = true
     return this
   }
 
@@ -50,5 +54,4 @@ const config = new Config([
 
 export { Config }
 
-config.initConfig()
 export default config

@@ -3,19 +3,23 @@ import { NAVY_BLUE_LIGHT } from '../../../sharedStyles/colors'
 import HoverLink from '../../../sharedComponents/HoverLink'
 import { ParsedHTMLComponent } from 'suli-violin-website-types/src'
 import { useFetchApiData } from '../../../hooks/useFetcher'
-import config from '../../../config/config'
+import { GlobalAppState } from '../../../Layout'
+// import config from '../../../config/config'
 
 export const BioHomeListItem = () => {
 
+  const { config } = React.useContext(GlobalAppState)
   const shortFormBioData = useFetchApiData('shortBio', config)
 
   return (
     <>
       <h2>BIOGRAPHY</h2>
       <div>
-        { shortFormBioData ? 
+        { 
+          shortFormBioData ? 
             shortFormBioData.components.map((component: ParsedHTMLComponent, index: number) => 
-              <p key={component.content + index}>{component.content}</p>) : '...Loading'
+              <p key={component.content + index}>{component.content}</p>) 
+          : '...Loading'
         }
       </div>
       <div 

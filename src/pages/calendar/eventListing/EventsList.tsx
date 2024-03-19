@@ -5,7 +5,7 @@ import EventListing from './EventListing'
 import { NAVY_BLUE_LIGHT, NAVY_BLUE_MED } from '../../../sharedStyles/colors'
 import { useFetchApiData } from '../../../hooks/useFetcher'
 import { GlobalAppState } from '../../../Layout'
-import config from '../../../config/config'
+// import config from '../../../config/config'
 
 interface eventsListPropsIF {
   listKey: string
@@ -15,11 +15,11 @@ interface eventsListPropsIF {
 const EventsList = ({ listKey }: eventsListPropsIF) => {
 
   const { darkModeStateManagement } = React.useContext(GlobalAppState)
-  const { isDarkMode } = darkModeStateManagement
+  const { isDarkMode, config } = darkModeStateManagement
+  const fetchedCalendarData = useFetchApiData('calendar', config)
 
   const lowerBounds = 10
 
-  const fetchedCalendarData = useFetchApiData('calendar', config)
   const calendarData = fetchedCalendarData?.results[listKey]
 
   const [ accordionOpenId, setAccordionOpenId ] = useState(null)
