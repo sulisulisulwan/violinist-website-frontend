@@ -7,9 +7,10 @@ interface eventListingPropsIF {
   eventData: any
   setAccordionOpenId: React.Dispatch<React.SetStateAction<number>>
   accordionOpenId: number
+  windowWidth: number
 }
 
-const EventListing = ({ eventData, setAccordionOpenId, accordionOpenId }: eventListingPropsIF) => {
+const EventListing = ({ eventData, setAccordionOpenId, accordionOpenId, windowWidth }: eventListingPropsIF) => {
 
   const accordionIsOpen = eventData.id === accordionOpenId
   const setTo = accordionIsOpen ? null : eventData.id
@@ -29,9 +30,28 @@ const EventListing = ({ eventData, setAccordionOpenId, accordionOpenId }: eventL
       }}
       onClick={handleAccordionClickBehavior}
     >
-      <DateInfo eventData={eventData}/>
-      <Content eventData={eventData} accordionIsOpen={accordionIsOpen}/>
-      <DetailsAccordionButton accordionIsOpen={accordionIsOpen}/>
+      {
+        windowWidth < 730 ? (
+          <>
+            <div style={{
+              display: 'flex',
+              flexDirection: 'column'
+            }}>
+              <div style={{ display: 'flex'}}>
+                <DateInfo eventData={eventData}/>
+                <Content eventData={eventData} accordionIsOpen={accordionIsOpen}/>
+              </div>
+              <DetailsAccordionButton accordionIsOpen={accordionIsOpen}/>
+            </div>
+          </>
+        ) : (
+          <>
+            <DateInfo eventData={eventData}/>
+            <Content eventData={eventData} accordionIsOpen={accordionIsOpen}/>
+            <DetailsAccordionButton accordionIsOpen={accordionIsOpen}/>
+          </>
+        )
+      }
     </li>
   )
 }

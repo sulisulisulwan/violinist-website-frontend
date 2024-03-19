@@ -7,9 +7,9 @@ interface eventListingContentPropsIF {
   eventData: any
   accordionIsOpen: boolean
 }
-
+ 
 const Content = ({ eventData, accordionIsOpen }: eventListingContentPropsIF) => {
-  const { darkModeStateManagement } = React.useContext(GlobalAppState)
+  const { darkModeStateManagement, windowWidth } = React.useContext(GlobalAppState)
   const { isDarkMode } = darkModeStateManagement
 
   let city, region, venue
@@ -63,21 +63,36 @@ const Content = ({ eventData, accordionIsOpen }: eventListingContentPropsIF) => 
 
   }
 
+  let width = '45%'
+
+  if (860 <= windowWidth && windowWidth < 1020) {
+    width = '30%'
+  }
+
+  if (730 < windowWidth && windowWidth < 860) {
+    width = '20%'
+  }
+
+  if (windowWidth < 730) {
+    width = '50%'
+  }
+  
+
   return (
     <div 
       className="content"
       style={{
-        width: '45%',
+        [windowWidth < 730 ? 'flexBasis' : 'width']: width,
         paddingTop: 20,
         paddingBottom: 20,
         verticalAlign: 'top',
         display: 'table-cell',
-        borderBottom: `1px dotted ${isDarkMode ? 'white' : NAVY_BLUE_MED}`,
+        borderBottom: windowWidth < 730 ? '' : `1px dotted ${isDarkMode ? 'white' : NAVY_BLUE_MED}`,
         cursor: 'pointer',
         color: isDarkMode ? 'white' : NAVY_BLUE_MED,
         fontFamily: 'Mate, serif',
       }}
-    >
+    > 
       <h3 style={{ margin: 0, fontSize: 17 }}>{location}</h3>
       <h4 style={{ margin: 0, fontSize: 14 }}>{venue}</h4>
       <div className="more-details"

@@ -5,7 +5,6 @@ import EventListing from './EventListing'
 import { NAVY_BLUE_LIGHT, NAVY_BLUE_MED } from '../../../sharedStyles/colors'
 import { useFetchApiData } from '../../../hooks/useFetcher'
 import { GlobalAppState } from '../../../Layout'
-// import config from '../../../config/config'
 
 interface eventsListPropsIF {
   listKey: string
@@ -14,8 +13,8 @@ interface eventsListPropsIF {
 
 const EventsList = ({ listKey }: eventsListPropsIF) => {
 
-  const { darkModeStateManagement } = React.useContext(GlobalAppState)
-  const { isDarkMode, config } = darkModeStateManagement
+  const { darkModeStateManagement, config, windowWidth } = React.useContext(GlobalAppState)
+  const { isDarkMode } = darkModeStateManagement
   const fetchedCalendarData = useFetchApiData('calendar', config)
 
   const lowerBounds = 10
@@ -68,9 +67,11 @@ const EventsList = ({ listKey }: eventsListPropsIF) => {
       <ul style={{
         listStyleType: 'none',
         padding: 0,
-        minWidth: '100%',
         display: 'table',
+        tableLayout: 'fixed',
         maxWidth: '950px',
+        width: '100%',
+        minWidth: '100%',
         borderTop: `1px dotted ${isDarkMode ? 'white' : NAVY_BLUE_MED}`
       }}>
         { 
@@ -80,6 +81,7 @@ const EventsList = ({ listKey }: eventsListPropsIF) => {
               eventData={concertsDatum}
               accordionOpenId={accordionOpenId}
               setAccordionOpenId={setAccordionOpenId}
+              windowWidth={windowWidth}
             />
           ) : null
         }

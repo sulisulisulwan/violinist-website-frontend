@@ -6,6 +6,7 @@ const initApiData = (config: any, endpoint: string) => {
 
   useEffect(() => {
     const getApiData = async () => {
+      console.log(config)
       if (!config || !config.isLoaded) return
       const fetchedData = await axios.get(config.getField('BACKEND_API_BASE_URL') + endpoint)
       setApiData(fetchedData.data)
