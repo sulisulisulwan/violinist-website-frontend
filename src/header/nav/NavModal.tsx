@@ -20,7 +20,7 @@ const NavModal = ({ toggled, toggleModal, links }: navModalPropsIF) => {
   let computedModalWrapperStyle: React.CSSProperties  = {
     backgroundColor: 'rgb(0,0,0)',
     color: 'white',
-    top: 80,
+    top: 105,
     left: 0,
     width: '0%',
     height: '0%',
@@ -55,7 +55,7 @@ const NavModal = ({ toggled, toggleModal, links }: navModalPropsIF) => {
     <div 
       style={computedModalWrapperStyle}
     >
-      <nav className="nav-modal" style={{ textAlign: 'center' }}>
+      <nav className="nav-links-modal" style={{ textAlign: 'center' }}>
         <div style={{ opacity: 1 }}>
           <ul style={{
             color: 'white',

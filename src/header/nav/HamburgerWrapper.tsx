@@ -12,16 +12,16 @@ const HamburgerWrapper = ({ toggle, toggled }: hamburgerWrapperPropsIF) => {
   const { darkModeStateManagement } = React.useContext(GlobalAppState)
   const { isDarkMode } = darkModeStateManagement
 
-  const styleHamburgerWrapper = {
-    display: 'flex',
-    flexDirection: 'row',
-    justifyContent: 'end',
-    alignItems: 'center',
-    zIndex: 9000
-  }  
-
   return (
-    <div className="hamburger-wrapper" style={styleHamburgerWrapper as any}>
+    <div 
+      className="hamburger-wrapper" 
+      style={{
+        display: 'flex',
+        flexDirection: 'row',
+        justifyContent: 'end',
+        alignItems: 'center',
+        zIndex: 9000
+      }}>
       <Hamburger 
         toggled={toggled} 
         toggle={toggle}

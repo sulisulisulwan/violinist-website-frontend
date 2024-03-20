@@ -8,12 +8,22 @@ import DarkModeToggler from '../sharedComponents/DarkModeToggler'
 const Footer = () => {
   
 
-  const { globalSidePadding, darkModeStateManagement } = useContext(GlobalAppState)
+  const { globalSidePadding, darkModeStateManagement, windowWidth } = useContext(GlobalAppState)
   const { isDarkMode } = darkModeStateManagement
-  const socialIcons = getSocialIcons('white')
 
+  const isIPhone45 = windowWidth < 375
+  const isIPhone678 = 375 <= windowWidth && windowWidth < 400 
+  const isIPhone14 = 400 <= windowWidth && windowWidth < 560
+  const isIPadDesktop = windowWidth >= 560
+
+  const minWidth_iPhone45 = 240
+  const minWidth_iPhone678 = 284
+  const minWidth_iPadsDesktopEtc = 320
+
+
+  console.log(isIPadDesktop)
   return (
-    <footer>
+    <footer style={{ width: '100%' }}>
       <div 
         className="footer-body"
         style={{
@@ -25,51 +35,87 @@ const Footer = () => {
         >
         <div className="footer-content-wrapper"
           style={{
-            paddingTop: 21,
-            paddingBottom: 31,
+            paddingTop: isIPadDesktop ? 21 : 10,
+            paddingBottom: isIPadDesktop ? 31 : 20,
             display: 'flex',
-            justifyContent: 'space-between'
+            flexDirection: isIPadDesktop ? 'row' : 'column',
+            justifyContent: 'space-between',
+            width: '100%'
           }}
         >
-          <div 
-            className='name-logo'
-            style={{
-              fontSize: 20,
-              fontWeight: 'lightest',
-            }}
-          >
-            <span style={{
-              color: 'white' 
-            }}>SULIMAN TEKALLI</span>
-            <span style={{
-              color: 'lightgray'
-            }}>VIOLINIST</span>
-          </div>
-          <div
-            className='credits'
-            style={{
-              display: 'flex',
-              color: 'white'
-            }}
-          >
-            { socialIcons.map((iconData, i) => {
-              return (
-                <a 
-                  target="_blank"
-                  key={iconData.label + i}
-                  style={{
-                    paddingRight: 20
-                  }}
-                  href={iconData.href}>
-                    <img width={20} src={iconData.src}/>
-                </a>
-              )
-            }) }
-            <DarkModeToggler/>
-          </div>
+          {
+            isIPadDesktop ? (
+              <>
+                <FooterNameLogo/>
+                <FooterSocialIcons/>
+                <DarkModeToggler/>
+              </>
+            ) : (
+              <>
+                <FooterNameLogo/>
+                <div style={{ 
+                  paddingTop: 10,
+                  paddingLeft: 40,
+                  paddingRight: 40,
+                  display: 'flex', 
+                  justifyContent: 'space-between' 
+                }}>
+                  <FooterSocialIcons/>
+                  <DarkModeToggler/>
+                </div>
+              </>
+            )
+          } 
         </div>
       </div>
     </footer>
+  )
+}
+
+
+const FooterNameLogo = ({ isIPadDesktop }: any) => {
+  return (
+    <div 
+      className='footer-name-logo'
+      style={{
+        textAlign: isIPadDesktop ? 'left' : 'center',
+        fontSize: 20,
+        fontWeight: 'lightest',
+      }}
+    >
+      <span style={{ color: 'white' }}>SULIMAN TEKALLI</span>
+      <span style={{ color: 'lightgray' }}>VIOLINIST</span>
+    </div>
+  )
+}
+
+const FooterSocialIcons = () => {
+  const socialIcons = getSocialIcons('white')
+
+  return (
+    <div
+      className='footer-social-icons'
+      style={{
+        paddingTop: 10,
+        display: 'flex',
+        color: 'white'
+      }}
+    >
+      { socialIcons.map((iconData, i) => {
+        return (
+          <a 
+            target="_blank"
+            key={iconData.label + i}
+            style={{
+              paddingRight: 20
+            }}
+            href={iconData.href}>
+              <img width={20} src={iconData.src}/>
+          </a>
+        )
+      }) }
+      
+    </div>
   )
 }
 

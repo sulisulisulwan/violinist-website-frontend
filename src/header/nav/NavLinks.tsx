@@ -10,28 +10,19 @@ interface topNavBarPropsIF {
 
 const TopNavBar = ({ links, isDarkMode }: topNavBarPropsIF) => {
 
-  const styleTopNavUl: React.CSSProperties = {
-    display: 'flex',
-    flexDirection: 'row',
-    justifyContent: 'space-between',
-    margin: 0,
-    alignItems: 'center',
-    listStyleType: 'none',
-    fontFamily: 'Poppins',
-    // marginTop: 8, // to accomodate the audio component above.  Remove to center
-    
-  }
-
-  const linkStyle: React.CSSProperties = {
-    fontSize: 15
-  }
-
   return (
-    <nav className="top-nav">
-      <ul style={styleTopNavUl}>
+    <nav className="nav-links">
+      <ul style={{
+        display: 'flex',
+        flexDirection: 'row',
+        justifyContent: 'space-between',
+        margin: 0,
+        alignItems: 'center',
+        listStyleType: 'none',
+        fontFamily: 'Poppins',
+      }}>
         { links.map((link: navLinkDataIF, i) => (
-        
-        <li key={link.href + i} style={linkStyle}>
+        <li key={link.href + i} style={{ fontSize: 15 }}>
           <HoverLink 
             cls="nav-link-button"
             openInNewTab={false}
@@ -42,7 +33,6 @@ const TopNavBar = ({ links, isDarkMode }: topNavBarPropsIF) => {
             offColor={isDarkMode ? 'white' : 'black'}
           />
         </li>
-        
         )) }
       </ul>
     </nav>
