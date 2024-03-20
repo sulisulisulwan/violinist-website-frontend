@@ -23,6 +23,7 @@ export interface globalAppStateIF {
   navBarIsWide: boolean
   windowWidth: number
   deviceWidths: Record<string, boolean>
+  audioPlayerIsMobileMode: boolean
 }
 
 const Layout = () => {
@@ -47,7 +48,8 @@ const Layout = () => {
       isIPhone678: 375 <= windowWidth && windowWidth < 400,
       isIPhone14: 400 <= windowWidth && windowWidth < 560,
       isIPadDesktop: windowWidth >= 560
-    }
+    },
+    audioPlayerIsMobileMode: windowWidth < 765
   }
 
   const html = document.querySelector('html')

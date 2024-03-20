@@ -8,12 +8,24 @@ import DarkModeToggler from '../sharedComponents/DarkModeToggler'
 const Footer = () => {
   
 
-  const { globalSidePadding, darkModeStateManagement, windowWidth, deviceWidths } = useContext(GlobalAppState)
+  const { 
+    globalSidePadding, 
+    darkModeStateManagement, 
+    audioPlayerIsMobileMode, 
+    deviceWidths
+  } = useContext(GlobalAppState)
   const { isDarkMode } = darkModeStateManagement
   const { isGalaxyFold, isIPadDesktop } = deviceWidths
 
   return (
-    <footer style={{ width: '100%' }}>
+    <footer 
+      style={{ 
+        position: 'fixed',
+        bottom: audioPlayerIsMobileMode ? 58 : 0,
+        width: '100%',
+        zIndex: 100
+      }}
+    >
       <div 
         className="footer-body"
         style={{

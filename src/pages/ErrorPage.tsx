@@ -31,7 +31,8 @@ const ErrorPage = () => {
       isIPhone678: 375 <= windowWidth && windowWidth < 400,
       isIPhone14: 400 <= windowWidth && windowWidth < 560,
       isIPadDesktop: windowWidth >= 560
-    }
+    },
+    audioPlayerIsMobileMode: windowWidth < 765
   }
   
   const error = useRouteError() as any
