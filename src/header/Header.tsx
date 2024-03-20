@@ -6,6 +6,7 @@ import HamburgerWrapper from './nav/HamburgerWrapper'
 import NavModal from './nav/NavModal'
 import { GlobalAppState } from '../Layout'
 import { Link } from 'react-router-dom'
+import { DARK_MODE_BACKGROUND_COLOR } from '../sharedStyles/colors'
 
 const Header = () => {
 
@@ -16,7 +17,7 @@ const Header = () => {
     <header 
       className="header-banner" 
       style={{
-        backgroundColor: isDarkMode ? 'rgb(15, 14, 32)' : 'white',
+        backgroundColor: isDarkMode ? DARK_MODE_BACKGROUND_COLOR : 'white',
         color: isDarkMode ? 'white' : 'black',
         paddingTop: navBarIsWide ? 20 : 20,
         paddingBottom: navBarIsWide ? 15 : 15,

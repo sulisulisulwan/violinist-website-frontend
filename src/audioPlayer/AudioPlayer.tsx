@@ -2,7 +2,7 @@ import * as React from 'react'
 const { useContext, useRef } = React
 import TrackListing from './TrackListing'
 import AudioPlayerButtons from './AudioPlayerButtons'
-import { NAVY_BLUE_MED } from '../sharedStyles/colors'
+import { DARK_MODE_BACKGROUND_COLOR, NAVY_BLUE_MED } from '../sharedStyles/colors'
 import { next, prev, startPlay, pausePlay, } from './audioControls'
 
 import { GlobalAppState } from '../Layout'
@@ -50,7 +50,7 @@ const AudioPlayer = ({ audioPlayerIsMobileMode }: audioPlayerPropsIF) => {
       <div className="player"
         style={{
           width: '100%',
-          backgroundColor: isDarkMode ? 'rgb(15, 14, 32)' : 'white',
+          backgroundColor: isDarkMode ? DARK_MODE_BACKGROUND_COLOR : 'white',
           borderTop: audioPlayerIsMobileMode ? `solid 2px ${isDarkMode ? 'white' : NAVY_BLUE_MED }` : 0,
           paddingTop: audioPlayerIsMobileMode ? 15: 0,
           paddingBottom: audioPlayerIsMobileMode ? 15: 0,

@@ -1,6 +1,6 @@
 import * as React from 'react'
 const { useContext } = React
-import { NAVY_BLUE_MED } from '../sharedStyles/colors'
+import { DARK_MODE_BACKGROUND_COLOR, NAVY_BLUE_MED } from '../sharedStyles/colors'
 import getSocialIcons from '../socialIcons'
 import { GlobalAppState } from '../Layout'
 import DarkModeToggler from '../sharedComponents/DarkModeToggler'
@@ -30,7 +30,7 @@ const Footer = () => {
         className="footer-body"
         style={{
           borderTop: '5px solid gray',
-          background: isDarkMode ? 'rgb(15, 14, 32)' : NAVY_BLUE_MED,
+          background: isDarkMode ? DARK_MODE_BACKGROUND_COLOR : NAVY_BLUE_MED,
           paddingLeft: globalSidePadding,
           paddingRight: globalSidePadding,
         }}
