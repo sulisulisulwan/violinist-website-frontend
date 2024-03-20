@@ -25,7 +25,7 @@ const MainWrapper = ({ children, addPaddingBottom = 0, heroPhotos }: mainWrapper
       paddingTop: 2,
       paddingBottom: addPaddingBottom + 130, // 100 added for sticky footer
       fontSize: 13,
-      backgroundColor: isDarkMode ? 'rgb(15, 14, 32)' : 'white',
+      backgroundColor: isDarkMode ? DARK_MODE_BACKGROUND_COLOR : 'white',
       color: isDarkMode ? 'white' : 'black',
     }}>
       <section className="hero-img">

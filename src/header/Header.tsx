@@ -17,7 +17,7 @@ const Header = () => {
     <header 
       className="header-banner" 
       style={{
-        backgroundColor: isDarkMode ? 'rgb(15, 14, 32)' : 'white',
+        backgroundColor: isDarkMode ? DARK_MODE_BACKGROUND_COLOR : 'white',
         color: isDarkMode ? 'white' : 'black',
         paddingTop: navBarIsWide ? 20 : 20,
         paddingBottom: navBarIsWide ? 15 : 15,

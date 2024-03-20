@@ -13,6 +13,7 @@ import Header from './header/Header'
 import Footer from './footer/Footer'
 import { useCart } from './hooks/useCart'
 import { Config } from './config/config'
+import { DARK_MODE_BACKGROUND_COLOR } from './sharedStyles/colors'
 
 export const GlobalAppState = createContext(null)
 
@@ -68,7 +69,7 @@ const Layout = () => {
   }
 
   const html = document.querySelector('html')
-  html.style.backgroundColor = globalAppState.darkModeStateManagement.isDarkMode === true ? 'rgb(15, 14, 32)' : 'white'
+  html.style.backgroundColor = globalAppState.darkModeStateManagement.isDarkMode === true ? DARK_MODE_BACKGROUND_COLOR : 'white'
   
   return (
     <GlobalAppState.Provider value={globalAppState}>
