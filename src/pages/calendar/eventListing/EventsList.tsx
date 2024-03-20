@@ -1,10 +1,8 @@
 import * as React from 'react'
-const { useEffect, useState } = React
+const { useState } = React
 import HoverLink from '../../../sharedComponents/HoverLink'
 import EventListing from './EventListing'
 import { NAVY_BLUE_LIGHT, NAVY_BLUE_MED } from '../../../sharedStyles/colors'
-import config from '../../../../config'
-import axios from 'axios'
 import { useFetchApiData } from '../../../hooks/useFetcher'
 import { GlobalAppState } from '../../../Layout'
 
@@ -15,12 +13,12 @@ interface eventsListPropsIF {
 
 const EventsList = ({ listKey }: eventsListPropsIF) => {
 
-  const { darkModeStateManagement } = React.useContext(GlobalAppState)
+  const { darkModeStateManagement, config, windowWidth } = React.useContext(GlobalAppState)
   const { isDarkMode } = darkModeStateManagement
+  const fetchedCalendarData = useFetchApiData('calendar', config)
 
   const lowerBounds = 10
 
-  const fetchedCalendarData = useFetchApiData('calendar')
   const calendarData = fetchedCalendarData?.results[listKey]
 
   const [ accordionOpenId, setAccordionOpenId ] = useState(null)
@@ -69,9 +67,11 @@ const EventsList = ({ listKey }: eventsListPropsIF) => {
       <ul style={{
         listStyleType: 'none',
         padding: 0,
-        minWidth: '100%',
         display: 'table',
+        tableLayout: 'fixed',
         maxWidth: '950px',
+        width: '100%',
+        minWidth: '100%',
         borderTop: `1px dotted ${isDarkMode ? 'white' : NAVY_BLUE_MED}`
       }}>
         { 
@@ -81,6 +81,7 @@ const EventsList = ({ listKey }: eventsListPropsIF) => {
               eventData={concertsDatum}
               accordionOpenId={accordionOpenId}
               setAccordionOpenId={setAccordionOpenId}
+              windowWidth={windowWidth}
             />
           ) : null
         }

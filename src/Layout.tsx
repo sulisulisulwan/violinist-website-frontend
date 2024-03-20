@@ -1,28 +1,30 @@
 import * as React from 'react'
 const { createContext } = React
+import { audioTrackDataIF } from './audioPlayer/AudioPlayer'
+import { 
+  useConfig,
+  useDarkMode,
+  useFetchAudioData,
+  useWindowWidth, 
+} from './hooks'
 import { Outlet } from 'react-router-dom'
-import { useWindowWidth } from './hooks/useWindowWidth'
-import { useFetchAudioData } from './hooks/useFetchAudioData'
-import { audioTrackDataIF } from './audioPlayer/dummyPlaylist'
 import AudioPlayerWrapper from './audioPlayer/AudioPlayerWrapper'
 import Header from './header/Header'
 import Footer from './footer/Footer'
-import { useDarkMode } from './hooks/useDarkMode'
 import { useCart } from './hooks/useCart'
+import { Config } from './config/config'
 
 export const GlobalAppState = createContext(null)
 
 export interface globalAppStateIF {
   windowWidth: number 
-  darkModeStateManagement: { 
-    isDarkMode: boolean
-    setIsDarkMode: React.Dispatch<React.SetStateAction<boolean>>
-  }
   cartStateManagement: {
     cart: any
     setCart: React.Dispatch<React.SetStateAction<any>>
   }
   audioPlayerStateManagement: [audioPlayerStateIF, React.Dispatch<React.SetStateAction<audioPlayerStateIF>>]
+  config: Config
+  darkModeStateManagement: { isDarkMode: boolean, setIsDarkMode: React.Dispatch<React.SetStateAction<boolean>> }
   globalSidePadding: string
   navBarIsWide: boolean
 }
@@ -33,36 +35,57 @@ export interface audioPlayerStateIF {
   playerStatus: string,
   currentTrack: number,
   progress: number
+  windowWidth: number
+  deviceWidths: Record<string, boolean>
+  audioPlayerIsMobileMode: boolean
 }
 
 const Layout = () => {
 
   const windowWidth = useWindowWidth()
-
-  const [ audioPlayerState, setAudioPlayerState ] = useFetchAudioData()
+  const configInstance = useConfig()
   
   const globalAppState = { 
-    windowWidth, 
+    config: configInstance,
+    windowWidth: windowWidth,
     darkModeStateManagement: useDarkMode(),
     cartStateManagement: useCart(),
-    audioPlayerStateManagement: [ audioPlayerState, setAudioPlayerState ],
+    audioPlayerStateManagement: useFetchAudioData(configInstance),
     globalSidePadding: windowWidth <= 600 ? '22px' 
     : windowWidth <= 800 ? '32px' 
     : windowWidth <= 1000 ? '42px' 
     : windowWidth <= 1200 ? '52px' 
     : '62px',
     navBarIsWide: windowWidth > 1080,
+    deviceWidths: {
+      isGalaxyFold: windowWidth <= 280,
+      isIPhone45: windowWidth < 375,
+      isIPhone678: 375 <= windowWidth && windowWidth < 400,
+      isIPhone14: 400 <= windowWidth && windowWidth < 560,
+      isIPadDesktop: windowWidth >= 560
+    },
+    audioPlayerIsMobileMode: windowWidth < 765
   }
 
+  const html = document.querySelector('html')
+  html.style.backgroundColor = globalAppState.darkModeStateManagement.isDarkMode === true ? 'rgb(15, 14, 32)' : 'white'
   
-
-  return <GlobalAppState.Provider value={globalAppState}>
+  return (
+    <GlobalAppState.Provider value={globalAppState}>
       <div id="isLoaded"></div>
-      <Header/>
-      <Outlet/>
-      <Footer/>
-      <AudioPlayerWrapper/>
+        { 
+          globalAppState.config && globalAppState.config.isLoaded ?
+            <>
+              <Header/>
+              <Outlet/>
+              <Footer/>
+              <AudioPlayerWrapper/>
+            </>
+            : 
+            null
+        }
     </GlobalAppState.Provider>
+  )
 
 }
 

@@ -1,9 +1,25 @@
+<<<<<<< HEAD
 
+=======
+html {
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  min-width: 100%;
+}
+>>>>>>> d7bfbf2a25d4796ce15c3c82da249fdce4694a30
 
 body {
+  width: 100%;
+  min-width: 100%;
   overscroll-behavior: none;
-  margin: 0px;
+  margin: 0;
+  padding: 0;
   font-family: 'Poppins', 'sans-serif';
+}
+
+#app {
+  width: 100%;
 }
 
 a:link {

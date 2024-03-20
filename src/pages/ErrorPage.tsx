@@ -1,7 +1,4 @@
-import React, { useState } from 'react'
-import HeroImageSlideshow from '../sharedComponents/heroImageSlideshow/HeroImageSlideshow'
-import { useWindowWidth } from '../hooks/useWindowWidth'
-import playlist from '../audioPlayer/dummyPlaylist'
+import * as React from 'react'
 import AudioPlayerWrapper from '../audioPlayer/AudioPlayerWrapper'
 import Header from '../header/Header'
 import Footer from '../footer/Footer'
@@ -9,32 +6,36 @@ import { GlobalAppState } from '../Layout'
 import { useRouteError } from 'react-router-dom'
 import { heroPhotos1 } from '../hero-photos'
 import MainWrapper from '../sharedComponents/MainWrapper'
+import { useConfig, useDarkMode, useFetchAudioData, useWindowWidth } from '../hooks'
 
 
 const ErrorPage = () => {
 
   const windowWidth = useWindowWidth()
-
-  const [ audioPlayerState, setAudioPlayerState ] = useState({
-    hasPlayedOnce: false,
-    playList: playlist,
-    playerStatus: 'stop',
-    currentTrack: 0,
-    progress: 0
-  })
+  const configInstance = useConfig()
 
   const globalAppState = { 
-    windowWidth, 
+    config: configInstance,
+    windowWidth: windowWidth,
+    darkModeStateManagement: useDarkMode(),
+    audioPlayerStateManagement: useFetchAudioData(configInstance),
     globalSidePadding: windowWidth <= 600 ? '22px' 
     : windowWidth <= 800 ? '32px' 
     : windowWidth <= 1000 ? '42px' 
     : windowWidth <= 1200 ? '52px' 
     : '62px',
     navBarIsWide: windowWidth > 1080,
-    audioPlayerStateManagement: [ audioPlayerState, setAudioPlayerState ]
+    deviceWidths: {
+      isGalaxyFold: windowWidth <= 280,
+      isIPhone45: windowWidth < 375,
+      isIPhone678: 375 <= windowWidth && windowWidth < 400,
+      isIPhone14: 400 <= windowWidth && windowWidth < 560,
+      isIPadDesktop: windowWidth >= 560
+    },
+    audioPlayerIsMobileMode: windowWidth < 765
   }
-
-  const error = useRouteError()
+  
+  const error = useRouteError() as any
 
 
   let message = 'Something went wrong....'

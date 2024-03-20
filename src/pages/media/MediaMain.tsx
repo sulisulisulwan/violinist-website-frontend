@@ -14,7 +14,7 @@ const MediaMain = () => {
   const { isDarkMode } = darkModeStateManagement
 
   return (
-    <MainWrapper paddingBottom={30} heroPhotos={heroPhotos1}>
+    <MainWrapper addPaddingBottom={30} heroPhotos={heroPhotos1}>
       <section  id="media" className="media">
         <h1>MEDIA</h1>
         <div>

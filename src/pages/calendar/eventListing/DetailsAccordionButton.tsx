@@ -9,15 +9,15 @@ interface detailsAccordionButtonPropsIF {
 
 const DetailsAccordionButton = ({ accordionIsOpen }: detailsAccordionButtonPropsIF) => {
 
-  const { darkModeStateManagement } = React.useContext(GlobalAppState)
+  const { darkModeStateManagement, windowWidth } = React.useContext(GlobalAppState)
   const { isDarkMode } = darkModeStateManagement
 
   return (
     <div 
       className="content"
       style={{
-        width: '25%',
-        textAlign: 'right',
+        width: windowWidth < 730 ? '100%' : '25%',
+        textAlign: windowWidth < 730 ? 'center' : 'right',
         verticalAlign: 'middle',
         paddingTop: 20,
         paddingBottom: 20,

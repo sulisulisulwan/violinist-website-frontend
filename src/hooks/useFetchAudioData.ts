@@ -1,9 +1,8 @@
 import axios from 'axios'
-import config from '../../config'
 import { useEffect, useState } from 'react'
-const { BACKEND_API_BASE_URL } = config
+import { Config } from '../config/config'
 
-export const useFetchAudioData = (): [any, React.Dispatch<React.SetStateAction<any>>] => {
+export const useFetchAudioData = (config: Config): [any, React.Dispatch<React.SetStateAction<any>>] => {
 
   const [ audioPlayerState, setAudioPlayerState ] = useState({
     hasPlayedOnce: false,
@@ -14,14 +13,13 @@ export const useFetchAudioData = (): [any, React.Dispatch<React.SetStateAction<a
   })
 
   useEffect(() => {  
-    
     const fetchAudioData = async () => {
-
-      const playlistsData: any = await axios.get(BACKEND_API_BASE_URL + '/audio/playlists')
-
-      let playlist = playlistsData.data
-      playlist = playlist[0] ? playlist[0].playlistTracks.map((track: any) => {
-        const file = config.BACKEND_API_BASE_URL + '/audio?id=' + track.audioTrackId
+      if (!config || !config.isLoaded) return
+      const backendUrl = config.getField('BACKEND_API_BASE_URL')
+      const playlistsData = await axios.get(backendUrl + 'audio/playlists')
+      let playlist = playlistsData.data[0]
+      playlist = playlist ? playlist.playlistTracks.map((track: any) => {
+        const file = backendUrl + 'audio?id=' + track.audioTrackId
         return {
           file: file, 
           author: track.author, 
@@ -38,7 +36,7 @@ export const useFetchAudioData = (): [any, React.Dispatch<React.SetStateAction<a
 
     fetchAudioData()
 
-  }, [])
+  }, [config])
 
   return [ audioPlayerState, setAudioPlayerState ]
 

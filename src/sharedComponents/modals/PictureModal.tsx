@@ -1,8 +1,12 @@
 import * as React from 'react'
 import { PhotoDataAPI } from 'suli-violin-website-types/src'
-import config from '../../../config'
 import HoverPopIcon from '../HoverPopIcon'
-const { useState } = React
+import { GlobalAppState } from '../../Layout'
+// import config from '../../config/config'
+const { 
+  useState, 
+  useContext
+ } = React
 
 interface pictureModalPropsIF {
   initIndex: number
@@ -13,6 +17,8 @@ interface pictureModalPropsIF {
 const PictureModal = ({ initIndex, picDataArray, setModalClosed }: pictureModalPropsIF) => {
 
   const [ picIndex, setPicIndex ] = useState(initIndex)
+  const { config } = useContext(GlobalAppState)
+
 
   const next = () => {
     let nextIndex = picIndex + 1
@@ -51,7 +57,7 @@ const PictureModal = ({ initIndex, picDataArray, setModalClosed }: pictureModalP
             maxHeight: '90vh',
             padding: .5,
           }}
-          src={`${config.BACKEND_API_BASE_URL}/media/photos?id=${currPic.id}&isCropped=true`}
+          src={`${config.getField('BACKEND_API_BASE_URL')}/photos?id=${currPic.id}&isCropped=true`}
         />
         <HoverPopIcon
           onClickHandler={prev}

@@ -15,7 +15,7 @@ const numToMonth: Record<string, fullMonth> = {
   4: 'May',
   5: 'June',
   6: 'July',
-  7: 'August',
+  7: 'August', 
   8: 'September',
   9: 'October',
   10: 'November',
@@ -25,10 +25,10 @@ const numToMonth: Record<string, fullMonth> = {
 interface dateInfoPropsIF {
   eventData: any
 }
-
+ 
 const DateInfo = ({ eventData }: dateInfoPropsIF) => {
 
-  const { darkModeStateManagement } = React.useContext(GlobalAppState)
+  const { darkModeStateManagement, windowWidth } = React.useContext(GlobalAppState)
   const { isDarkMode } = darkModeStateManagement
 
   let startMonth, startDay, startYear
@@ -48,31 +48,61 @@ const DateInfo = ({ eventData }: dateInfoPropsIF) => {
     endYear = endDate.getUTCFullYear()
   }
 
-  return (
-    <div className="date" style={{
-      color: isDarkMode ? 'white' : NAVY_BLUE_MED,
-      fontFamily: 'Mate, serif',
-      width: '30%',
-      paddingTop: 10,
-      verticalAlign: 'top',
-      display: 'table-cell',
-      borderBottom: `1px dotted ${isDarkMode ? 'white' : NAVY_BLUE_MED}`,
-      cursor: 'pointer'
-    }}>
-        <div style={{ display: 'flex' }}>
-        <DateIcon day={startDay} month={startMonth} year={startYear}/>
-        { isEventGroupOnly ?
-          <>
+  let computedComponent = <DateIcon day={startDay} month={startMonth} year={startYear}/>
+
+  if (isEventGroupOnly) {
+    if (windowWidth < 730) {
+      computedComponent = (
+        <>
+          <div style={{ display: 'flex', flexDirection: 'column'}}>
+            <DateIcon day={startDay} month={startMonth} year={startYear}/>
             <span style={{
               paddingLeft: 10,
               paddingRight: 10,
-              fontSize: 30
-            }}>-</span>
+              fontSize: 15,
+              textAlign: 'center'
+            }}>|</span>
             <DateIcon day={endDay} month={endMonth} year={endYear}/>
-          </>
-          
-          : null
-        }
+          </div>
+        </>
+      )
+    } else {
+      computedComponent = (
+        <>
+          <DateIcon day={startDay} month={startMonth} year={startYear}/>
+          <span style={{
+            paddingLeft: 10,
+            paddingRight: 10,
+            fontSize: 30
+          }}>-</span>
+          <DateIcon day={endDay} month={endMonth} year={endYear}/>
+        </>
+      )
+
+    }
+  }
+
+
+  return (
+    <div className="date" 
+      style={{
+        color: isDarkMode ? 'white' : NAVY_BLUE_MED,
+        fontFamily: 'Mate, serif',
+        [windowWidth < 730 ? 'flexBasis' : 'width']: windowWidth < 730 ? '50%' : '30%',
+        maxWidth: windowWidth < 730 ? '' : '30%',
+        paddingTop: 10,
+        verticalAlign: 'top',
+        display: 'table-cell',
+        borderBottom: windowWidth < 730 ? '' :  `1px dotted ${isDarkMode ? 'white' : NAVY_BLUE_MED}`,
+        cursor: 'pointer'
+      }}
+    >
+        <div 
+          style={{ 
+            display: 'flex', 
+          }}
+        >
+          {computedComponent}
       </div>
     </div>
   )

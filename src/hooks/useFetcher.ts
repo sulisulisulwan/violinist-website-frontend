@@ -1,91 +1,34 @@
 import axios from "axios"
 import { useEffect, useState } from "react"
-import config from "../../config"
 
+const initApiData = (config: any, endpoint: string) => {
+  const [ apiData, setApiData ] = useState(null)
 
-const useFetchLongFormBio = () => {
-  const [ longFormBioData, setLongFormBioData ] = useState(null)
   useEffect(() => {
-    const getLongFormBio = async () => {
-      const longFormData = await axios.get(config.BACKEND_API_BASE_URL + '/bio/longForm')
-      setLongFormBioData(longFormData.data)
+    const getApiData = async () => {
+      console.log(config)
+      if (!config || !config.isLoaded) return
+      const fetchedData = await axios.get(config.getField('BACKEND_API_BASE_URL') + endpoint)
+      setApiData(fetchedData.data)
     }
-    getLongFormBio()
-  }, [])
-  return longFormBioData
+    getApiData()
+  }, [config])
+  return apiData
 }
 
-const useFetchShortBioData = () => {
-  const [ shortFormBioData, setShortFormBioData ] = useState(null)
-  useEffect(() => {
-    const getShortFormBioData = async () => {
-      const bioDataShortForm = await axios.get(`${config.BACKEND_API_BASE_URL}/bio/shortForm`)
-      setShortFormBioData (bioDataShortForm.data)
-    }
-    getShortFormBioData()
-  }, [])
-  return shortFormBioData
+const endpointMap: any = {
+  shortBio: '/bio/shortForm',
+  longBio: '/bio/longForm',
+  blog: '/blog',
+  calendar: '/calendar',
+  photos: '/photos?type=media-photo',
+  videos: '/videos'
 }
 
-const useFetchBlog = () => {
-  const [ blogData, setBlogData ] = useState(null)
-  useEffect(() => {
-    const getBlogData = async () => {
-      const fetchedBlogData = await axios.get(config.BACKEND_API_BASE_URL + '/blog')
-      setBlogData(fetchedBlogData.data)
-    }
-    getBlogData()
-  }, [])
-  return blogData
-}
 
-const useFetchCalendarData = () => {
-  const [ calendarData, setCalendarData ] = useState(null)
-  useEffect(() => {
-    const getCalendarData = async () => {
-      const calendarData = await axios.get(`${config.BACKEND_API_BASE_URL}/calendar`)
-      setCalendarData (calendarData.data)
-    }
-    getCalendarData()
-  }, [])
-  return calendarData
-}
-
-const useFetchPhotos = () => {
-  const [ photoData, setPhotoData ] = useState(null)
-  useEffect(() => {
-    const getPhotoData = async () => {
-      const fetchedPhotoData = await axios.get(config.BACKEND_API_BASE_URL + '/photos')
-      setPhotoData(fetchedPhotoData.data)
-    }
-    getPhotoData()
-  }, [])
-  return photoData
-}
-
-const useFetchVideos = () => {
-  const [ videoData, setVideoData ] = useState(null)
-  useEffect(() => {
-    const getVideoData = async () => {
-      const fetchedVideoData = await axios.get(config.BACKEND_API_BASE_URL + '/videos')
-      setVideoData(fetchedVideoData.data)
-    }
-    getVideoData()
-  }, [])
-  return videoData
-}
-
-const fetcherMap: any = {
-  shortBio: useFetchShortBioData,
-  longBio: useFetchLongFormBio,
-  blog: useFetchBlog,
-  calendar: useFetchCalendarData,
-  photos: useFetchPhotos,
-  videos: useFetchVideos
-}
-
-export const useFetchApiData = (context: string) => {
-  const fetcher = fetcherMap[context]
-  const data = fetcher()
+export const useFetchApiData = (context: string, config: any) => {
+  const endpoint = endpointMap[context]
+  const data = initApiData(config, endpoint)
+  
   return data
 }

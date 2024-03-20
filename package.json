@@ -6,7 +6,8 @@
   "type": "module",
   "scripts": {
     "start": "nodemon ./server/index.js",
-    "build": "webpack -w"
+    "build": "webpack",
+    "build-watch": "webpack -w"
   },
   "keywords": [
     "violin"
