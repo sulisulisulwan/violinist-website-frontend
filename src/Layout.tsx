@@ -21,7 +21,8 @@ export interface globalAppStateIF {
   darkModeStateManagement: { isDarkMode: boolean, setIsDarkMode: React.Dispatch<React.SetStateAction<boolean>> }
   globalSidePadding: string
   navBarIsWide: boolean
-  windowWidth: number 
+  windowWidth: number
+  deviceWidths: Record<string, boolean>
 }
 
 const Layout = () => {
@@ -40,6 +41,13 @@ const Layout = () => {
     : windowWidth <= 1200 ? '52px' 
     : '62px',
     navBarIsWide: windowWidth > 1080,
+    deviceWidths: {
+      isGalaxyFold: windowWidth <= 280,
+      isIPhone45: windowWidth < 375,
+      isIPhone678: 375 <= windowWidth && windowWidth < 400,
+      isIPhone14: 400 <= windowWidth && windowWidth < 560,
+      isIPadDesktop: windowWidth >= 560
+    }
   }
 
   const html = document.querySelector('html')

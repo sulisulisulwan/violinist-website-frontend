@@ -23,6 +23,7 @@ const DarkModeToggler = () => {
       <div 
         className='darkmode-toggler-title'
         style={{ 
+          textAlign: 'center',
           fontSize: 10, 
           color: 'white' 
         }}>DARK MODE

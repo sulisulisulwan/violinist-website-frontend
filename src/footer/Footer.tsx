@@ -8,20 +8,10 @@ import DarkModeToggler from '../sharedComponents/DarkModeToggler'
 const Footer = () => {
   
 
-  const { globalSidePadding, darkModeStateManagement, windowWidth } = useContext(GlobalAppState)
+  const { globalSidePadding, darkModeStateManagement, windowWidth, deviceWidths } = useContext(GlobalAppState)
   const { isDarkMode } = darkModeStateManagement
+  const { isGalaxyFold, isIPadDesktop } = deviceWidths
 
-  const isIPhone45 = windowWidth < 375
-  const isIPhone678 = 375 <= windowWidth && windowWidth < 400 
-  const isIPhone14 = 400 <= windowWidth && windowWidth < 560
-  const isIPadDesktop = windowWidth >= 560
-
-  const minWidth_iPhone45 = 240
-  const minWidth_iPhone678 = 284
-  const minWidth_iPadsDesktopEtc = 320
-
-
-  console.log(isIPadDesktop)
   return (
     <footer style={{ width: '100%' }}>
       <div 
@@ -35,8 +25,10 @@ const Footer = () => {
         >
         <div className="footer-content-wrapper"
           style={{
-            paddingTop: isIPadDesktop ? 21 : 10,
-            paddingBottom: isIPadDesktop ? 31 : 20,
+            paddingTop: isIPadDesktop ? 21 
+              : isGalaxyFold ? 8 : 10,
+            paddingBottom: isIPadDesktop ? 31 
+              : isGalaxyFold ? 10 : 20,
             display: 'flex',
             flexDirection: isIPadDesktop ? 'row' : 'column',
             justifyContent: 'space-between',
@@ -52,11 +44,11 @@ const Footer = () => {
               </>
             ) : (
               <>
-                <FooterNameLogo/>
+                <FooterNameLogo isGalaxyFold={isGalaxyFold}/>
                 <div style={{ 
                   paddingTop: 10,
-                  paddingLeft: 40,
-                  paddingRight: 40,
+                  paddingLeft: isGalaxyFold ? 10 : 40,
+                  paddingRight: isGalaxyFold? 10 : 40,
                   display: 'flex', 
                   justifyContent: 'space-between' 
                 }}>
@@ -73,13 +65,13 @@ const Footer = () => {
 }
 
 
-const FooterNameLogo = ({ isIPadDesktop }: any) => {
+const FooterNameLogo = ({ isIPadDesktop, isGalaxyFold }: any) => {
   return (
     <div 
       className='footer-name-logo'
       style={{
         textAlign: isIPadDesktop ? 'left' : 'center',
-        fontSize: 20,
+        fontSize: isGalaxyFold ? 15 : 20,
         fontWeight: 'lightest',
       }}
     >

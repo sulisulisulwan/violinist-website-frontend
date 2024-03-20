@@ -9,7 +9,7 @@ import { Link } from 'react-router-dom'
 
 const Header = () => {
 
-  const { windowWidth, globalSidePadding, navBarIsWide, darkModeStateManagement } = useContext(GlobalAppState)
+  const { windowWidth, globalSidePadding, navBarIsWide, darkModeStateManagement, deviceWidths } = useContext(GlobalAppState)
   const { isDarkMode } = darkModeStateManagement
 
   return (
@@ -30,7 +30,7 @@ const Header = () => {
         zIndex: 100,
       }}
     >
-      <HeaderNameLogo windowWidth={windowWidth} isDarkMode={isDarkMode} />
+      <HeaderNameLogo deviceWidths={deviceWidths} isDarkMode={isDarkMode} />
       <NavBar navBarIsWide={navBarIsWide} isDarkMode={isDarkMode}/>
     </header>
   )
@@ -60,11 +60,9 @@ const NavBar = ({ navBarIsWide, isDarkMode }: any) => {
   )
 }
 
-const HeaderNameLogo = ({ isDarkMode, windowWidth }: any) => {
+const HeaderNameLogo = ({ isDarkMode, deviceWidths }: any) => {
   
-  const smallDevice = 375 <= windowWidth && windowWidth < 400 
-  const verySmallDevice = windowWidth < 375 
-  const teenyTinyDevice = windowWidth <= 280 
+  const { isGalaxyFold, isIPhone45, isIPhone678, } = deviceWidths
 
   const minWidth_galaxyFold = 200
   const minWidth_iPhone45 = 240
@@ -81,25 +79,25 @@ const HeaderNameLogo = ({ isDarkMode, windowWidth }: any) => {
     <div 
       className="header-name-logo"
       style={{
-        minWidth: teenyTinyDevice ? minWidth_galaxyFold
-        : verySmallDevice ? minWidth_iPhone45 
-        : smallDevice ? minWidth_iPhone678 
+        minWidth: isGalaxyFold ? minWidth_galaxyFold
+        : isIPhone45 ? minWidth_iPhone45 
+        : isIPhone678 ? minWidth_iPhone678 
         : minWidth_iPadsDesktopEtc
       }}
     >
       <Link to="/">
         <span style={{
           color: isDarkMode ? 'white' : 'black',
-          fontSize: teenyTinyDevice ? fontSize_galaxyFold
-          : verySmallDevice ? fontSize_iPhone45 
-          : smallDevice ? fontSize_iPhone678 
+          fontSize: isGalaxyFold ? fontSize_galaxyFold
+          : isIPhone45 ? fontSize_iPhone45 
+          : isIPhone678 ? fontSize_iPhone678 
           : fontSize_iPadsDesktopEtc,
         }}>SULIMAN TEKALLI</span>
         <span style={{ 
           color: 'gray',
-          fontSize: teenyTinyDevice ? fontSize_galaxyFold
-          : verySmallDevice ? fontSize_iPhone45 
-          : smallDevice ? fontSize_iPhone678 
+          fontSize: isGalaxyFold ? fontSize_galaxyFold
+          : isIPhone45 ? fontSize_iPhone45 
+          : isIPhone678 ? fontSize_iPhone678 
           : fontSize_iPadsDesktopEtc,
         }}> VIOLINIST</span>
       </Link>
