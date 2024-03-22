@@ -25,6 +25,7 @@ const MediaPhotos = () => {
     <div
       style={{
         width: '100%',
+        animation: 'fadeIn .5s linear'
       }}
       >
       <h2>PHOTOS</h2>

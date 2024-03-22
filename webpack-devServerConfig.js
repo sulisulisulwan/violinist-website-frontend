@@ -51,6 +51,7 @@ const onlyRebuildHtmlCssAndJs = (mode) => {
     output: {
       path: path.resolve(__dirname, "dist"),
       filename: '[name][fullhash].js',
+      chunkFilename: '[name].split.js'
     },
     devServer: {
       hot: true,
