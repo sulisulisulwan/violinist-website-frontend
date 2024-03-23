@@ -1,7 +1,7 @@
 import * as React from 'react'
 const { useState, useEffect } = React
 
-const LazyImage = ({ src, alt, onClickHandler, addedStyle }: any) => {
+const LazyImage = ({ src, alt, onClickHandler = () => {}, addedStyle }: any) => {
 
   const [ imageLoaded, setImageLoaded ] = useState(false)
 
@@ -13,12 +13,12 @@ const LazyImage = ({ src, alt, onClickHandler, addedStyle }: any) => {
   }
 
   const loadedImgStyle = {
-    ...addedStyle,
     maxWidth: '100%',
     maxHeight: '100%',
     overflow: 'clip',
     overflowClipMargin: 'content-box',
-    animation: 'fadeIn 2s linear'
+    animation: 'fadeIn 2s linear',
+    ...addedStyle,
   }
 
   useEffect(() => {

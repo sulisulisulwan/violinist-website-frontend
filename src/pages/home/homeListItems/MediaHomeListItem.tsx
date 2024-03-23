@@ -31,7 +31,6 @@ export const MediaHomeListItem = () => {
           setModalIsOpen={setModalIsOpen} 
           setCurrYoutubeCode={() => {}}
         /> : '...Loading'
-
       }
       <div 
         className="more-button"
@@ -51,10 +50,13 @@ export const MediaHomeListItem = () => {
       </div>
       {
         firstVideo ?
-        <ModalWrapper modalName={'media'} isOpen={modalIsOpen} setModalClosed={() => setModalIsOpen(false)}>
-          <YouTubeModal youtubeCode={videoData.youtubeCode}/>
-        </ModalWrapper> : null
-
+        <ModalWrapper 
+          modalName={'media'} 
+          isOpen={modalIsOpen} 
+          setModalClosed={() => setModalIsOpen(false)} 
+          childModal={<YouTubeModal youtubeCode={videoData.youtubeCode}/>}
+        />  
+        : null
       } 
     </>
   )

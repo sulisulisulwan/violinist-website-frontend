@@ -4,6 +4,9 @@ import { useDarkMode } from "./useDarkMode";
 import { useFetchAudioData } from "./useFetchAudioData";
 import { useWindowWidth } from "./useWindowWidth";
 import { useLoadingScreen } from "./useLoadingScreen";
+import { useTypeEscapeToClose } from "./useTypeEscapeToClose";
+import { useOutsideAlerter } from "./useOutsideAlerter";
+import { useComponentFadeAnimator } from "./useComponentFadeAnimator";
 
 export {
   useConfig,
@@ -11,5 +14,8 @@ export {
   useFetchAudioData,
   useFetcher,
   useWindowWidth,
-  useLoadingScreen
+  useLoadingScreen,
+  useTypeEscapeToClose,
+  useOutsideAlerter,
+  useComponentFadeAnimator
 }

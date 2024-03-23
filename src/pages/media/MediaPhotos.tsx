@@ -6,7 +6,6 @@ import PictureModal from '../../sharedComponents/modals/PictureModal'
 import { PhotoDataAPI } from 'suli-violin-website-types/src'
 import LazyImage from '../../sharedComponents/LazyImage'
 import { useFetchApiData } from '../../hooks/useFetcher'
-// import config from '../../config/config'
 
 const MediaPhotos = () => {
 
@@ -15,7 +14,7 @@ const MediaPhotos = () => {
 
   const { isDarkMode } = darkModeStateManagement
   const [ modalIsOpen, setModalIsOpen ] = useState(false)
-  const [ clickedPicIndex, setClickedPicIndex ] = useState(null)
+  const [ picIndex, setPicIndex ] = useState(null)
 
   const photos = photoData
   
@@ -95,7 +94,7 @@ const MediaPhotos = () => {
                             border: isDarkMode ? '.5px darkgray solid' : '', 
                             backgroundColor: isDarkMode ? 'black' : 'white'
                           }}
-                          onClickHandler={() => { setClickedPicIndex(i); setModalIsOpen(true) } }
+                          onClickHandler={() => { setPicIndex(i); setModalIsOpen(true) } }
                           src={`${config.getField('BACKEND_API_BASE_URL')}/photos?id=${picture.id}&isCropped=true`}
                           alt={'Media photo gallery image'}
                         />
@@ -107,9 +106,17 @@ const MediaPhotos = () => {
             }) : '...Loading'
           }
         </ul>
-        <ModalWrapper modalName={'photos'} isOpen={modalIsOpen} setModalClosed={() => setModalIsOpen(false)}>
-          <PictureModal initIndex={clickedPicIndex} picDataArray={photos} setModalClosed={() => setModalIsOpen(false)}/>
-        </ModalWrapper>
+        <ModalWrapper 
+          modalName={'photos'} 
+          isOpen={modalIsOpen} 
+          setModalClosed={() => setModalIsOpen(false)}
+          childModal={<PictureModal 
+            currPicIndex={picIndex} 
+            setPicIndex={setPicIndex}
+            picDataArray={photos} 
+            setModalClosed={() => setModalIsOpen(false)}
+          />}
+        />
       </div>
     </div>
   )

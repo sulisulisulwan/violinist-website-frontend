@@ -9,8 +9,6 @@ import { heroPhotos1 } from '../hero-photos'
 import MainWrapper from '../sharedComponents/MainWrapper'
 
 import { useConfig, useDarkMode, useFetchAudioData, useWindowWidth, useLoadingScreen } from '../hooks'
-import LoadingScreen from '../LoadingScreen'
-
 
 const ErrorPage = () => {
 
@@ -82,7 +80,6 @@ const ErrorPage = () => {
       </MainWrapper>
       <Footer/>
       <AudioPlayerWrapper/>
-      <LoadingScreen isLoading={loadingStates.isLoading} prioritizeZIndex={loadingStates.prioritizeZIndex}/>
     </GlobalAppState.Provider>
 
   )

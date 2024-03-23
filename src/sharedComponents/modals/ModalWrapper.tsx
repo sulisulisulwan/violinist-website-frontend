@@ -1,27 +1,28 @@
 import * as ReactDom from 'react-dom'
 import * as React from 'react'
-import { useOutsideAlerter, useTypeEscapeToClose } from './hooks'
+import { useComponentFadeAnimator, useOutsideAlerter, useTypeEscapeToClose } from '../../hooks'
 
 interface modalWrapperIF {
   modalName: string
   isOpen: boolean
   setModalClosed: React.Dispatch<React.SetStateAction<boolean>>
-  children: React.ReactNode
+  childModal: React.ReactNode
 }
 
-const ModalWrapper = ({ modalName, isOpen, setModalClosed, children }: modalWrapperIF) => {
+const ModalWrapper = ({ modalName, isOpen, setModalClosed, childModal }: modalWrapperIF) => {
   
-  const wrapperRef = useOutsideAlerter(setModalClosed);
   useTypeEscapeToClose(setModalClosed)
-  
-  if (!isOpen) return null
-
+  const outsideAlerterRef = useOutsideAlerter(setModalClosed);
+  const { fadeRef, cssFadeAnimationProps } = useComponentFadeAnimator(isOpen, .5)
 
   const modal = (
     <div 
       id={`${modalName}-modal-wrapper`}
       className={'modal-background'}
+      ref={fadeRef}
       style={{
+        display: cssFadeAnimationProps.displaySetting,
+        animation: cssFadeAnimationProps.animationSetting,
         position: 'fixed',
         top: 0,
         left: 0,
@@ -29,11 +30,11 @@ const ModalWrapper = ({ modalName, isOpen, setModalClosed, children }: modalWrap
         bottom: 0,
         backgroundColor: 'rgba(255,255,255, .7)',
         zIndex: 900,
-        animation: 'fadeIn 1s'
+
       }}
     >
       <div 
-        ref={wrapperRef}
+        ref={outsideAlerterRef}
         className={'modal-inner-window'}
         style={{
           position: 'fixed',
@@ -42,10 +43,9 @@ const ModalWrapper = ({ modalName, isOpen, setModalClosed, children }: modalWrap
           transform: 'translate(-50%, -50%)',
           backgroundColor: '#FFF',
           zIndex: 1000,
-          animation: 'fadeIn 1s'
         }}
       >
-        {children}
+        {childModal}
       </div>
     </div>
   )

@@ -5,7 +5,7 @@ interface hoverButtonPropsIF {
   onClickHandler: React.MouseEventHandler<HTMLButtonElement>
 }
 
-const HoverButton = ({ imgSrc, onClickHandler }: hoverButtonPropsIF) => {
+const HoverButtonWithImage = ({ imgSrc, onClickHandler }: hoverButtonPropsIF) => {
 
   return (
     <button style={{ border: 0, background: 0 }}  onClick={ onClickHandler }>
@@ -14,4 +14,4 @@ const HoverButton = ({ imgSrc, onClickHandler }: hoverButtonPropsIF) => {
   )
 }
 
-export default HoverButton
+export default HoverButtonWithImage

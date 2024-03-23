@@ -1,6 +1,4 @@
 import * as React from 'react'
-import * as ReactDom from 'react-dom'
-import { DARK_MODE_BACKGROUND_COLOR } from '../sharedStyles/colors'
 
 interface loadingScreenHook {
   loadingStates: { isLoading: boolean, prioritizeZIndex: boolean }

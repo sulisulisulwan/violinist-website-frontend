@@ -10,6 +10,8 @@ import {
 import Layout from './Layout'
 import { DARK_MODE_BACKGROUND_COLOR, NAVY_BLUE_LIGHT } from './sharedStyles/colors';
 
+const ShopItemsDisplay = lazy(() => import('./pages/shop/ShopItemsDisplay'));
+const Checkout = lazy(() => import('./pages/shop/Checkout'));
 const HomeMain = lazy(() => import('./pages/home/HomeMain'))
 const BiographyMain = lazy(() => import('./pages/biography/BiographyMain'))
 const CalendarMain = lazy(() => import('./pages/calendar/CalendarMain'))
@@ -24,7 +26,7 @@ const ErrorPage = lazy(() => import('./pages/ErrorPage'))
 const UnderConstruction = lazy(() => import('./pages/UnderConstruction'))
 const ShopMain = lazy(() => import('./pages/shop/ShopMain'))
 
-const LoadingScreen = () => {
+const FallbackMainLoadingScreen = () => {
 
   return (
     <div 
@@ -51,7 +53,7 @@ const router = createBrowserRouter([
       {
         index: true,
         element: (
-          <React.Suspense fallback={<LoadingScreen/>}>
+          <React.Suspense fallback={<FallbackMainLoadingScreen/>}>
             <HomeMain/>
           </React.Suspense>
         )
@@ -59,7 +61,7 @@ const router = createBrowserRouter([
       {
         path: 'biography',
         element: ( 
-          <React.Suspense fallback={<LoadingScreen/>}>
+          <React.Suspense fallback={<FallbackMainLoadingScreen/>}>
             <BiographyMain/>
           </React.Suspense>
         )
@@ -67,7 +69,7 @@ const router = createBrowserRouter([
       {
         path: 'calendar',
         element: (
-          <React.Suspense fallback={<LoadingScreen/>}>
+          <React.Suspense fallback={<FallbackMainLoadingScreen/>}>
             <CalendarMain/>
           </React.Suspense>
         ),
@@ -75,7 +77,7 @@ const router = createBrowserRouter([
           {
             index: true,
             element:(
-              <React.Suspense fallback={<LoadingScreen/>}>
+              <React.Suspense fallback={<FallbackMainLoadingScreen/>}>
                 <UpcomingEvents/>
               </React.Suspense>
             ),
@@ -83,7 +85,7 @@ const router = createBrowserRouter([
           {
             path: 'upcoming-concerts',
             element:(
-              <React.Suspense fallback={<LoadingScreen/>}>
+              <React.Suspense fallback={<FallbackMainLoadingScreen/>}>
                 <UpcomingEvents/>
               </React.Suspense>
             ),
@@ -91,7 +93,7 @@ const router = createBrowserRouter([
           {
             path: 'past-concerts',
             element: (
-              <React.Suspense fallback={<LoadingScreen/>}>
+              <React.Suspense fallback={<FallbackMainLoadingScreen/>}>
                 <PastEvents/>
               </React.Suspense>
             )
@@ -101,7 +103,7 @@ const router = createBrowserRouter([
       {
         path: 'blog',
         element: (
-          <React.Suspense fallback={<LoadingScreen/>}>
+          <React.Suspense fallback={<FallbackMainLoadingScreen/>}>
             <BlogMain/>
           </React.Suspense>
         )
@@ -109,7 +111,7 @@ const router = createBrowserRouter([
       {
         path: 'media',
         element: (
-          <React.Suspense fallback={<LoadingScreen/>}>
+          <React.Suspense fallback={<FallbackMainLoadingScreen/>}>
             <MediaMain/>
           </React.Suspense>
         ),
@@ -117,7 +119,7 @@ const router = createBrowserRouter([
           {
             index: true,
             element: (
-              <React.Suspense fallback={<LoadingScreen/>}>
+              <React.Suspense fallback={<FallbackMainLoadingScreen/>}>
                 <MediaPhotos/>
               </React.Suspense>
             )
@@ -125,7 +127,7 @@ const router = createBrowserRouter([
           {
             path: 'photos',
             element: (
-              <React.Suspense fallback={<LoadingScreen/>}>
+              <React.Suspense fallback={<FallbackMainLoadingScreen/>}>
                 <MediaPhotos/>
               </React.Suspense>
             )
@@ -133,7 +135,7 @@ const router = createBrowserRouter([
           {
             path: 'videos',
             element: (
-              <React.Suspense fallback={<LoadingScreen/>}>
+              <React.Suspense fallback={<FallbackMainLoadingScreen/>}>
                 <MediaVideos/>
               </React.Suspense>
             )
@@ -142,17 +144,23 @@ const router = createBrowserRouter([
       },
       {
         path: 'shop',
-        // element: <ShopMain/>
-        element: (
-          <React.Suspense fallback={<LoadingScreen/>}>
-            <UnderConstruction/>
-          </React.Suspense>
-        )
+        // element: <ShopMain/>,
+        element: <UnderConstruction/>
+        // children: [
+        //   {
+        //     index: true,
+        //     element: <ShopItemsDisplay/>
+        //   },
+        //   {
+        //     path: 'checkout',
+        //     element: <Checkout/>
+        //   }
+        // ]
       },
       {
         path: 'contact',
         element: (
-          <React.Suspense fallback={<LoadingScreen/>}>
+          <React.Suspense fallback={<FallbackMainLoadingScreen/>}>
             <ContactMain/>
           </React.Suspense>
         )
