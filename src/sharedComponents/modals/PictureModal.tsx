@@ -2,26 +2,23 @@ import * as React from 'react'
 import { PhotoDataAPI } from 'suli-violin-website-types/src'
 import HoverPopIcon from '../HoverPopIcon'
 import { GlobalAppState } from '../../Layout'
-// import config from '../../config/config'
-const { 
-  useState, 
-  useContext
- } = React
+const { useContext } = React
 
 interface pictureModalPropsIF {
-  initIndex: number
+  currPicIndex: number
+  setPicIndex: React.Dispatch<React.SetStateAction<number>>
   picDataArray: PhotoDataAPI[]
   setModalClosed: React.Dispatch<React.SetStateAction<boolean>>
 }
 
-const PictureModal = ({ initIndex, picDataArray, setModalClosed }: pictureModalPropsIF) => {
+const PictureModal = ({ currPicIndex, setPicIndex, picDataArray, setModalClosed }: pictureModalPropsIF) => {
+  
+  if (currPicIndex === null) return null
 
-  const [ picIndex, setPicIndex ] = useState(initIndex)
   const { config } = useContext(GlobalAppState)
-
-
+  
   const next = () => {
-    let nextIndex = picIndex + 1
+    let nextIndex = currPicIndex + 1
     if (nextIndex === picDataArray.length) {
       nextIndex = 0
     }
@@ -29,14 +26,14 @@ const PictureModal = ({ initIndex, picDataArray, setModalClosed }: pictureModalP
   }
 
   const prev = () => {
-    let prevIndex = picIndex - 1
+    let prevIndex = currPicIndex - 1
     if (prevIndex < 0) {
       prevIndex = picDataArray.length - 1
     }
     setPicIndex(prevIndex)
   }
 
-  let currPic = picDataArray[picIndex]
+  let currPic = picDataArray[currPicIndex]
 
   return (
     <div style={{

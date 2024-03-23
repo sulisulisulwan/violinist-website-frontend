@@ -6,6 +6,8 @@ interface youTubeModalPropsIF {
 
 const YouTubeModal = ({ youtubeCode }: youTubeModalPropsIF) => {
 
+  let displaySetting = ''
+  if (youtubeCode === null) displaySetting = 'none'
 
   const windowWidth = parseInt(document.documentElement.clientWidth.toString())
   const windowHeight = parseInt(document.documentElement.clientHeight.toString())
@@ -18,17 +20,22 @@ const YouTubeModal = ({ youtubeCode }: youTubeModalPropsIF) => {
   }
 
   return (
-    <iframe 
-      width={youtubePlayerWidth}
-      height={youtubePlayerHeight }
-      src={`https://www.youtube.com/embed/${youtubeCode}?autoplay=1`}
-      allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" 
-      frameBorder="0" 
-      allowFullScreen
+    <div 
+      className="fade-wrapper"
       style={{
-        animation: 'fadeIn 2s'
+        display: '',
       }}
-    />
+    >
+      <iframe 
+        width={youtubePlayerWidth}
+        height={youtubePlayerHeight }
+        // src={`https://www.youtube.com/embed/${youtubeCode}?autoplay=1`}
+        src={`https://www.youtube.com/embed/${youtubeCode}?autoplay=0`}
+        allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" 
+        frameBorder="0" 
+        allowFullScreen
+      />
+    </div>
   )
 }
 

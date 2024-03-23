@@ -144,18 +144,18 @@ const router = createBrowserRouter([
       },
       {
         path: 'shop',
-        element: <ShopMain/>,
-        // element: <UnderConstruction/>
-        children: [
-          {
-            index: true,
-            element: <ShopItemsDisplay/>
-          },
-          {
-            path: 'checkout',
-            element: <Checkout/>
-          }
-        ]
+        // element: <ShopMain/>,
+        element: <UnderConstruction/>
+        // children: [
+        //   {
+        //     index: true,
+        //     element: <ShopItemsDisplay/>
+        //   },
+        //   {
+        //     path: 'checkout',
+        //     element: <Checkout/>
+        //   }
+        // ]
       },
       {
         path: 'contact',

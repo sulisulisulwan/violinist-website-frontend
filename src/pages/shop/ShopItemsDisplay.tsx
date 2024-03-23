@@ -28,6 +28,7 @@ const ShopItemsDisplay = () => {
             if (!product) return null
   
             return <ProductIcon
+              key={idx}
               productData={product}
               isReverseFlexWrap={isReverseFlexWrap}
               setModalProductId={setModalProductId}
@@ -37,6 +38,7 @@ const ShopItemsDisplay = () => {
   
           return (
             <ThreeSquareGridGroup
+              key={index}
               listItemComponents={productComponents}
             />
           )
@@ -47,13 +49,12 @@ const ShopItemsDisplay = () => {
         modalName='product' 
         isOpen={modalIsOpen} 
         setModalClosed={() => setModalIsOpen(false)}
-      >
-        <ShopModal
+        childModal={<ShopModal
           setModalClosed={() => setModalIsOpen(false)}
           productData={modalProductId ? fetchedProductData.find((product) => product.id === modalProductId) : null}
           windowWidth={windowWidth}
-        />
-      </ModalWrapper>
+        />}
+      />
     </div>
   )
 }

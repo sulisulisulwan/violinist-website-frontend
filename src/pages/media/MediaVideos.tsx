@@ -53,9 +53,12 @@ export const MediaVideos = () => {
           }) : '...Loading'
         }
       </ul>
-      <ModalWrapper modalName={'videos'} isOpen={modalIsOpen} setModalClosed={() => setModalIsOpen(false)}>
-        <YouTubeModal youtubeCode={currYoutubeCode}/>
-      </ModalWrapper>
+      <ModalWrapper 
+        modalName={'videos'} 
+        isOpen={modalIsOpen} 
+        setModalClosed={() => setModalIsOpen(false)}
+        childModal={<YouTubeModal youtubeCode={currYoutubeCode}/>}
+      />
     </div>
   )
 }

@@ -94,17 +94,26 @@ const Cart = ({ fetchedProductData }: any) => {
         display: 'flex', 
         justifyContent: 'space-between' 
       }}>
+        <div>CART</div>
         <div 
           onClick={() => setIsMinimized(true)}
           style={{ fontSize: 20, cursor: 'pointer' }}
         >-</div>
-        <div>CART</div>
       </div>
       <div style={{ padding: 10 }}>
         { 
           cartDisplayData.itemized.map((productItem: any, index: number) => {
             return  (
-              <div style={{ display: 'grid', marginBottom: 10, paddingBottom: 5, gridTemplateColumns: '225px 30px 30px', borderBottom: '1px dotted gray'}}>
+              <div 
+                key={productItem.name + index}
+                style={{ 
+                  display: 'grid', 
+                  marginBottom: 10, 
+                  paddingBottom: 5, 
+                  gridTemplateColumns: '225px 30px 30px', 
+                  borderBottom: '1px dotted gray'
+                }}
+              >
                 <div>
                   <div>{productItem.name}</div>
                   <div>${productItem.price}</div>
