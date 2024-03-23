@@ -28,6 +28,5 @@ const endpointMap: any = {
 export const useFetchApiData = (context: string, config: any) => {
   const endpoint = endpointMap[context]
   const data = initApiData(config, endpoint)
-  
   return data
 }

@@ -7,7 +7,7 @@ export const useHeroWrapperSizer = () => {
 
     if (!heroPhotoRef.current) return
     const resizeObserver = new ResizeObserver(() => {
-      setWrapperHeight((heroPhotoRef.current as any).offsetHeight)
+      setWrapperHeight((heroPhotoRef.current as any)?.offsetHeight || 0)
     })
     resizeObserver.observe(heroPhotoRef.current)
     return () => resizeObserver.disconnect()

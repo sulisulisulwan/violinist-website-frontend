@@ -3,11 +3,13 @@ import { useConfig } from "./useConfig";
 import { useDarkMode } from "./useDarkMode";
 import { useFetchAudioData } from "./useFetchAudioData";
 import { useWindowWidth } from "./useWindowWidth";
+import { useLoadingScreen } from "./useLoadingScreen";
 
 export {
   useConfig,
   useDarkMode,
   useFetchAudioData,
   useFetcher,
-  useWindowWidth
+  useWindowWidth,
+  useLoadingScreen
 }

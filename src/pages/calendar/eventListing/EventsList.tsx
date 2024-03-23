@@ -72,7 +72,8 @@ const EventsList = ({ listKey }: eventsListPropsIF) => {
         maxWidth: '950px',
         width: '100%',
         minWidth: '100%',
-        borderTop: `1px dotted ${isDarkMode ? 'white' : NAVY_BLUE_MED}`
+        borderTop: `1px dotted ${isDarkMode ? 'white' : NAVY_BLUE_MED}`,
+        animation: 'fadeIn .5s linear'
       }}>
         { 
           finalList ? finalList.map((concertsDatum: any, i: number) =>
@@ -105,5 +106,4 @@ const EventsList = ({ listKey }: eventsListPropsIF) => {
   )
 }
 
-export const UpcomingEvents = () =>  <EventsList listKey={'upcoming'}/>
-export const PastEvents = () => <EventsList listKey={'past'}/>
+export default EventsList

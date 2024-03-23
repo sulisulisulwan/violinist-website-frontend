@@ -1,50 +1,17 @@
-import path, { dirname } from 'path'
-import { fileURLToPath } from 'url'
-import MiniCssExtractPlugin from "mini-css-extract-plugin"
+import buildEverythingConfig from "./webpack-buildEverything.js"
+import onlyRebuildHtmlCssAndJs from "./webpack-onlyBuildHtmlCssAndJs.js"
+import devServerConfig from "./webpack-devServerConfig.js"
 
-const __dirname = dirname(fileURLToPath(import.meta.url))
+const executeWebpack = (env) => {
+  const buildAll = !!env.buildAll
+  const mode = env.mode
+  const devServer = env.devServer
 
-import.meta
+  if (devServer) {
+    return devServerConfig(mode)
+  }
 
-export default {
-  // mode: 'development',
-  mode: 'production',
-  entry: __dirname + '/src/index.tsx',
-  module: {
-    rules: [
-      {
-        test: /\.(js|jsx)$/,
-        exclude: /node modules/,
-        use: {
-          loader: 'babel-loader',
-          options: {
-            presets: ['@babel/preset-react', '@babel/preset-env']
-          }
-        }
-      },
-      {
-        test: /\.tsx?$/,
-        use: "ts-loader",
-        exclude: /node_modules/,
-      },
-      {
-        test: /\.css$/i,
-        use: [
-          MiniCssExtractPlugin.loader,
-          "css-loader"
-        ]
-      },
-    ]
-  },
-  output: {
-    path: path.resolve(__dirname, "dist"),
-    publicPath: path.resolve(__dirname, "dist"),
-  
-  },
-  resolve: {
-    extensions: [".js", ".jsx", ".tsx", ".ts"]
-  },
+  return buildAll ?  buildEverythingConfig(mode) : onlyRebuildHtmlCssAndJs(mode)
 }
 
-
-
+export default executeWebpack

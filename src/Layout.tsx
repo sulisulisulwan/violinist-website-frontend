@@ -1,11 +1,14 @@
 import * as React from 'react'
+import * as ReactDom from 'react-dom'
+
 const { createContext } = React
 import { audioTrackDataIF } from './audioPlayer/AudioPlayer'
 import { 
   useConfig,
   useDarkMode,
   useFetchAudioData,
-  useWindowWidth, 
+  useWindowWidth,
+  useLoadingScreen 
 } from './hooks'
 import { Outlet } from 'react-router-dom'
 import AudioPlayerWrapper from './audioPlayer/AudioPlayerWrapper'
@@ -14,6 +17,7 @@ import Footer from './footer/Footer'
 import { useCart } from './hooks/useCart'
 import { Config } from './config/config'
 import { DARK_MODE_BACKGROUND_COLOR } from './sharedStyles/colors'
+import LoadingScreen from './LoadingScreen'
 
 export const GlobalAppState = createContext(null)
 
@@ -45,6 +49,11 @@ const Layout = () => {
 
   const windowWidth = useWindowWidth()
   const configInstance = useConfig()
+  const {
+    loadingStates,
+    openLoadingScreen,
+    closeLoadingScreen
+  } = useLoadingScreen()
   
   const globalAppState = { 
     config: configInstance,
@@ -52,6 +61,10 @@ const Layout = () => {
     darkModeStateManagement: useDarkMode(),
     cartStateManagement: useCart(),
     audioPlayerStateManagement: useFetchAudioData(configInstance),
+    loadingScreenControls: {
+      openLoadingScreen,
+      closeLoadingScreen
+    },
     globalSidePadding: windowWidth <= 600 ? '22px' 
     : windowWidth <= 800 ? '32px' 
     : windowWidth <= 1000 ? '42px' 
@@ -73,18 +86,18 @@ const Layout = () => {
   
   return (
     <GlobalAppState.Provider value={globalAppState}>
-      <div id="isLoaded"></div>
-        { 
-          globalAppState.config && globalAppState.config.isLoaded ?
-            <>
-              <Header/>
-              <Outlet/>
-              <Footer/>
-              <AudioPlayerWrapper/>
-            </>
-            : 
-            null
-        }
+      { 
+        globalAppState.config && globalAppState.config.isLoaded ?
+          <>
+            <Header/>
+            <Outlet/>
+            <Footer/>
+            <AudioPlayerWrapper/>
+            {/* <LoadingScreen isLoading={loadingStates.isLoading} prioritizeZIndex={loadingStates.prioritizeZIndex}/> */}
+          </>
+          : 
+          null
+      }
     </GlobalAppState.Provider>
   )
 

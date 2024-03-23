@@ -19,7 +19,12 @@ export const MediaVideos = () => {
   const videos = videoData?.results
 
   return (
-    <div>
+    <div
+      style={{
+        width: '100%',
+        animation: 'fadeIn .5s linear'
+      }}
+    >
       <h2>VIDEOS</h2>
       <ul style={{
         listStyleType: 'none',

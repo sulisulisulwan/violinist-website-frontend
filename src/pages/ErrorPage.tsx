@@ -1,4 +1,5 @@
 import * as React from 'react'
+import * as ReactDom from 'react-dom'
 import AudioPlayerWrapper from '../audioPlayer/AudioPlayerWrapper'
 import Header from '../header/Header'
 import Footer from '../footer/Footer'
@@ -6,13 +7,20 @@ import { GlobalAppState } from '../Layout'
 import { useRouteError } from 'react-router-dom'
 import { heroPhotos1 } from '../hero-photos'
 import MainWrapper from '../sharedComponents/MainWrapper'
-import { useConfig, useDarkMode, useFetchAudioData, useWindowWidth } from '../hooks'
+
+import { useConfig, useDarkMode, useFetchAudioData, useWindowWidth, useLoadingScreen } from '../hooks'
+import LoadingScreen from '../LoadingScreen'
 
 
 const ErrorPage = () => {
 
   const windowWidth = useWindowWidth()
   const configInstance = useConfig()
+  const {
+    loadingStates,
+    openLoadingScreen,
+    closeLoadingScreen
+  } = useLoadingScreen()
 
   const globalAppState = { 
     config: configInstance,
@@ -25,6 +33,10 @@ const ErrorPage = () => {
     : windowWidth <= 1200 ? '52px' 
     : '62px',
     navBarIsWide: windowWidth > 1080,
+    loadingScreenControls: {
+      openLoadingScreen,
+      closeLoadingScreen
+    },
     deviceWidths: {
       isGalaxyFold: windowWidth <= 280,
       isIPhone45: windowWidth < 375,
@@ -55,7 +67,6 @@ const ErrorPage = () => {
 
   return (
     <GlobalAppState.Provider value={globalAppState}>
-      <div id="isLoaded"></div>
       <Header/>
       <MainWrapper heroPhotos={heroPhotos1}>
         <div
@@ -71,6 +82,7 @@ const ErrorPage = () => {
       </MainWrapper>
       <Footer/>
       <AudioPlayerWrapper/>
+      <LoadingScreen isLoading={loadingStates.isLoading} prioritizeZIndex={loadingStates.prioritizeZIndex}/>
     </GlobalAppState.Provider>
 
   )
