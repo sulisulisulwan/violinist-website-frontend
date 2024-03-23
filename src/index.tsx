@@ -8,25 +8,10 @@ import {
 } from 'react-router-dom'
 
 import Layout from './Layout'
-<<<<<<< HEAD
-import HomeMain from './pages/home/HomeMain'
-import BiographyMain from './pages/biography/BiographyMain'
-import CalendarMain from './pages/calendar/CalendarMain'
-import { UpcomingEvents, PastEvents } from './pages/calendar/eventListing/EventsList'
-import MediaMain from './pages/media/MediaMain'
-import MediaVideos from './pages/media/MediaVideos'
-import MediaPhotos from './pages/media/MediaPhotos'
-import ContactMain from './pages/contact/ContactMain'
-import BlogMain from './pages/blog/BlogMain'
-import ErrorPage from './pages/ErrorPage'
-import UnderConstruction from './pages/UnderConstruction';
-import ShopMain from './pages/shop/ShopMain';
-import ShopItemsDisplay from './pages/shop/ShopItemsDisplay';
-import Checkout from './pages/shop/Checkout';
-=======
 import { DARK_MODE_BACKGROUND_COLOR, NAVY_BLUE_LIGHT } from './sharedStyles/colors';
->>>>>>> 43300cae6262ef996a3dd0962ce6aee6e6bbb25a
 
+const ShopItemsDisplay = lazy(() => import('./pages/shop/ShopItemsDisplay'));
+const Checkout = lazy(() => import('./pages/shop/Checkout'));
 const HomeMain = lazy(() => import('./pages/home/HomeMain'))
 const BiographyMain = lazy(() => import('./pages/biography/BiographyMain'))
 const CalendarMain = lazy(() => import('./pages/calendar/CalendarMain'))
@@ -159,7 +144,6 @@ const router = createBrowserRouter([
       },
       {
         path: 'shop',
-<<<<<<< HEAD
         element: <ShopMain/>,
         // element: <UnderConstruction/>
         children: [
@@ -172,14 +156,6 @@ const router = createBrowserRouter([
             element: <Checkout/>
           }
         ]
-=======
-        // element: <ShopMain/>
-        element: (
-          <React.Suspense fallback={<LoadingScreen/>}>
-            <UnderConstruction/>
-          </React.Suspense>
-        )
->>>>>>> 43300cae6262ef996a3dd0962ce6aee6e6bbb25a
       },
       {
         path: 'contact',
