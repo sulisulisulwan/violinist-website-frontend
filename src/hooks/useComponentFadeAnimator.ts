@@ -12,6 +12,7 @@ export const useComponentFadeAnimator = (isOpen: boolean, fadeDuration: number) 
   })
 
   const animationEndListener = (e: any) => { 
+    targetComp.current.style.display = isOpen ? '' : 'none' // we need an immediate change.  Async of setState is too slow.
     setHookState((pS) => ({
       isFirstLoad: pS.isFirstLoad ? false : true,
       cssSettings: {

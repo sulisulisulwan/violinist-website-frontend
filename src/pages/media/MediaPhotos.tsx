@@ -110,12 +110,12 @@ const MediaPhotos = () => {
           modalName={'photos'} 
           isOpen={modalIsOpen} 
           setModalClosed={() => setModalIsOpen(false)}
-          childModal={<PictureModal 
-            currPicIndex={picIndex} 
-            setPicIndex={setPicIndex}
-            picDataArray={photos} 
-            setModalClosed={() => setModalIsOpen(false)}
-          />}
+          childModalContext={{ type: 'photoGallery', props: { 
+            currPicIndex: picIndex,
+            setPicIndex: setPicIndex,
+            picDataArray: photos,
+            setModalClosed: () => setModalIsOpen(false)
+          }}}
         />
       </div>
     </div>

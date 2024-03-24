@@ -57,7 +57,9 @@ export const MediaVideos = () => {
         modalName={'videos'} 
         isOpen={modalIsOpen} 
         setModalClosed={() => setModalIsOpen(false)}
-        childModal={<YouTubeModal youtubeCode={currYoutubeCode}/>}
+        childModalContext={{ type: 'youtube', props: {
+          youtubeCode: currYoutubeCode 
+        }}}
       />
     </div>
   )

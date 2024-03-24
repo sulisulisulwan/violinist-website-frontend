@@ -1,21 +1,25 @@
 import * as ReactDom from 'react-dom'
 import * as React from 'react'
 import { useComponentFadeAnimator, useOutsideAlerter, useTypeEscapeToClose } from '../../hooks'
+import modalFactory from './modalFactory'
 
 interface modalWrapperIF {
   modalName: string
   isOpen: boolean
   setModalClosed: React.Dispatch<React.SetStateAction<boolean>>
-  childModal: React.ReactNode
+  childModalContext: { type: string, props: Record<string, any>}
 }
 
-const ModalWrapper = ({ modalName, isOpen, setModalClosed, childModal }: modalWrapperIF) => {
+const ModalWrapper = ({ modalName, isOpen, setModalClosed, childModalContext }: modalWrapperIF) => {
+
+  const { type, props } = childModalContext
   
   useTypeEscapeToClose(setModalClosed)
   const outsideAlerterRef = useOutsideAlerter(setModalClosed);
   const { fadeRef, cssFadeAnimationProps } = useComponentFadeAnimator(isOpen, .5)
-
-  const modal = (
+  
+  const childModal = modalFactory(type, Object.assign(props, { cssFadeAnimation: cssFadeAnimationProps }))
+  const wrapperModal = (
     <div 
       id={`${modalName}-modal-wrapper`}
       className={'modal-background'}
@@ -50,7 +54,7 @@ const ModalWrapper = ({ modalName, isOpen, setModalClosed, childModal }: modalWr
     </div>
   )
 
-  return ReactDom.createPortal(modal, document.getElementById('portal'))
+  return ReactDom.createPortal(wrapperModal, document.getElementById('portal'))
 }
 
 export default ModalWrapper

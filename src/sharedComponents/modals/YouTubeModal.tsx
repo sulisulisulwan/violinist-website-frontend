@@ -2,9 +2,10 @@ import * as React from 'react'
 
 interface youTubeModalPropsIF {
   youtubeCode: string
+  cssFadeAnimation: any
 }
 
-const YouTubeModal = ({ youtubeCode }: youTubeModalPropsIF) => {
+const YouTubeModal = ({ youtubeCode, cssFadeAnimation }: youTubeModalPropsIF) => {
 
   let displaySetting = ''
   if (youtubeCode === null) displaySetting = 'none'
@@ -20,22 +21,15 @@ const YouTubeModal = ({ youtubeCode }: youTubeModalPropsIF) => {
   }
 
   return (
-    <div 
-      className="fade-wrapper"
-      style={{
-        display: '',
-      }}
-    >
-      <iframe 
-        width={youtubePlayerWidth}
-        height={youtubePlayerHeight }
-        // src={`https://www.youtube.com/embed/${youtubeCode}?autoplay=1`}
-        src={`https://www.youtube.com/embed/${youtubeCode}?autoplay=0`}
-        allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" 
-        frameBorder="0" 
-        allowFullScreen
-      />
-    </div>
+    <iframe 
+      width={youtubePlayerWidth}
+      height={youtubePlayerHeight }
+      // src={`https://www.youtube.com/embed/${youtubeCode}?autoplay=1`}
+      src={`https://www.youtube.com/embed/${youtubeCode}?autoplay=0`}
+      allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" 
+      frameBorder="0" 
+      allowFullScreen
+    />
   )
 }
 

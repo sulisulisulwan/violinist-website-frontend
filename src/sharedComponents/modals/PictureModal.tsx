@@ -9,9 +9,10 @@ interface pictureModalPropsIF {
   setPicIndex: React.Dispatch<React.SetStateAction<number>>
   picDataArray: PhotoDataAPI[]
   setModalClosed: React.Dispatch<React.SetStateAction<boolean>>
+  cssFadeAnimation: any
 }
 
-const PictureModal = ({ currPicIndex, setPicIndex, picDataArray, setModalClosed }: pictureModalPropsIF) => {
+const PictureModal = ({ currPicIndex, setPicIndex, picDataArray, setModalClosed, cssFadeAnimation }: pictureModalPropsIF) => {
   
   if (currPicIndex === null) return null
 

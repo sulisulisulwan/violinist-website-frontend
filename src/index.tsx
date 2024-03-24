@@ -144,8 +144,8 @@ const router = createBrowserRouter([
       },
       {
         path: 'shop',
-        // element: <ShopMain/>,
         element: <UnderConstruction/>
+        // element: <ShopMain/>,
         // children: [
         //   {
         //     index: true,

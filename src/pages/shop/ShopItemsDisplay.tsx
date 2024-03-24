@@ -49,11 +49,11 @@ const ShopItemsDisplay = () => {
         modalName='product' 
         isOpen={modalIsOpen} 
         setModalClosed={() => setModalIsOpen(false)}
-        childModal={<ShopModal
-          setModalClosed={() => setModalIsOpen(false)}
-          productData={modalProductId ? fetchedProductData.find((product) => product.id === modalProductId) : null}
-          windowWidth={windowWidth}
-        />}
+        childModalContext={{ type: 'shop', props: { 
+          setModalClosed: () => setModalIsOpen(false),
+          productData: (modalProductId ? fetchedProductData.find((product) => product.id === modalProductId) : null),
+          windowWidth: windowWidth
+        }}}
       />
     </div>
   )
