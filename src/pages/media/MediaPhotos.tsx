@@ -1,5 +1,5 @@
 import * as React from 'react'
-const { useContext, useEffect, useState } = React
+const { useContext, useState } = React
 import { GlobalAppState } from '../../Layout'
 import ModalWrapper from '../../sharedComponents/modals/ModalWrapper'
 import PictureModal from '../../sharedComponents/modals/PictureModal'

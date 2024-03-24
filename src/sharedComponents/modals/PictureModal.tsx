@@ -14,9 +14,9 @@ interface pictureModalPropsIF {
 
 const PictureModal = ({ currPicIndex, setPicIndex, picDataArray, setModalClosed, cssFadeAnimation }: pictureModalPropsIF) => {
   
-  if (currPicIndex === null) return null
-
   const { config } = useContext(GlobalAppState)
+  
+  if (currPicIndex === null) return null
   
   const next = () => {
     let nextIndex = currPicIndex + 1
