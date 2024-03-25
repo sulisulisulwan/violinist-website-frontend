@@ -23,7 +23,7 @@ const MainWrapper = ({ children, addPaddingBottom = 0, heroPhotos }: mainWrapper
       paddingLeft: globalSidePadding,
       paddingRight: globalSidePadding,
       paddingTop: 2,
-      paddingBottom: addPaddingBottom + 130, // 100 added for sticky footer
+      paddingBottom: addPaddingBottom + 150, // 100 added for sticky footer
       fontSize: 13,
       backgroundColor: isDarkMode ? DARK_MODE_BACKGROUND_COLOR : 'white',
       color: isDarkMode ? 'white' : 'black',
