@@ -24,7 +24,7 @@ export interface globalAppStateIF {
     setCart: React.Dispatch<React.SetStateAction<any>>
   }
   audioPlayerStateManagement: [audioPlayerStateIF, React.Dispatch<React.SetStateAction<audioPlayerStateIF>>]
-  config: Config
+  config: Config | null
   darkModeStateManagement: { isDarkMode: boolean, setIsDarkMode: React.Dispatch<React.SetStateAction<boolean>> }
   globalSidePadding: string
   navBarIsWide: boolean
@@ -51,7 +51,7 @@ const Layout = () => {
     windowWidth: windowWidth,
     darkModeStateManagement: useDarkMode(),
     cartStateManagement: useCart(),
-    audioPlayerStateManagement: useFetchAudioData(configInstance),
+    audioPlayerStateManagement: useFetchAudioData(configInstance as Config),
     globalSidePadding: windowWidth <= 600 ? '22px' 
     : windowWidth <= 800 ? '32px' 
     : windowWidth <= 1000 ? '42px' 

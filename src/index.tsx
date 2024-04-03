@@ -144,7 +144,11 @@ const router = createBrowserRouter([
       },
       {
         path: 'shop',
-        element: <UnderConstruction/>
+        element: (
+          <React.Suspense fallback={<FallbackMainLoadingScreen/>}>
+            <UnderConstruction/>
+          </React.Suspense>
+        )
         // element: <ShopMain/>,
         // children: [
         //   {
@@ -181,5 +185,3 @@ root.render((
     <RouterProvider router={router}/>
   </React.StrictMode>
 ))
-
-//

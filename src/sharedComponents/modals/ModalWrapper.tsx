@@ -17,8 +17,8 @@ const ModalWrapper = ({ modalName, isOpen, setModalClosed, childModalContext }: 
   useTypeEscapeToClose(setModalClosed)
   const outsideAlerterRef = useOutsideAlerter(setModalClosed);
   const { fadeRef, cssFadeAnimationProps } = useComponentFadeAnimator(isOpen, .5)
-  
   const childModal = modalFactory(type, Object.assign(props, { cssFadeAnimation: cssFadeAnimationProps }))
+  
   const wrapperModal = (
     <div 
       id={`${modalName}-modal-wrapper`}

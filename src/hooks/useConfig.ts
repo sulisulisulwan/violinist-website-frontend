@@ -1,8 +1,8 @@
 import { useEffect, useState } from 'react'
-import configInstance from '../config/config'
+import configInstance, { Config } from '../config/config'
 
 export const useConfig = () => {
-  const [ configuration, setConfiguration ] = useState(null)
+  const [ configuration, setConfiguration ] = useState<Config | null>(null)
   useEffect(() => {
     const initiateConfiguration = async () => {
       const initializedConfig = await configInstance.initConfig()
