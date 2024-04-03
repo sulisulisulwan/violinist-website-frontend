@@ -24,7 +24,7 @@ const ContactMain = lazy(() => import('./pages/contact/ContactMain'))
 const BlogMain = lazy(() => import('./pages/blog/BlogMain'))
 const ErrorPage = lazy(() => import('./pages/ErrorPage'))
 const UnderConstruction = lazy(() => import('./pages/UnderConstruction'))
-const ShopMain = lazy(() => import('./pages/shop/ShopMain'))
+// const ShopMain = lazy(() => import('./pages/shop/ShopMain'))
 
 const FallbackMainLoadingScreen = () => {
 
@@ -175,10 +175,10 @@ const router = createBrowserRouter([
 
 const appDiv = document.getElementById('app')
 const darkModeSetting = localStorage.getItem('darkMode')
-const initBackgroundColor = darkModeSetting ? (darkModeSetting === 'true' ? DARK_MODE_BACKGROUND_COLOR : 'white') : 'white'
+const initBackgroundColor = darkModeSetting && darkModeSetting === 'true' ? DARK_MODE_BACKGROUND_COLOR : 'white'
 appDiv.style.backgroundColor = initBackgroundColor
 
-const root = ReactDom.createRoot(document.getElementById('app'))
+const root = ReactDom.createRoot(appDiv)
 
 root.render((    
   <React.StrictMode>

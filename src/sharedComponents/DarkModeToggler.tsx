@@ -1,12 +1,15 @@
 import * as React from 'react'
 import { GlobalAppState } from '../Layout'
-import { NAVY_BLUE_LIGHT, NAVY_BLUE_MED } from '../sharedStyles/colors'
+import { DARK_MODE_BACKGROUND_COLOR, NAVY_BLUE_LIGHT, NAVY_BLUE_MED } from '../sharedStyles/colors'
 const { useContext } = React
 
 
 const DarkModeToggler = () => {
 
   const { setIsDarkMode, isDarkMode } = useContext(GlobalAppState).darkModeStateManagement
+  const appDiv = document.getElementById('app')
+  const backgroundColor = isDarkMode ? DARK_MODE_BACKGROUND_COLOR : 'white'
+  appDiv.style.backgroundColor = backgroundColor
 
   return (
     <div 
