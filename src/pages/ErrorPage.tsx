@@ -25,11 +25,6 @@ const ErrorPage = () => {
     windowWidth: windowWidth,
     darkModeStateManagement: useDarkMode(),
     audioPlayerStateManagement: useFetchAudioData(configInstance),
-    globalSidePadding: windowWidth <= 600 ? '22px' 
-    : windowWidth <= 800 ? '32px' 
-    : windowWidth <= 1000 ? '42px' 
-    : windowWidth <= 1200 ? '52px' 
-    : '62px',
     navBarIsWide: windowWidth > 1080,
     loadingScreenControls: {
       openLoadingScreen,

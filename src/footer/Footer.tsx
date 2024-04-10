@@ -9,7 +9,6 @@ const Footer = () => {
   
 
   const { 
-    globalSidePadding, 
     darkModeStateManagement, 
     audioPlayerIsMobileMode, 
     deviceWidths
@@ -27,12 +26,10 @@ const Footer = () => {
       }}
     >
       <div 
-        className="footer-body"
+        className="footer-body global-side-padding"
         style={{
           borderTop: '5px solid gray',
           background: isDarkMode ? DARK_MODE_BACKGROUND_COLOR : NAVY_BLUE_MED,
-          paddingLeft: globalSidePadding,
-          paddingRight: globalSidePadding,
         }}
         >
         <div className="footer-content-wrapper"

@@ -19,6 +19,42 @@ body {
   width: 100%;
 }
 
+@media (min-width: 1201px) {
+  .global-side-padding {
+    padding-left: 62px;
+    padding-right: 62px;
+  }
+}
+
+@media (max-width: 1200px) {
+  .global-side-padding {
+    padding-left: 52px;
+    padding-right: 52px;
+  }
+}
+
+@media (max-width: 1000px) {
+  .global-side-padding {
+    padding-left: 42px;
+    padding-right: 42px;
+  }
+}
+
+@media (max-width: 800px) {
+  .global-side-padding {
+    padding-left: 32px;
+    padding-right: 32px;
+  }
+}
+
+@media (max-width: 600px) {
+  .global-side-padding {
+    padding-left: 22px;
+    padding-right: 22px;
+  }
+}
+
+
 a:link {
   text-decoration: none;
   color: black;

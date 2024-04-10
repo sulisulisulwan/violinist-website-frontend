@@ -10,19 +10,17 @@ import { DARK_MODE_BACKGROUND_COLOR } from '../sharedStyles/colors'
 
 const Header = () => {
 
-  const { windowWidth, globalSidePadding, navBarIsWide, darkModeStateManagement, deviceWidths } = useContext(GlobalAppState)
+  const { navBarIsWide, darkModeStateManagement, deviceWidths } = useContext(GlobalAppState)
   const { isDarkMode } = darkModeStateManagement
 
   return (
     <header 
-      className="header-banner" 
+      className={`header-banner global-side-padding`} 
       style={{
         backgroundColor: isDarkMode ? DARK_MODE_BACKGROUND_COLOR : 'white',
         color: isDarkMode ? 'white' : 'black',
-        paddingTop: navBarIsWide ? 20 : 20,
-        paddingBottom: navBarIsWide ? 15 : 15,
-        paddingRight: globalSidePadding,
-        paddingLeft: globalSidePadding,
+        paddingTop: 20,
+        paddingBottom: 15,
         top: 0,
         display: 'flex',
         alignItems: 'center',
