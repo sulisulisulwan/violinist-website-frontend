@@ -27,7 +27,7 @@ const MainWrapper = ({ children, addPaddingBottom = 0, heroPhotos }: mainWrapper
       fontSize: 13,
       backgroundColor: isDarkMode ? DARK_MODE_BACKGROUND_COLOR : 'white',
       color: isDarkMode ? 'white' : 'black',
-      animation: 'fadeIn .5s linear'
+      // animation: 'fadeIn .5s linear'
     }}>
       <section className="hero-img">
         <HeroImageSlideshow imageSrcArray={heroPhotos}/>
