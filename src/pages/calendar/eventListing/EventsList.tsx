@@ -73,7 +73,6 @@ const EventsList = ({ listKey }: eventsListPropsIF) => {
         width: '100%',
         minWidth: '100%',
         borderTop: `1px dotted ${isDarkMode ? 'white' : NAVY_BLUE_MED}`,
-        animation: 'fade-in 1s linear'
       }}>
         { 
           finalList ? finalList.map((concertsDatum: any, i: number) =>
