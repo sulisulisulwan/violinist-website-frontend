@@ -36,8 +36,6 @@ export interface audioPlayerStateIF {
   currentTrack: number,
   progress: number
   windowWidth: number
-  deviceWidths: Record<string, boolean>
-  audioPlayerIsMobileMode: boolean
 }
 
 const Layout = () => {
@@ -52,14 +50,6 @@ const Layout = () => {
     cartStateManagement: useCart(),
     audioPlayerStateManagement: useFetchAudioData(configInstance as Config),
     navBarIsWide: windowWidth > 1080,
-    deviceWidths: {
-      isGalaxyFold: windowWidth <= 280,
-      isIPhone45: windowWidth < 375,
-      isIPhone678: 375 <= windowWidth && windowWidth < 400,
-      isIPhone14: 400 <= windowWidth && windowWidth < 560,
-      isIPadDesktop: windowWidth >= 560
-    },
-    audioPlayerIsMobileMode: windowWidth < 765
   }
 
   const html = document.querySelector('html')

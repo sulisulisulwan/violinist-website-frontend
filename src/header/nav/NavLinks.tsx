@@ -11,16 +11,8 @@ interface topNavBarPropsIF {
 const TopNavBar = ({ links, isDarkMode }: topNavBarPropsIF) => {
 
   return (
-    <nav className="nav-links">
-      <ul style={{
-        display: 'flex',
-        flexDirection: 'row',
-        justifyContent: 'space-between',
-        margin: 0,
-        alignItems: 'center',
-        listStyleType: 'none',
-        fontFamily: 'Poppins',
-      }}>
+    <nav>
+      <ul className="nav-links">
         { links.map((link: navLinkDataIF, i) => (
         <li key={link.href + i} style={{ fontSize: 15 }}>
           <HoverLink 

@@ -55,13 +55,7 @@ const AudioPlayerButtons = ({
   return (
     <li>
       <span className='btns'>
-        <ul 
-          style={{
-            padding: 0, 
-            display: 'flex',
-            listStyleType: 'none'
-          }}
-          >
+        <ul className="audio-player-buttons">
           <li><HoverButtonWithImage imgSrc={prevIcon} onClickHandler={() => prev(audioPlayer, setAudioPlayerState, audioPlayerState)}/></li>
           <li><HoverButtonWithImage imgSrc={nextIcon} onClickHandler={() => next(audioPlayer, setAudioPlayerState, audioPlayerState)}/></li>
           <li><HoverButtonWithImage imgSrc={audioPlayerState.playerStatus === 'play' ? pauseIcon : playIcon } onClickHandler={handlePlayPauseStop}/></li>

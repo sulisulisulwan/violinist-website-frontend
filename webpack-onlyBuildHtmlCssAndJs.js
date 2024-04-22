@@ -51,6 +51,7 @@ const onlyRebuildHtmlCssAndJs = (mode) => {
     output: {
       path: path.resolve(__dirname, "dist"),
       filename: '[name][fullhash].js',
+      publicPath: '/'
     },
     resolve: {
       extensions: [".js", ".jsx", ".tsx", ".ts"]

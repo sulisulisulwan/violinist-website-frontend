@@ -15,7 +15,6 @@ const ErrorPage = () => {
   const windowWidth = useWindowWidth()
   const configInstance = useConfig()
   const {
-    loadingStates,
     openLoadingScreen,
     closeLoadingScreen
   } = useLoadingScreen()
@@ -30,14 +29,6 @@ const ErrorPage = () => {
       openLoadingScreen,
       closeLoadingScreen
     },
-    deviceWidths: {
-      isGalaxyFold: windowWidth <= 280,
-      isIPhone45: windowWidth < 375,
-      isIPhone678: 375 <= windowWidth && windowWidth < 400,
-      isIPhone14: 400 <= windowWidth && windowWidth < 560,
-      isIPadDesktop: windowWidth >= 560
-    },
-    audioPlayerIsMobileMode: windowWidth < 765
   }
   
   const error = useRouteError() as any

@@ -15,17 +15,7 @@ const ShopModal = ({ productData, windowWidth, setModalClosed }: shopModalPropsI
   const isReverseFlexWrap = windowWidth < 560
 
   return (
-    <div style={{
-      border: 'lightgray solid 2px',
-      width: isReverseFlexWrap ? 360 : 530,
-      height: '100%',
-      display: 'flex',
-      flexDirection: 'column',
-      paddingTop: 50,
-      paddingBottom: 50,
-      minWidth: 300,
-      alignItems: 'center',
-    }}>
+    <div className="shop-modal">
       { productData === null ? null : 
         <>
           <HoverPopIcon
@@ -39,73 +29,25 @@ const ShopModal = ({ productData, windowWidth, setModalClosed }: shopModalPropsI
             growth={2}
             imgSrc={'/images/carousel-icons/close-button.png'}
           />
-          <div style={{
-            textAlign: isReverseFlexWrap ? 'center' : 'left', 
-            display: 'flex',
-            justifyContent: 'center',
-          }}>
-            <div className="product-image-and-description"
-              style={{
-                display: 'flex',
-                maxWidth: '80%',
-                cursor: 'pointer',
-                flexWrap: isReverseFlexWrap ? 'wrap-reverse' : 'nowrap',
-              }}
-              onClick={() => {}}
-            >
-              <div style={{
-                paddingTop: isReverseFlexWrap ? 20 : 0,
-                textAlign: 'center',
-                justifyContent: 'center',
-                width: '100%'
-              }}>
-                <img 
-                  style={{maxWidth: 140}}
-                  src={productData.img}
-                />
+          <div className="product-image-and-description-wrapper">
+            <div className="product-image-and-description">
+              <div className='product-image-wrapper'>
+                <img src={productData.img}/>
               </div>
-              <div style={{
-                paddingLeft: isReverseFlexWrap ? 0 : 20,
-              }}>
-                <span style={{
-                  color: NAVY_BLUE_MED,
-                  fontSize: 20,
-                  fontFamily: 'Mate, serif',
-                }}>
-                  {productData.name}
-                </span>
-                <br/>
-                <br/>
-                <span>
-                  {productData.description}
-                </span>
+              <div className="product-description-wrapper">
+                <span>{productData.name}</span>
+                <br/><br/>
+                <span>{productData.description}</span>
                 <br/>
               </div>
             </div>
           </div>
-          <div className="product-price" 
-            style={{ 
-              textAlign: 'center',
-              fontSize: 20,
-              fontWeight: 900
-            }}>
+          <div className="product-price">
             ${productData.price}
           </div>
-          <button
-            style={{
-              marginTop: '20px',
-              width: '50%',
-              color: 'white',
-              backgroundColor: NAVY_BLUE_MED,
-              fontSize: '15px',
-              fontFamily: 'Gill Sans, sans-serif',
-              padding: '10px',
-              border: 'none',
-              cursor: 'pointer'
-            }}
+          <button className="product-buy-button"
             value={'BUY'}
             onClick={() => { 
-
               let newCount = cart[productData.id] || 0
               newCount++
               setCart({
