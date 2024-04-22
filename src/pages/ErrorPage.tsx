@@ -15,7 +15,6 @@ const ErrorPage = () => {
   const windowWidth = useWindowWidth()
   const configInstance = useConfig()
   const {
-    loadingStates,
     openLoadingScreen,
     closeLoadingScreen
   } = useLoadingScreen()
@@ -25,24 +24,11 @@ const ErrorPage = () => {
     windowWidth: windowWidth,
     darkModeStateManagement: useDarkMode(),
     audioPlayerStateManagement: useFetchAudioData(configInstance),
-    globalSidePadding: windowWidth <= 600 ? '22px' 
-    : windowWidth <= 800 ? '32px' 
-    : windowWidth <= 1000 ? '42px' 
-    : windowWidth <= 1200 ? '52px' 
-    : '62px',
     navBarIsWide: windowWidth > 1080,
     loadingScreenControls: {
       openLoadingScreen,
       closeLoadingScreen
     },
-    deviceWidths: {
-      isGalaxyFold: windowWidth <= 280,
-      isIPhone45: windowWidth < 375,
-      isIPhone678: 375 <= windowWidth && windowWidth < 400,
-      isIPhone14: 400 <= windowWidth && windowWidth < 560,
-      isIPadDesktop: windowWidth >= 560
-    },
-    audioPlayerIsMobileMode: windowWidth < 765
   }
   
   const error = useRouteError() as any

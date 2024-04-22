@@ -8,68 +8,21 @@ import DarkModeToggler from '../sharedComponents/DarkModeToggler'
 const Footer = () => {
   
 
-  const { 
-    globalSidePadding, 
-    darkModeStateManagement, 
-    audioPlayerIsMobileMode, 
-    deviceWidths
-  } = useContext(GlobalAppState)
+  const { darkModeStateManagement, audioPlayerIsMobileMode } = useContext(GlobalAppState)
   const { isDarkMode } = darkModeStateManagement
-  const { isGalaxyFold, isIPadDesktop } = deviceWidths
 
   return (
-    <footer 
-      style={{ 
-        position: 'fixed',
-        bottom: audioPlayerIsMobileMode ? 58 : 0,
-        width: '100%',
-        zIndex: 100
-      }}
-    >
+    <footer>
       <div 
-        className="footer-body"
-        style={{
-          borderTop: '5px solid gray',
-          background: isDarkMode ? DARK_MODE_BACKGROUND_COLOR : NAVY_BLUE_MED,
-          paddingLeft: globalSidePadding,
-          paddingRight: globalSidePadding,
-        }}
-        >
-        <div className="footer-content-wrapper"
-          style={{
-            paddingTop: isIPadDesktop ? 21 
-              : isGalaxyFold ? 8 : 10,
-            paddingBottom: isIPadDesktop ? 31 
-              : isGalaxyFold ? 10 : 20,
-            display: 'flex',
-            flexDirection: isIPadDesktop ? 'row' : 'column',
-            justifyContent: 'space-between',
-            width: '100%'
-          }}
-        >
-          {
-            isIPadDesktop ? (
-              <>
-                <FooterNameLogo/>
-                <FooterSocialIcons/>
-                <DarkModeToggler/>
-              </>
-            ) : (
-              <>
-                <FooterNameLogo isGalaxyFold={isGalaxyFold}/>
-                <div style={{ 
-                  paddingTop: 10,
-                  paddingLeft: isGalaxyFold ? 10 : 40,
-                  paddingRight: isGalaxyFold? 10 : 40,
-                  display: 'flex', 
-                  justifyContent: 'space-between' 
-                }}>
-                  <FooterSocialIcons/>
-                  <DarkModeToggler/>
-                </div>
-              </>
-            )
-          } 
+        className="footer-body global-side-padding"
+        style={{ background: isDarkMode ? DARK_MODE_BACKGROUND_COLOR : NAVY_BLUE_MED }}
+      >
+        <div className="footer-content-wrapper footer-content-wrapper-media-query">
+          <FooterNameLogo/>
+          <div className="footer-lower-container footer-lower-container-media-query">
+            <FooterSocialIcons/>
+            <DarkModeToggler/>
+          </div>
         </div>
       </div>
     </footer>
@@ -79,16 +32,9 @@ const Footer = () => {
 
 const FooterNameLogo = ({ isIPadDesktop, isGalaxyFold }: any) => {
   return (
-    <div 
-      className='footer-name-logo'
-      style={{
-        textAlign: isIPadDesktop ? 'left' : 'center',
-        fontSize: isGalaxyFold ? 15 : 20,
-        fontWeight: 'lightest',
-      }}
-    >
-      <span style={{ color: 'white' }}>SULIMAN TEKALLI</span>
-      <span style={{ color: 'lightgray' }}>VIOLINIST</span>
+    <div className='footer-name-logo'>
+      <span className='footer-name-logo-name'>SULIMAN TEKALLI</span>
+      <span className='footer-name-logo-medium'>VIOLINIST</span>
     </div>
   )
 }
@@ -97,24 +43,16 @@ const FooterSocialIcons = () => {
   const socialIcons = getSocialIcons('white')
 
   return (
-    <div
-      className='footer-social-icons'
-      style={{
-        paddingTop: 10,
-        display: 'flex',
-        color: 'white'
-      }}
-    >
+    <div className='footer-social-icons'>
       { socialIcons.map((iconData, i) => {
         return (
           <a 
             target="_blank"
             key={iconData.label + i}
-            style={{
-              paddingRight: 20
-            }}
-            href={iconData.href}>
-              <img width={20} src={iconData.src}/>
+            className='footer-social-icon-link'
+            href={iconData.href}
+          >
+            <img width={20} src={iconData.src}/>
           </a>
         )
       }) }

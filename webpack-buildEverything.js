@@ -105,6 +105,7 @@ const buildEverythingConfig = (mode) => {
     path: path.resolve(__dirname, "dist"),
     filename: '[name][fullhash].js',
     chunkFilename: '[name].split.js',
+    publicPath: '/',
     clean: true
   },
   resolve: {
