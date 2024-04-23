@@ -4,11 +4,12 @@ import HoverLink from '../../../sharedComponents/HoverLink'
 import { ParsedHTMLComponent } from 'suli-violin-website-types/src'
 import { useFetchApiData } from '../../../hooks/useFetcher'
 import { GlobalAppState } from '../../../Layout'
+import UILoading from '../../../sharedComponents/UILoading'
 // import config from '../../../config/config'
 
 export const BioHomeListItem = () => {
 
-  const { config } = React.useContext(GlobalAppState)
+  const { config, darkModeStateManagement } = React.useContext(GlobalAppState)
   const shortFormBioData = useFetchApiData('shortBio', config)
 
   return (
@@ -19,7 +20,7 @@ export const BioHomeListItem = () => {
           shortFormBioData ? 
             shortFormBioData.components.map((component: ParsedHTMLComponent, index: number) => 
               <p key={component.content + index}>{component.content}</p>) 
-          : '...Loading'
+          : <UILoading isCurved isDarkMode={darkModeStateManagement.isDarkMode} height={300}/>
         }
       </div>
       <div 

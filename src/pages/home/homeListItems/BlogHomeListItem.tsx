@@ -5,11 +5,12 @@ import { getDisplayDate } from '../../../utils/date'
 import { ParsedHTMLComponent } from 'suli-violin-website-types/src'
 import { useFetchApiData } from '../../../hooks/useFetcher'
 import { GlobalAppState } from '../../../Layout'
+import UILoading from '../../../sharedComponents/UILoading'
 // import config from '../../../config/config'
 
 const BlogHomeListItem = () => {
 
-  const { config } = React.useContext(GlobalAppState)
+  const { config, darkModeStateManagement } = React.useContext(GlobalAppState)
   const blogData = useFetchApiData('blog', config)
   const blogPreview = blogData?.results[0] || null
 
@@ -27,7 +28,7 @@ const BlogHomeListItem = () => {
               {blogPreview.components.map((component: ParsedHTMLComponent, i: number) => { return <p key={i}>{component.content}</p>})} 
             </div>
           </>
-          : '...Loading'
+          : <UILoading isCurved isDarkMode={darkModeStateManagement.isDarkMode} height={300}/>
         }
 
       </div>

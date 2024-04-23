@@ -3,6 +3,7 @@ import MainWrapper from '../../sharedComponents/MainWrapper'
 import { heroPhotos1 } from '../../hero-photos'
 import { useFetchApiData } from '../../hooks/useFetcher'
 import { GlobalAppState } from '../../Layout'
+import UILoading from '../../sharedComponents/UILoading'
 
 const BiographyMain = () => {
 
@@ -15,7 +16,7 @@ const BiographyMain = () => {
 
         <h1>BIOGRAPHY</h1>
         {
-          !longForm ? <BioLoading isDarkMode={darkModeStateManagement.isDarkMode} repeat={3}/> :
+          !longForm ? <UILoading isCurved isDarkMode={darkModeStateManagement.isDarkMode} height={300} repeat={3}/> :
           !longForm.components ? null :
           longForm.components.map((component, i) => {
             if (component.type === 'p') {
@@ -28,28 +29,5 @@ const BiographyMain = () => {
   )
 }
 
-const BioLoading = ({ isDarkMode, repeat }) => {
-
-  const skeleton = new Array(repeat).fill(null)
-
-  return (
-    <>
-      {
-        skeleton.map((_, index) => {
-
-          return <div className={ isDarkMode ? "skeleton dark-mode" : "skeleton"} style={{
-              overflow: 'hidden',
-              position: 'relative',
-              backgroundColor: isDarkMode ? 'rgba(200, 200, 200, .1)' : '#eee',
-              height: 100,
-              border: '0px solid rgba(236, 236, 236, .5)',
-              borderRadius: 20,
-              marginBottom: index === skeleton.length - 1 ? 0 : 30
-            }}/>
-        })
-      }
-    </>
-  )
-}
 
 export default BiographyMain

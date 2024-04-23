@@ -4,10 +4,11 @@ import { heroPhotos1 } from '../../hero-photos'
 import { getDisplayDate } from '../../utils/date'
 import { useFetchApiData } from '../../hooks/useFetcher'
 import { GlobalAppState } from '../../Layout'
+import UILoading from '../../sharedComponents/UILoading'
 
 const BlogMain = () => {
 
-  const { config } = React.useContext(GlobalAppState)
+  const { config, darkModeStateManagement } = React.useContext(GlobalAppState)
   const blogData = useFetchApiData('blog', config)
 
   return (
@@ -15,7 +16,7 @@ const BlogMain = () => {
       <section id="blog" className="blog">
         <h1>BLOG</h1>
         {
-          !blogData ? '...Loading' :
+          !blogData ? <UILoading isDarkMode={darkModeStateManagement.isDarkMode} isCurved repeat={3} height={200}/> :
           blogData.results.map((post, i) => {
             
             return (

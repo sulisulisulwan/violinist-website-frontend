@@ -10,11 +10,12 @@ import YouTubeModal from '../../../sharedComponents/modals/YouTubeModal'
 import VideoThumbnail from '../../../sharedComponents/VideoThumbnail'
 import { useFetchApiData } from '../../../hooks/useFetcher'
 import { GlobalAppState } from '../../../Layout'
+import UILoading from '../../../sharedComponents/UILoading'
 
 
 export const MediaHomeListItem = () => {
 
-  const { config } = React.useContext(GlobalAppState)
+  const { config, darkModeStateManagement } = React.useContext(GlobalAppState)
   const videoData = useFetchApiData('videos', config)
   const [ modalIsOpen, setModalIsOpen ] = useState(false)
 
@@ -30,7 +31,8 @@ export const MediaHomeListItem = () => {
           youtubeCode={firstVideo.youtubeCode} 
           setModalIsOpen={setModalIsOpen} 
           setCurrYoutubeCode={() => {}}
-        /> : '...Loading'
+        /> : 
+        <UILoading isCurved isDarkMode={darkModeStateManagement.isDarkMode} height={300}/>
       }
       <div 
         className="more-button"
