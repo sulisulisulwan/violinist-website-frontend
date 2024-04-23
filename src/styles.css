@@ -531,3 +531,42 @@ a:visited {
   opacity: 1;
   animation-name: fade-in;
 }
+
+
+/* .skeleton {
+  overflow: hidden;
+  height: 100px;
+  border: 0px solid rgba(236, 236, 236, .5);;
+  border-radius: 20px;
+  margin-bottom: 30px;
+}
+
+.skeleton:empty {
+  position: relative;
+  background-color: rgba(236, 236, 236, .5);
+} */
+
+.skeleton.dark-mode:empty:before {
+  background-image: linear-gradient(90deg, rgba(15, 14, 32, .1) 0px, rgba(255, 255, 255, 0.1) 100px, rgba(15, 14, 32, .1));
+}
+
+.skeleton:empty:before {
+  content: '';
+  background-image: linear-gradient(90deg, #eee 0px, rgba(255, 255, 255, 0.4) 100px, #eee 200px);
+  position: absolute;
+  background-repeat: repeat-x;
+  left: -400px;
+  width: 200px;
+  height: 100%;
+  animation: shine 3s infinite;
+  transform: skewX(-45deg);
+}
+
+@keyframes shine {
+  0% {
+    left: -400px;
+  }
+  100% {
+    left: 3000px;
+  }
+}

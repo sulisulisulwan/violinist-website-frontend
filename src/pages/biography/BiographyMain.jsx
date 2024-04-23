@@ -6,7 +6,7 @@ import { GlobalAppState } from '../../Layout'
 
 const BiographyMain = () => {
 
-  const { config } = useContext(GlobalAppState)
+  const { config, windowWidth, darkModeStateManagement } = useContext(GlobalAppState)
   const longForm = useFetchApiData('longBio', config)
 
   return (
@@ -15,7 +15,7 @@ const BiographyMain = () => {
 
         <h1>BIOGRAPHY</h1>
         {
-          !longForm ? '...Loading' :
+          !longForm ? <BioLoading isDarkMode={darkModeStateManagement.isDarkMode} repeat={3}/> :
           !longForm.components ? null :
           longForm.components.map((component, i) => {
             if (component.type === 'p') {
@@ -25,6 +25,30 @@ const BiographyMain = () => {
         }
       </section>
     </MainWrapper>
+  )
+}
+
+const BioLoading = ({ isDarkMode, repeat }) => {
+
+  const skeleton = new Array(repeat).fill(null)
+
+  return (
+    <>
+      {
+        skeleton.map((_, index) => {
+
+          return <div className={ isDarkMode ? "skeleton dark-mode" : "skeleton"} style={{
+              overflow: 'hidden',
+              position: 'relative',
+              backgroundColor: isDarkMode ? 'rgba(200, 200, 200, .1)' : '#eee',
+              height: 100,
+              border: '0px solid rgba(236, 236, 236, .5)',
+              borderRadius: 20,
+              marginBottom: index === skeleton.length - 1 ? 0 : 30
+            }}/>
+        })
+      }
+    </>
   )
 }
 

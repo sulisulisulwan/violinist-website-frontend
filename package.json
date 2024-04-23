@@ -8,6 +8,7 @@
     "start": "nodemon ./server/index.js",
     "build": "webpack --env buildAll=true mode=development",
     "build:dev": "webpack --env buildAll=true mode=development",
+    "build:dev-watch": "webpack --env buildAll=true mode=development -w",
     "build:prod": "webpack --env buildAll=true mode=production",
     "build:watch": "webpack --env buildAll=true mode=development; webpack --env buildAll=false mode=development -w",
     "build:hot-reload": "webpack --env buildAll=true mode=development; webpack serve --env devServer=true mode=development;"
