@@ -45,7 +45,7 @@ const VideoThumbnail = ({ videoId, caption, youtubeCode, setModalIsOpen, setCurr
           src={`${config.getField('BACKEND_API_BASE_URL')}/videos/thumbnail?id=${videoId}`}
           style={{
             maxWidth: '100%',
-            aspectRatio: '2 / 1.1',
+            aspectRatio: '2 / 1.5',
             position: 'relative',
             
           }}

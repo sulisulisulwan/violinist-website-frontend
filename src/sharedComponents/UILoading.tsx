@@ -9,7 +9,7 @@ const UILoading = ({ isDarkMode, repeat, height, isCurved }: any) => {
       {
         skeleton.map((_, index) => {
 
-          return <div className={ isDarkMode ? "skeleton dark-mode" : "skeleton"} style={{
+          return <div key={'skeleton' + index} className={ isDarkMode ? "skeleton dark-mode" : "skeleton"} style={{
               overflow: 'hidden',
               position: 'relative',
               backgroundColor: isDarkMode ? 'rgba(200, 200, 200, .1)' : '#eee',

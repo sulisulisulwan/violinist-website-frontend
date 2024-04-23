@@ -17,7 +17,7 @@ export const MediaVideos = () => {
 
   const videoData = useFetchApiData('videos', config)
   const videos = videoData?.results
-
+  console.log('herrree')
   return (
     <div
       style={{
