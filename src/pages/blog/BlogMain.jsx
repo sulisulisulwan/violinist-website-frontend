@@ -5,6 +5,7 @@ import { getDisplayDate } from '../../utils/date'
 import { useFetchApiData } from '../../hooks/useFetcher'
 import { GlobalAppState } from '../../Layout'
 import UILoading from '../../sharedComponents/UILoading'
+import FadeInParagraph from '../../sharedComponents/FadeInParagraph'
 
 const BlogMain = () => {
 
@@ -28,8 +29,9 @@ const BlogMain = () => {
                 {
                   post.components.map((component, j) => {
                     if (component.type === 'p') {
-                      return <p style={{ }} key={component.type + j}>{component.content}</p>
+                      return <FadeInParagraph  key={component.type + j} content={component.content}/>
                     }
+                    return null
                   })
 
                 }

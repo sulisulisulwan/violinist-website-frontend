@@ -7,6 +7,8 @@ import { useLoadingScreen } from "./useLoadingScreen";
 import { useTypeEscapeToClose } from "./useTypeEscapeToClose";
 import { useOutsideAlerter } from "./useOutsideAlerter";
 import { useComponentFadeAnimator } from "./useComponentFadeAnimator";
+import { useCalendarData } from "./useCalendarData";
+import { useFadeInSection } from "./useFadeInSection";
 
 export {
   useConfig,
@@ -17,5 +19,7 @@ export {
   useLoadingScreen,
   useTypeEscapeToClose,
   useOutsideAlerter,
-  useComponentFadeAnimator
+  useComponentFadeAnimator,
+  useFadeInSection,
+  useCalendarData,
 }

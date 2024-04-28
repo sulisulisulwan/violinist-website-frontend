@@ -1,6 +1,6 @@
 import { useState } from "react"
-import { useFetchApiData } from "../../../hooks/useFetcher"
-import { Config } from "../../../config/config"
+import { useFetchApiData } from "./useFetcher"
+import { Config } from "../config/config"
 
 export const useCalendarData = (config: Config, listKey: any) => {
 

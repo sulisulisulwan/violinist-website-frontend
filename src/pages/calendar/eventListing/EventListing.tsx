@@ -2,6 +2,7 @@ import * as React from 'react'
 import DateInfo from './DateInfo'
 import Content from './Content'
 import DetailsAccordionButton from './DetailsAccordionButton'
+import { useFadeInSection } from '../../../hooks'
 
 interface eventListingPropsIF {
   eventData: any
@@ -11,6 +12,8 @@ interface eventListingPropsIF {
 }
 
 const EventListing = ({ eventData, setAccordionOpenId, accordionOpenId, windowWidth }: eventListingPropsIF) => {
+
+  const { domRef, fadeInSectionClassName } = useFadeInSection()
 
   const accordionIsOpen = eventData.id === accordionOpenId
   const setTo = accordionIsOpen ? null : eventData.id
@@ -24,11 +27,13 @@ const EventListing = ({ eventData, setAccordionOpenId, accordionOpenId, windowWi
 
   return (
     <li 
+      className={`event-listing ${fadeInSectionClassName}`} 
       style={{
         display: 'table-row',
         width: '100%',
       }}
       onClick={handleAccordionClickBehavior}
+      ref={domRef}
     >
       {
         windowWidth < 730 ? (

@@ -9,6 +9,7 @@ import SocialsHomeListItem from './homeListItems/SocialHomeListItem'
 import { heroPhotos1, heroPhotos2 } from '../../hero-photos'
 import MainWrapper from '../../sharedComponents/MainWrapper'
 import ThreeSquareGridGroup from '../../sharedComponents/threeSquareGrid/ThreeSquareGridGroup'
+import FadeInSection from '../../sharedComponents/FadeInSection'
 
 const HomeMain = () => {
 
@@ -17,9 +18,9 @@ const HomeMain = () => {
       <section className="home-group-1">
         <ThreeSquareGridGroup
           listItemComponents={[
-            <BioHomeListItem/>,
-            <CalendarHomeListItem/>,
-            <MediaHomeListItem/>
+            <FadeInSection nodes={<BioHomeListItem/>}/>,
+            <FadeInSection nodes={<CalendarHomeListItem/>}/>,
+            <FadeInSection nodes={<MediaHomeListItem/>}/>,
           ]}
         />
       </section>
@@ -29,9 +30,9 @@ const HomeMain = () => {
       <section className="home-group-2">
         <ThreeSquareGridGroup
           listItemComponents={[
-            <BlogHomeListItem/>,
-            <ShopHomeListItem/>,
-            <SocialsHomeListItem/>,
+            <FadeInSection nodes={<BlogHomeListItem/>}/>,
+            <FadeInSection nodes={<ShopHomeListItem/>}/>,
+            <FadeInSection nodes={<SocialsHomeListItem/>}/>,
           ]}
         />
       </section>

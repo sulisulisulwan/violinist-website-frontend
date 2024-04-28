@@ -4,11 +4,13 @@ import { heroPhotos1 } from '../../hero-photos'
 import { useFetchApiData } from '../../hooks/useFetcher'
 import { GlobalAppState } from '../../Layout'
 import UILoading from '../../sharedComponents/UILoading'
+import FadeInParagraph from '../../sharedComponents/FadeInParagraph'
 
 const BiographyMain = () => {
 
-  const { config, windowWidth, darkModeStateManagement } = useContext(GlobalAppState)
+  const { config, darkModeStateManagement } = useContext(GlobalAppState)
   const longForm = useFetchApiData('longBio', config)
+  
 
   return (
     <MainWrapper heroPhotos={heroPhotos1}>
@@ -20,14 +22,14 @@ const BiographyMain = () => {
           !longForm.components ? null :
           longForm.components.map((component, i) => {
             if (component.type === 'p') {
-              return <p key={component.type + i}>{component.content}</p>
+              return <FadeInParagraph content={component.content} key={component.type + i}/>
             }
+            return null
           })
         }
       </section>
     </MainWrapper>
   )
 }
-
 
 export default BiographyMain

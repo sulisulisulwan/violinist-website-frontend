@@ -3,10 +3,8 @@ const { useState } = React
 import HoverLink from '../../../sharedComponents/HoverLink'
 import EventListing from './EventListing'
 import { NAVY_BLUE_LIGHT, NAVY_BLUE_MED } from '../../../sharedStyles/colors'
-import { useFetchApiData } from '../../../hooks/useFetcher'
 import { GlobalAppState } from '../../../Layout'
-import { Config } from '../../../config/config'
-import { useCalendarData } from './useCalendarData'
+import { useCalendarData } from '../../../hooks'
 import UILoading from '../../../sharedComponents/UILoading'
 
 interface eventsListPropsIF {
