@@ -18,22 +18,6 @@ const Footer = () => {
         style={{ background: isDarkMode ? DARK_MODE_BACKGROUND_COLOR : NAVY_BLUE_MED }}
       >
         <div className="footer-content-wrapper footer-content-wrapper-media-query">
-          <div className="footer-lower-container footer-lower-container-media-query">
-            <FooterSocialIcons/>
-            <DarkModeToggler/>
-          </div>
-        </div>
-      </div>
-    </footer>
-  )
-
-  return (
-    <footer>
-      <div 
-        className="footer-body global-side-padding"
-        style={{ background: isDarkMode ? DARK_MODE_BACKGROUND_COLOR : NAVY_BLUE_MED }}
-      >
-        <div className="footer-content-wrapper footer-content-wrapper-media-query">
           <FooterNameLogo/>
           <div className="footer-lower-container footer-lower-container-media-query">
             <FooterSocialIcons/>
