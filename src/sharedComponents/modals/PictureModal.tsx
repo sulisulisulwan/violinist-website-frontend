@@ -37,24 +37,10 @@ const PictureModal = ({ currPicIndex, setPicIndex, picDataArray, setModalClosed,
   let currPic = picDataArray[currPicIndex]
 
   return (
-    <div style={{
-      borderRadius: .5,
-      border: 'white solid 2px',
-      display: 'flex',
-      flexDirection: 'column'
-    }}>
-      <div className="image-carousel"
-        style={{
-          display: 'relative'
-        }}
-      >
+    <div className="photos-modal">
+      <div className="photos-carousel">
         <img 
-          style={{
-            position: 'relative',
-            maxWidth: '50vw',
-            maxHeight: '90vh',
-            padding: .5,
-          }}
+          className="photos-carousel-img"
           src={`${config.getField('BACKEND_API_BASE_URL')}/photos?id=${currPic.id}&isCropped=true`}
         />
         <HoverPopIcon
@@ -79,11 +65,7 @@ const PictureModal = ({ currPicIndex, setPicIndex, picDataArray, setModalClosed,
           width={50}
           growth={10}
         />
-        <div style={{
-            fontSize: 11,
-            position: 'absolute',
-            left: 0
-          }}>
+        <div className='photos-carousel-img-credit'>
             Photo Credit: {currPic.photoCred}
         </div>
         <HoverPopIcon

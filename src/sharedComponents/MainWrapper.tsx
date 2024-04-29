@@ -18,17 +18,7 @@ const MainWrapper = ({ children, addPaddingBottom = 0, heroPhotos }: mainWrapper
 
   
   return (
-    <main 
-      className="global-side-padding"
-      style={{
-        paddingTop: 2,
-        paddingBottom: addPaddingBottom + 200, // 100 added for sticky footer
-        fontSize: 13,
-        backgroundColor: isDarkMode ? DARK_MODE_BACKGROUND_COLOR : 'white',
-        color: isDarkMode ? 'white' : 'black',
-        // animation: 'fadeIn .5s linear'
-      }}
-    >
+    <main className={`global-side-padding main-wrapper ${ isDarkMode ? 'main-wrapper-isdm' : 'main-wrapper-notdm' }`}>
       <section className="hero-img">
         <HeroImageSlideshow imageSrcArray={heroPhotos}/>
       </section>

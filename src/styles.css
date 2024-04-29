@@ -17,6 +17,12 @@
   initial-value: rgb(15, 14, 32);
 }
 
+@property --DARK_MODE_BACKGROUND_COLOR {
+  syntax: "<color>";
+  inherits: false;
+  initial-value: rgb(15, 14, 32);
+}
+
 html {
   margin: 0;
   padding: 0;
@@ -595,4 +601,104 @@ a:visited {
   opacity: 1;
   transform: none;
   visibility: visible;
+}
+
+
+/* DARK MODE */
+
+.dm-toggler-wrapper {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-content: center;
+  align-items: center;
+  vertical-align: center;
+}
+
+.dm-toggler-title {
+  text-align: center;
+  font-size: 10px;
+  color: white;
+}
+
+.dm-toggler-bg {
+  min-height: 20px;
+  max-height: 20px;
+  min-width: 40px;
+  max-width: 40px;
+  border-radius: 20px;
+  border: 1px solid black;
+  position: relative;
+}
+
+.dm-toggler-btn {
+  background-color: white;  
+  border: 1px solid black;
+  min-height: 15px;
+  max-height: 15px;
+  min-width: 15px;
+  max-width: 15px;
+  position: absolute;
+  top: 2px;
+  border-radius: 50%;
+  transition: left .1s;
+}
+
+.dm-toggler-btn-isdm {
+  left: 22px;
+}
+.dm-toggler-btn-notdm {
+  left: 2px;
+}
+
+
+.is-dm {
+  background-color: var(--NAVY_BLUE_MED);
+}
+
+.not-dm {
+  background-color: silver;
+}
+
+/* MAIN WRAPPER */
+
+.main-wrapper {
+  padding-top: 2px;
+  padding-bottom: 150px;
+  font-size: 13px;
+}
+
+.main-wrapper-isdm {
+  background-color: var(--DARK_MODE_BACKGROUND_COLOR);
+  color: white;
+}
+.main-wrapper-notdm {
+  background-color: white;
+  color: black;
+}
+
+
+
+.photos-modal {
+  border-radius: .5px;
+  border: white solid 2px;
+  display: flex;
+  flex-direction: column;
+}
+
+.photos-carousel {
+  display: relative;
+}
+
+.photos-carousel-img {
+  position: relative;
+  max-width: 90vw;
+  max-height: 90vh;
+  padding: .5px;
+}
+
+.photos-carousel-img-credit {
+  font-size: 11px;
+  position: absolute;
+  left: 0px;
 }

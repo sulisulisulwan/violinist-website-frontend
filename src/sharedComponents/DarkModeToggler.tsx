@@ -1,62 +1,22 @@
 import * as React from 'react'
 import { GlobalAppState } from '../Layout'
-import { DARK_MODE_BACKGROUND_COLOR, NAVY_BLUE_LIGHT, NAVY_BLUE_MED } from '../sharedStyles/colors'
 const { useContext } = React
-
 
 const DarkModeToggler = () => {
 
   const { setIsDarkMode, isDarkMode } = useContext(GlobalAppState).darkModeStateManagement
-  const appDiv = document.getElementById('app')
-  const backgroundColor = isDarkMode ? DARK_MODE_BACKGROUND_COLOR : 'white'
-  appDiv.style.backgroundColor = backgroundColor
+  // const appDiv = document.getElementById('app')
+  // const backgroundColor = isDarkMode ? DARK_MODE_BACKGROUND_COLOR : 'white'
+  // appDiv.style.backgroundColor = backgroundColor
 
   return (
-    <div 
-      className='darkmode-toggler-wrapper'
-      style={{
-        display: 'flex',
-        flexDirection: 'column',
-        justifyContent: 'center',
-        alignContent: 'center',
-        alignItems: 'center',
-        verticalAlign: 'center',
-      }}
-    >
+    <div className='dm-toggler-wrapper'>
+      <div className='dm-toggler-title'>DARK MODE</div>
       <div 
-        className='darkmode-toggler-title'
-        style={{ 
-          textAlign: 'center',
-          fontSize: 10, 
-          color: 'white' 
-        }}>DARK MODE
-      </div>
-      <div 
-        className='darkmode-toggler-control-background'
-        style={{ 
-          minHeight: 20, maxHeight: 20,
-          minWidth: 40, maxWidth: 40,
-          borderRadius: 20,
-          border: '1px solid black',
-          backgroundColor: isDarkMode ? NAVY_BLUE_MED : 'silver',
-          position: 'relative'
-        }}
-        onClick={() => { setIsDarkMode(!isDarkMode)}}
+        className={`dm-toggler-bg${isDarkMode ? ' is-dm' : ' not-dm'}`}
+        onClick={() => { setIsDarkMode(!isDarkMode) }}
       >
-        <div 
-          className='darkmode-toggler-control-button' 
-          style={{
-            backgroundColor: 'white',
-            border: '1px solid black',
-            minHeight: 15, maxHeight: 15,
-            minWidth: 15, maxWidth: 15,
-            position: 'absolute',
-            top: 2,
-            left: isDarkMode ? 22 : 2,
-            borderRadius: '50%',
-            transition: 'left .1s'
-          }}
-        />
+        <div className={`dm-toggler-btn ${isDarkMode ? 'dm-toggler-btn-isdm' : 'dm-toggler-btn-notdm'}`}/>
       </div>
     </div>
   )
