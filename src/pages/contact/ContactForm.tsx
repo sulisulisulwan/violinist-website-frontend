@@ -1,20 +1,15 @@
 import * as React from 'react'
 import * as ReactDom from 'react-dom'
 import axios from 'axios'
-import { NAVY_BLUE_MED } from '../../sharedStyles/colors'
 import { GlobalAppState } from '../../Layout'
-// import config from '../../config/config'
+import { Config } from '../../config/config'
+
 const { useState, useContext } = React
 
-const ContactForm = ({ windowWidth }: any) => {
-
-  const { darkModeStateManagement, config } = useContext(GlobalAppState)
-  const { isDarkMode } = darkModeStateManagement
-
-  const [ modalOpen, setModalOpen ] = useState(false)
+const useSubmitEmail = (config: Config, setModalOpen: React.Dispatch<React.SetStateAction<boolean>>) => {
   const [ emailSentIsError, setEmailSentIsError ] = useState(false)
 
-  const submitForm = async (e: any) => {
+  const submitFormHandler = async (e: any) => {
     e.preventDefault()
 
     try {
@@ -44,147 +39,67 @@ const ContactForm = ({ windowWidth }: any) => {
     setModalOpen(true)
   }
 
+  return { emailSentIsError, submitFormHandler }
+}
+
+
+const ContactForm = ({ windowWidth }: any) => {
+
+  const { darkModeStateManagement, config } = useContext(GlobalAppState)
+  const { isDarkMode } = darkModeStateManagement
+  const [ modalOpen, setModalOpen ] = useState(false)
+  const { emailSentIsError, submitFormHandler } = useSubmitEmail(config, setModalOpen)
+
   const errorMessage = (
-    <div style={{ textAlign: 'center'}}>
+    <div className="email-success-error-msg">
       <h3>There was a an error sending your email.</h3>
       <p>Please try again soon!</p>
     </div>
   )
   const successMessage = (
-    <div style={{ textAlign: 'center'}}>
+    <div className="email-success-error-msg">
       <h3>Thank you for contacting me!</h3>
       <p>Please check your email for confirmation that your message had been sent.</p>
     </div>
   )
   return (
     <>
-      <form style={{
-        display: 'flex',
-        flexDirection: 'column',
-        width: '100%',
-        fontSize: '14px'
-      }} onSubmit={(e) => submitForm(e)}>
+      <form className="contact-form" onSubmit={(e) => submitFormHandler(e)}>
         <div>
           Full Name <span className="text-required">(required)</span>
         </div>
-        <div className="form-full-name" style={{
-          display: 'flex',
-          flexDirection: windowWidth <= 600 ? 'column' : 'row',
-          justifyContent: 'stretch',
-          marginBottom: '20px'
-        }}>
-          <label style={{
-            display: 'flex',
-            flexDirection: 'column',
-            width: '100%',
-            marginRight: '10px',
-            marginBottom: windowWidth <= 600 ? 20 : ''
-          }}>
-            <div>
-              First Name <span className="text-required">(required)</span>
-            </div>
-            <input style={{
-              padding: '10px',
-              backgroundColor: '#F8F8FF',
-              border: 'solid gray 1px'
-            }} required={true}></input>
+        <div className="contact-form-full-name">
+          <label className="contact-form-firstname-label">
+            <div>First Name <span className="text-required">(required)</span></div>
+            <input className="contact-form-text-input" required={true}></input>
           </label>
-          <label style={{
-            display: 'flex',
-            flexDirection: 'column',
-            width: '100%'
-          }}>
-            <div>
-              Last Name <span className="text-required">(required)</span>
-            </div>
-            <input style={{
-              padding: '10px',
-              backgroundColor: '#F8F8FF',
-              border: 'solid gray 1px'
-            }} required={true}></input>
+          <label className="contact-form-lastname-label">
+            <div>Last Name <span className="text-required">(required)</span></div>
+            <input className="contact-form-text-input" required={true}></input>
           </label>
         </div>
-        <label style={{
-            display: 'flex',
-            flexDirection: 'column',
-            width: '100%',
-            marginBottom: '20px'
-          }}>
-
-          <div>
-            Email Address <span className="text-required">(required)</span>
-          </div>
-          <input style={{
-            padding: '10px',
-            backgroundColor: '#F8F8FF',
-            border: 'solid gray 1px'
-          }} required={true}></input>
+        <label className="contact-form-email-label">
+          <div>Email Address <span className="text-required">(required)</span></div>
+          <input className="contact-form-text-input" required={true}></input>
         </label>
-        <label style={{
-            display: 'flex',
-            flexDirection: 'column',
-            width: '100%'
-          }}>
-          <div>
-            Message <span className="text-required">(required)</span>
-          </div>
-          <textarea style={{
-            height: '150px',
-            backgroundColor: '#F8F8FF',
-            border: 'solid gray 1px',
-            fontFamily: 'Gill Sans, sans-serif',
-            fontSize: '15px',
-          }} required={true} placeholder='Enter your message here...'></textarea>
+        <label className="contact-form-message-label">
+          <div>Message <span className="text-required">(required)</span></div>
+          <textarea className="contact-form-message-textarea" required={true} placeholder='Enter your message here...'></textarea>
         </label>
         <div style={{
           textAlign: windowWidth <= 800 ? 'center' : ''
         } as React.CSSProperties }>
-          <input type="submit" style={{
-            marginTop: '20px',
-            minWidth: '250px',
-            width: '50%',
-            color: 'white',
-            // backgroundColor: '#191970',
-            backgroundColor: isDarkMode ? 'gray' : NAVY_BLUE_MED,
-            fontSize: '15px',
-            fontFamily: 'Gill Sans, sans-serif',
-            padding: '10px',
-            border: 'none',
-            cursor: 'pointer'
-          }} value="SEND YOUR MESSAGE"
-          />
+          <input className={`contact-form-submit-btn contact-form-submit-btn-${ isDarkMode ? 'isdm' : 'notdm' }`} type="submit" value="SEND YOUR MESSAGE"/>
         </div>
       </form>
+
       <EmailConfirmationModalWrapper isOpen={modalOpen} setModalClosed={ () => setModalOpen(false)}>
-        <div style={{
-          background: 'white',
-          opacity: 1,
-          padding: 20,
-          border: ' lightgray solid 1px',
-          maxWidth: 400
-        }}>
+        <div className="email-confirmation-modal-inner-window-background">
           <div className="confirmation-message">
             { emailSentIsError ? errorMessage : successMessage }
           </div>
-          <div className="back-btn"
-            style={{
-              textAlign: 'center'
-            }}
-          >
-            <button 
-              style={{
-                marginTop: '20px',
-                minWidth: '250px',
-                width: '50%',
-                color: 'white',
-                backgroundColor: '#191970',
-                fontSize: '15px',
-                fontFamily: 'Gill Sans, sans-serif',
-                padding: '10px',
-                border: 'none',
-                cursor: 'pointer'
-              }}
-              onClick={() => { setModalOpen(false) }}>BACK</button>
+          <div className="back-btn-wrapper">
+            <button className="back-btn" onClick={() => { setModalOpen(false) }}>BACK</button>
           </div>
         </div>
       </EmailConfirmationModalWrapper>
@@ -192,37 +107,13 @@ const ContactForm = ({ windowWidth }: any) => {
   )
 }
 
-const EmailConfirmationModalWrapper = ({ isOpen, setModalClosed, children }: any) => {
+const EmailConfirmationModalWrapper = ({ isOpen, children }: any) => {
   
   if (!isOpen) return null
 
   const modal = (
-    <div 
-      id="email-confirmation-modal-wrapper" 
-      className={'modal-background'}
-      style={{
-        position: 'fixed',
-        top: 0,
-        left: 0,
-        right: 0,
-        bottom: 0,
-        backgroundColor: 'rgba(255,255,255, .7)',
-        zIndex: 900,
-        animation: 'fadeIn 1s'
-      }}
-    >
-      <div 
-        className={'modal-inner-window'}
-        style={{
-          position: 'fixed',
-          top: '50%',
-          left: '50%',
-          transform: 'translate(-50%, -50%)',
-          backgroundColor: '#FFF',
-          zIndex: 1000,
-          animation: 'fadeIn 1s'
-        }}
-      >
+    <div id="email-confirmation-modal-wrapper" className="email-confirmation-modal-wrapper">
+      <div className="email-confirmation-modal-inner-window">
         {children}
       </div>
     </div>

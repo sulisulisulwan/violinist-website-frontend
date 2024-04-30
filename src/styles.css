@@ -43,6 +43,11 @@ body {
   width: 100%;
 }
 
+
+.dm-text-color {
+  color: white;
+}
+
 @media (min-width: 1201px) {
   .global-side-padding {
     padding-left: 62px;
@@ -825,3 +830,243 @@ a:visited {
 .video-thumbnail-caption-notdm {
   color: var(--NAVY_BLUE_MED);
 }
+
+
+.media-grid {
+  display: flex;
+  flex-direction: row;
+}
+
+.media-links-ul {
+  display: flex;
+  list-style-type: none;
+  padding: 0px;
+}
+
+.media-links-li {
+  padding-right: 20px;
+}
+
+/*MEDIA PHOTOS*/
+
+.media-photos-wrapper {
+  width: 100%;
+  animation: fadeIn .5s linear;
+}
+.media-photos-ul-wrapper {
+  max-width: 1156;
+  margin-right: auto;
+  margin-left: auto;
+}
+
+.media-photos-ul {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  box-sizing: border-box;
+  list-style-type: none;
+  padding: 0px;
+  width: 100%;
+}
+
+@media (min-width: 770px) {
+  .media-photos-ul {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    box-sizing: border-box;
+    list-style-type: none;
+    padding: 0px;
+    width: 100%;
+  }
+}
+
+.media-photos-li {
+  width: 100%;
+  display: inline-block;
+  max-width: 90%;
+  padding-bottom: 45px;
+}
+
+
+/*MEDIA VIDEOS*/
+
+.media-videos-wrapper {
+  width: 100%;
+  animation: fadeIn .5s linear;
+}
+
+.media-videos-ul {
+  display: grid;
+  list-style-type: none;
+  padding: 0px;
+  grid-template-columns: 1fr 1fr;
+}
+
+@media (min-width: 770px) {
+  .media-videos-ul {
+    display: grid;
+    list-style-type: none;
+    padding: 0px;
+    grid-template-columns: 1fr 1fr 1fr;
+  }
+}
+
+.media-videos-li {
+  padding: 10;
+}
+
+
+
+
+
+
+.email-success-error-msg {
+  text-align: center;
+}
+
+.contact-form {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  font-size: 14px;
+}
+
+.contact-form-full-name {
+  display: flex;
+  flex-direction: column;
+  justify-content: stretch;
+  margin-bottom: 20px;
+}
+
+.contact-form-firstname-label {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  margin-right: 10px;
+  margin-bottom: 0px;
+}
+
+.contact-form-lastname-label {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}
+
+.contact-form-email-label {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  margin-bottom: 20px;
+}
+
+.contact-form-text-input {
+  padding: 10px;
+  background-color: #F8F8FF;
+  border: solid gray 1px;
+}
+
+.contact-form-message-label {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}
+
+.contact-form-message-textarea {
+  height: 150px;
+  background-color: #F8F8FF;
+  border: solid gray 1px;
+  font-family: Gill Sans, sans-serif;
+  font-size: 15px;
+}
+
+.contact-form-submit-btn {
+  margin-top: 20px;
+  min-width: 250px;
+  width: 50%;
+  color: white;
+  font-size: 15px;
+  font-family: Gill Sans, sans-serif;
+  padding: 10px;
+  border: none;
+  cursor: pointer;
+}
+
+.contact-form-submit-btn-isdm { background-color: gray; }
+.contact-form-submit-btn-notdm { background-color: var(--NAVY_BLUE_MED); }
+
+@media (min-width: 600px) {
+  .contact-form-full-name {
+    display: flex;
+    flex-direction: row;
+    justify-content: stretch;
+    margin-bottom: 20px;
+  }
+
+  .contact-form-firstname-label {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    margin-right: 10px;
+    margin-bottom: 20px;
+  }
+
+}
+
+.email-confirmation-modal-wrapper {
+  position: fixed;
+  top: 0px;
+  left: 0px;
+  right: 0px;
+  bottom: 0px;
+  background-color: rgba(255,255,255, .7);
+  z-index: 900;
+  animation: fadeIn 1s;
+}
+
+.email-confirmation-modal-inner-window {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: #FFF;
+  z-index: 1000;
+  animation: fadeIn 1s;
+}
+
+.email-confirmation-modal-inner-window-background {
+  background: white;
+  opacity: 1;
+  padding: 20px;
+  border: lightgray solid 1px;
+  max-width: 400px;
+}
+
+.back-btn-wrapper {
+  text-align: center;
+}
+
+.back-btn {
+  margin-top: 20px;
+  min-width: 250px;
+  width: 50%;
+  color: white;
+  background-color: #191970;
+  font-size: 15px;
+  font-family: Gill Sans, sans-serif;
+  padding: 10px;
+  border: none;
+  cursor: pointer;
+}
+
+
+
+/*CALENDAR*/
+
+.calendar-wrapper {
+  display: flex;
+  flex-direction: column;
+}
+
+.calendar-entry-content {
+
+}
+

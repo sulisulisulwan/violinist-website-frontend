@@ -15,50 +15,43 @@ const MediaMain = () => {
 
   return (
     <MainWrapper addPaddingBottom={30} heroPhotos={heroPhotos1}>
-      <section  id="media" className="media">
+      <section id="media" className="media">
         <h1>MEDIA</h1>
         <div>
-          <ul style={{
-            listStyleType: 'none',
-            padding: 0,
-            display: 'flex'
-          }}>
-            <li style={{
-              paddingRight: 20
-            }}>
-              { pathName === '/media' || pathName === '/photos' ? 
-              <span style={{ color: isDarkMode ? 'white' : 'black' }}>PHOTOS</span> :
-              <HoverLink
-                cls="photos-grid-link"
-                linkText={'PHOTOS'}
-                href="photos"
-                overColor={NAVY_BLUE_LIGHT}
-                offColor={isDarkMode ? 'silver' : NAVY_BLUE_MED}
-                onClickHandler={() => { setPathName('/photos') }}
-                openInNewTab={false}
+          <ul className="media-links-ul">
+            <li className="media-links-li">
+              { 
+                pathName === '/media' || pathName === '/photos' ? 
+                <span className={ isDarkMode ? 'dm-text-color' : '' }>PHOTOS</span> :
+                <HoverLink
+                  cls="photos-grid-link"
+                  linkText={'PHOTOS'}
+                  href="photos"
+                  overColor={NAVY_BLUE_LIGHT}
+                  offColor={isDarkMode ? 'silver' : NAVY_BLUE_MED}
+                  onClickHandler={() => { setPathName('/photos') }}
+                  openInNewTab={false}
                 />
               }
             </li>
             <li>
-              { pathName === '/videos' ? 
-                <span style={{ color: isDarkMode ? 'white' : 'black' }}>VIDEOS</span> :
+              { 
+                pathName === '/videos' ? 
+                <span className={ isDarkMode ? 'dm-text-color' : '' }>VIDEOS</span> :
                 <HoverLink
-                cls="videos-grid-link"
-                linkText={'VIDEOS'}
-                href="videos"
-                overColor={NAVY_BLUE_LIGHT}
-                offColor={isDarkMode ? 'silver' : NAVY_BLUE_MED}
-                onClickHandler={() => { setPathName('/videos') }}
-                openInNewTab={false}
+                  cls="videos-grid-link"
+                  linkText={'VIDEOS'}
+                  href="videos"
+                  overColor={NAVY_BLUE_LIGHT}
+                  offColor={isDarkMode ? 'silver' : NAVY_BLUE_MED}
+                  onClickHandler={() => { setPathName('/videos') }}
+                  openInNewTab={false}
                 />
               }
             </li>
           </ul>
         </div>
-        <div className="media-grid" style={{
-          display: 'flex',
-          flexDirection: 'row'
-        }}> 
+        <div className="media-grid"> 
           <Outlet/>
         </div>
         

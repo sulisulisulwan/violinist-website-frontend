@@ -80,7 +80,7 @@ const Content = ({ eventData, accordionIsOpen }: eventListingContentPropsIF) => 
 
   return (
     <div 
-      className="content"
+      className="calendar-entry-content"
       style={{
         [windowWidth < 730 ? 'flexBasis' : 'width']: width,
         paddingTop: 20,
@@ -95,7 +95,7 @@ const Content = ({ eventData, accordionIsOpen }: eventListingContentPropsIF) => 
     > 
       <h3 style={{ margin: 0, fontSize: 17 }}>{location}</h3>
       <h4 style={{ margin: 0, fontSize: 14 }}>{venue}</h4>
-      <div className="more-details"
+      <div className="calendar-entry-content-more-details"
         style={{
           maxHeight: accordionIsOpen ? 500 : 0,
           opacity: accordionIsOpen ? 1 : 0,

@@ -16,13 +16,10 @@ const CalendarMain = () => {
   return (
     <MainWrapper heroPhotos={heroPhotos1}>
       <section id="concerts" className="concerts">
-        <div style={{
-          display: 'flex',
-          flexDirection: 'column'
-        }}>
+        <div className="calendar-wrapper">
           <h1>CONCERTS</h1>
             { pathName === '/calendar' || pathName === '/upcoming-concerts' ? 
-              <span style={{ color: isDarkMode ? 'white' : 'black', cursor: 'default'  }}>NEXT CONCERTS</span> :
+              <span className={ isDarkMode ? 'dm-text-color' : '' }>NEXT CONCERTS</span> :
               <HoverLink
                 cls="next-concerts-button"
                 openInNewTab={false}
@@ -34,7 +31,7 @@ const CalendarMain = () => {
               />
             }
             { pathName === '/past-concerts' ? 
-              <span style={{ color: isDarkMode ? 'white' : 'black', cursor: 'default' }}>PAST CONCERTS</span> :
+              <span className={ isDarkMode ? 'dm-text-color' : '' }>PAST CONCERTS</span> :
               <HoverLink
                 cls="past-concerts-button"
                 openInNewTab={false}
