@@ -14,44 +14,24 @@ const HeroImageSlideshow = ({ imageSrcArray }: heroImageSlideshowPropsIF) => {
   const { isDarkMode } = darkModeStateManagement
   
   return (
-    <div style={{ 
-      maxWidth: 1920,
-    }}>
-      <ul style={{ 
-        listStyleType: 'none', 
-        listStylePosition: 'outside',
-        padding: 0, 
-        position: 'relative',
-        paddingBottom: 20,
-        margin: 0,
-        height: wrapperHeight ? wrapperHeight : 0
-      }}>
+    <div className="hero-image-slideshow-wrapper">
+      <ul 
+        className="hero-image-slideshow-ul"
+        style={{ 
+          height: wrapperHeight ? wrapperHeight : 0
+        }}
+      >
         { 
           imageSrcArray.map((imgSrc, index) => {
-
+            const baseImgClass = 'hero-image-slideshow-img'
             const prevIdx = imgArrayIndex - 1 < 0 ? imageSrcArray.length - 1 : imgArrayIndex - 1
             return (
-              <li 
-                key={imgSrc + index}
-                style={{
-                  margin: 0,
-                  padding: 0,
-                }}
-              >
-                  <img 
-                    ref={index === 0 ? heroPhotoRef : null}
-                    className="hero-slideshow-fade-out"
-                    src={imgSrc}
-                    style={{
-                      position: 'absolute',
-                      width: '100%',
-                      margin: 0,
-                      padding: 0,
-                      border: isDarkMode ? '.2px solid darkgray' : '',
-                      zIndex: index === imgArrayIndex ? 5 : index === prevIdx ? 4 : 0,
-                      animation: index === imgArrayIndex && afterFirstTransition ? 'fadeIn 1s linear' : ''
-                    }}
-                  />
+              <li className="hero-image-slideshow-li" key={imgSrc + index}>
+                <img 
+                  ref={index === 0 ? heroPhotoRef : null}
+                  className={`${baseImgClass} ${baseImgClass}-${index === imgArrayIndex ? 'first' : index === prevIdx ? 'visible' : 'hidden' }${index === imgArrayIndex && afterFirstTransition ? ' ' + baseImgClass + '-animate' : ''} ${ isDarkMode ? baseImgClass + '-isdm' : ''}`}
+                  src={imgSrc}
+                />
               </li>
             )
           }

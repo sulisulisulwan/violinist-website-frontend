@@ -22,32 +22,16 @@ const ModalWrapper = ({ modalName, isOpen, setModalClosed, childModalContext }: 
   const wrapperModal = (
     <div 
       id={`${modalName}-modal-wrapper`}
-      className={'modal-background'}
+      className="modal-background"
       ref={fadeRef}
       style={{
         display: cssFadeAnimationProps.displaySetting,
         animation: cssFadeAnimationProps.animationSetting,
-        position: 'fixed',
-        top: 0,
-        left: 0,
-        right: 0,
-        bottom: 0,
-        backgroundColor: 'rgba(255,255,255, .7)',
-        zIndex: 900,
-
       }}
     >
       <div 
-        ref={outsideAlerterRef}
-        className={'modal-inner-window'}
-        style={{
-          position: 'fixed',
-          top: '50%',
-          left: '50%',
-          transform: 'translate(-50%, -50%)',
-          backgroundColor: '#FFF',
-          zIndex: 1000,
-        }}
+        className="modal-inner-window"
+        ref={outsideAlerterRef} 
       >
         {childModal}
       </div>

@@ -29,50 +29,12 @@ const VideoThumbnail = ({ videoId, caption, youtubeCode, setModalIsOpen, setCurr
   }
 
   return (
-    <div 
-      onClick={ () => playYoutubeVideo() }
-      style={{
-        animation: 'fadeIn 1s linear'
-      }}
-    >
-      <div style={{
-        position: 'relative',
-        top: 0,
-        left: 0,
-        border: isDarkMode ? 'solid .5px darkgray' : ''
-      }}>
-        <img 
-          src={`${config.getField('BACKEND_API_BASE_URL')}/videos/thumbnail?id=${videoId}`}
-          style={{
-            maxWidth: '100%',
-            aspectRatio: '2 / 1.5',
-            position: 'relative',
-            
-          }}
-        />
-        <img
-          src={'/images/play-button-overlay.png'}
-          style={{
-            position: 'absolute',
-            margin: 'auto',
-            width: 60,
-            marginTop: -30,
-            marginLeft: -30,
-            top: '50%',
-            left: '50%',
-            animation: 'fadeIn 1s linear'
-            // zIndex: 2
-          }}
-        />
+    <div className='video-thumbnail-wrapper' onClick={ () => playYoutubeVideo() }>
+      <div className={`video-thumbnail-img-wrapper${ isDarkMode ? ' video-thumbnail-img-wrapper-isdm' : '' }`}>
+        <img className="video-thumbnail-img" src={`${config.getField('BACKEND_API_BASE_URL')}/videos/thumbnail?id=${videoId}`}/>
+        <img className='video-thumbnail-img-overlay' src={'/images/play-button-overlay.png'}/>
       </div>
-      <div
-        style={{
-        color: isDarkMode ? 'silver' : NAVY_BLUE_MED,
-        fontFamily: "Mate, serif",
-        fontWeight: 900,
-        fontSize: 20,
-        paddingTop: 20
-      }}>
+      <div className={`video-thumbnail-caption ${isDarkMode ? 'video-thumbnail-caption-isdm' : 'video-thumbnail-caption-notdm' }`}>
         {caption}
       </div>
     </div>
