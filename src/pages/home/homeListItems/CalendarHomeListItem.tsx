@@ -59,8 +59,8 @@ const MiniDateListItem = ({ eventData }: miniDateListItemPropsIF ) => {
   let dateTime = eventData.dateTime
 
   if (typeof dateTime === 'object') {
-    dateTime = dateTime.startDate
-  }
+    dateTime = dateTime.start
+  } 
 
   let [month, day, year] = parseDateToString(dateTime).split(' ').filter((str, i) => i < 4).slice(1)
   day = Number(day).toString() //remove leading zeros
@@ -77,6 +77,8 @@ const MiniDateListItem = ({ eventData }: miniDateListItemPropsIF ) => {
       computedLocation += eventData.location.country
     }
   }
+
+  
 
   return (
     <li 
