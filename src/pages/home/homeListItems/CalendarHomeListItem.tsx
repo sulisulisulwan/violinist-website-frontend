@@ -62,6 +62,8 @@ const MiniDateListItem = ({ eventData }: miniDateListItemPropsIF ) => {
     dateTime = dateTime.start
   } 
 
+  console.log(dateTime)
+
   let [month, day, year] = parseDateToString(dateTime).split(' ').filter((str, i) => i < 4).slice(1)
   day = Number(day).toString() //remove leading zeros
 
