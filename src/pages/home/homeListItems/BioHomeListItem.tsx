@@ -14,9 +14,7 @@ export const BioHomeListItem = () => {
 
   return (
     <>
-      <h2
-        style={{ fontFamily: 'Montserrat' }}
-      >BIOGRAPHY</h2>
+      <h2>BIOGRAPHY</h2>
       <div>
         { 
           shortFormBioData ? 
