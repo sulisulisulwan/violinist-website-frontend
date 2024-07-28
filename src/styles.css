@@ -124,6 +124,10 @@ body {
   footer {
     bottom: 58px;
   }
+  
+  h2 {
+    font-family: "Montserrat", cursive;
+  }
 
   .audio-player-wrapper {
     right: 0px;
