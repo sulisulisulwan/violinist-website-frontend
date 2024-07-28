@@ -18,6 +18,8 @@ const EventsList = ({ listKey }: eventsListPropsIF) => {
   const { calendarData, listControls } = useCalendarData(config, listKey)
   const [ accordionOpenId, setAccordionOpenId ] = useState(null)
 
+  if (calendarData && !calendarData.length) console.log('no events')
+
   return (
     <>
       <ul style={{
@@ -42,6 +44,11 @@ const EventsList = ({ listKey }: eventsListPropsIF) => {
           ) : <UILoading isDarkMode={isDarkMode} repeat={4} isCurved/>
         }
       </ul>
+      {
+        calendarData && !calendarData.length ? 
+          <div style={{ textAlign: 'center', fontSize: 20 }}>Fall calendar coming soon!</div>
+         : null 
+      }
       <div style={{
         textAlign: 'center'
       }}>
