@@ -18,7 +18,7 @@ const Footer = () => {
         style={{ background: isDarkMode ? DARK_MODE_BACKGROUND_COLOR : NAVY_BLUE_MED }}
       >
         <div className="footer-content-wrapper footer-content-wrapper-media-query">
-          <FooterNameLogo/>
+          {/* <FooterNameLogo/> */}
           <div className="footer-lower-container footer-lower-container-media-query">
             <FooterSocialIcons/>
             <DarkModeToggler/>
@@ -30,14 +30,14 @@ const Footer = () => {
 }
 
 
-const FooterNameLogo = ({ isIPadDesktop, isGalaxyFold }: any) => {
-  return (
-    <div className='footer-name-logo'>
-      <span className='footer-name-logo-name'>SULIMAN TEKALLI</span>
-      <span className='footer-name-logo-medium'>VIOLINIST</span>
-    </div>
-  )
-}
+// const FooterNameLogo = ({ isIPadDesktop, isGalaxyFold }: any) => {
+//   return (
+//     <div className='footer-name-logo'>
+//       <span className='footer-name-logo-name'>SULIMAN TEKALLI</span>
+//       <span className='footer-name-logo-medium'>VIOLINIST</span>
+//     </div>
+//   )
+// }
 
 const FooterSocialIcons = () => {
   const socialIcons = getSocialIcons('white')

@@ -181,7 +181,6 @@ body {
   }
 
   .footer-content-wrapper-media-query {
-    padding-top: 8px;
     padding-bottom: 10px;
     flex-direction: column;
   }
@@ -191,12 +190,9 @@ body {
     padding-right: 10px;
   }
 
-  .footer-name-logo {
-    /* text-align: center;
-    font-size: 15px;
-    font-weight: lighter; */
+  /* .footer-name-logo {
     display: none;
-  }
+  } */
 }
 
 /* iPhone 4 & 5 */
@@ -207,7 +203,6 @@ body {
   }
 
   .footer-content-wrapper-media-query {
-    padding-top: 10px;
     padding-bottom: 20px;
     flex-direction: column;
   }
@@ -217,12 +212,9 @@ body {
     padding-right: 40px;
   }
 
-  .footer-name-logo {
+  /* .footer-name-logo {
     display: none;
-    /* text-align: center;
-    font-size: 20px; */
-    /* font-weight: lighter; */
-  }
+  } */
 }
 
 /* iPhone 6, 7 & 8*/
@@ -233,7 +225,6 @@ body {
   }
 
   .footer-content-wrapper-media-query {
-    padding-top: 10px;
     padding-bottom: 20px;
     flex-direction: column;
   }
@@ -243,12 +234,9 @@ body {
     padding-right: 40px;
   }
 
-  .footer-name-logo {
+  /* .footer-name-logo {
     display: none;
-    /* text-align: center;
-    font-size: 20px;
-    font-weight: lighter; */
-  }
+  } */
 }
 
 /* iPhone 14 */
@@ -261,7 +249,6 @@ body {
   .footer-content-wrapper-media-query {
     padding-left: 30px;
     padding-right: 30px;
-    padding-top: 10px;
     padding-bottom: 20px;
     flex-direction: column;
   }
@@ -271,12 +258,9 @@ body {
     padding-right: 40px;
   }
 
-  .footer-name-logo {
+  /* .footer-name-logo {
     display: none;
-    /* text-align: center;
-    font-size: 20px;
-    font-weight: lighter; */
-  }
+  } */
 }
 
 /* iPhone iPad & Desktop */
@@ -287,8 +271,7 @@ body {
   }
 
   .footer-content-wrapper-media-query {
-    padding-top: 21px;
-    padding-bottom: 21px;
+    padding-bottom: 15px;
     flex-direction: row;
   }
 
@@ -297,11 +280,11 @@ body {
     padding-right: 40px;
   }
 
-  .footer-name-logo {
+  /* .footer-name-logo {
     text-align: left;
     font-size: 20px;
     font-weight: lighter;
-  }
+  } */
 }
 
 footer {
@@ -316,8 +299,8 @@ footer {
 
 .footer-content-wrapper {
   display: flex;
-  justify-content: space-between;
-  /* width: 100%; */
+  justify-content: center;
+  /* justify-content: space-between; */
 }
 
 .footer-lower-container {
@@ -326,13 +309,13 @@ footer {
   justify-content: space-between;
 }
 
-.footer-name-logo-name {
+/* .footer-name-logo-name {
   color: white;
 }
 
 .footer-name-logo-medium {
   color: lightgray;
-}
+} */
 
 .footer-social-icons {
   padding-top: 10px;
@@ -353,6 +336,7 @@ footer {
   position: sticky;
   min-height: 70px;
   z-index: 100;
+  justify-content: space-between;
 }
 
 .nav-links {
@@ -1073,4 +1057,13 @@ a:visited {
 .calendar-entry-content {
 
 }
+
+
+.header-logo-font {
+  font-family: "Fjalla One", sans-serif;
+  font-weight: 400;
+  font-style: normal;
+  font-size: 30px;
+}
+
 

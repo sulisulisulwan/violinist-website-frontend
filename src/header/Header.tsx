@@ -45,7 +45,7 @@ const NavBar = ({ navBarIsWide, isDarkMode }: any) => {
 
 const HeaderNameLogo = ({ isDarkMode }: any) => {
   return (
-    <div className="header-name-logo">
+    <div className="header-name-logo header-logo-font">
       <Link to="/">
         <span style={{
           color: isDarkMode ? 'white' : 'black',
