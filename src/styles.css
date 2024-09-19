@@ -53,12 +53,20 @@ body {
     padding-left: 62px;
     padding-right: 62px;
   }
+
+  .side-padding-div {
+    width: 0px;
+  }
 }
 
 @media (max-width: 1200px) {
   .global-side-padding {
     padding-left: 52px;
     padding-right: 52px;
+  }
+
+  .side-padding-div {
+    width: 0px;
   }
 }
 
@@ -67,6 +75,10 @@ body {
     padding-left: 42px;
     padding-right: 42px;
   }
+
+  .side-padding-div {
+    width: 0px;
+  }
 }
 
 @media (max-width: 800px) {
@@ -74,12 +86,21 @@ body {
     padding-left: 32px;
     padding-right: 32px;
   }
+
+  .side-padding-div {
+    width: 0px;
+  }
 }
 
 @media (max-width: 600px) {
   .global-side-padding {
     padding-left: 22px;
     padding-right: 22px;
+  }
+
+  .side-padding-div {
+    width: 22px;
+    border-top: solid 1px rgb(128, 128, 128);
   }
 }
 
@@ -97,11 +118,15 @@ body {
   margin: 0px;
   list-style-type: none;
   display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  height: 32px;
 }
 
 .audio-player-buttons {
   padding: 0px; 
   display: flex;
+  padding-left: 20px;
   list-style-type: none;
 }
 
@@ -109,12 +134,14 @@ body {
 @media (max-width: 764px) {
 
   .audio-player {
-    border-top-style: solid;
-    border-top-width: 2px;
+    border-top: solid 1px rgb(128, 128, 128);
   }
 
   .audio-player-interface {
     justify-content: space-between;
+    padding-left: 20px;
+    padding-right: 20px;
+    height: 32px;
   }
 
   body {
@@ -122,7 +149,7 @@ body {
   }
 
   footer {
-    bottom: 58px;
+    bottom: 32px;
   }
   
   h2 {
@@ -131,6 +158,7 @@ body {
 
   .audio-player-wrapper {
     right: 0px;
+    height: 32px;
     position: fixed;
     z-index: 500;
     bottom: 0px;
@@ -138,11 +166,13 @@ body {
     width: 100%;
   }
 
+  .side-padding-div {
+    width: 32px;
+  }
+
   .audio-player {
-    padding-top: 15px;
-    padding-bottom: 15px;
-    padding-left: 20px;
-    padding-right: 20px;
+    /* padding-top: 15px; */
+    /* padding-bottom: 15px; */
   }
 }
 
@@ -151,6 +181,8 @@ body {
 
   .audio-player-interface {
     justify-content: '';
+    line-height: 2;
+    height: 32px;
   }
 
   body {
@@ -162,7 +194,7 @@ body {
   }
 
   .audio-player-wrapper {
-    right: 0px;
+    right: 30px;
     position: fixed;
     z-index: 4000;
     top: 0px;
@@ -190,9 +222,6 @@ body {
     padding-right: 10px;
   }
 
-  /* .footer-name-logo {
-    display: none;
-  } */
 }
 
 /* iPhone 4 & 5 */
@@ -212,9 +241,6 @@ body {
     padding-right: 40px;
   }
 
-  /* .footer-name-logo {
-    display: none;
-  } */
 }
 
 /* iPhone 6, 7 & 8*/
@@ -234,9 +260,6 @@ body {
     padding-right: 40px;
   }
 
-  /* .footer-name-logo {
-    display: none;
-  } */
 }
 
 /* iPhone 14 */
@@ -258,9 +281,6 @@ body {
     padding-right: 40px;
   }
 
-  /* .footer-name-logo {
-    display: none;
-  } */
 }
 
 /* iPhone iPad & Desktop */
@@ -280,11 +300,6 @@ body {
     padding-right: 40px;
   }
 
-  /* .footer-name-logo {
-    text-align: left;
-    font-size: 20px;
-    font-weight: lighter;
-  } */
 }
 
 footer {
@@ -308,14 +323,6 @@ footer {
   display: flex;
   justify-content: space-between;
 }
-
-/* .footer-name-logo-name {
-  color: white;
-}
-
-.footer-name-logo-medium {
-  color: lightgray;
-} */
 
 .footer-social-icons {
   padding-top: 10px;
@@ -1067,3 +1074,33 @@ a:visited {
 }
 
 
+
+@keyframes marquee {
+  0% {
+    /* margin-left: 100%;
+    width: 300%; */
+    transform: translate(0, 0);
+  }
+  100% {
+    /* margin-left: -100%;
+    width: 100%; */
+    transform: translate(-100%, 0);
+  }
+}
+
+.marquee-left-border {
+  z-Index: 5000;
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  opacity: 100;
+  height: 31px;
+}
+
+.not-dm-side-padding-div {
+  background-color: white;
+}
+
+.is-dm-side-padding-div {
+  background-color: var(--DARK_MODE_BACKGROUND_COLOR);
+}

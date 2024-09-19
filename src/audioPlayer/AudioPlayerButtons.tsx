@@ -53,7 +53,7 @@ const AudioPlayerButtons = ({
   }
 
   return (
-    <li>
+    <li style={{ flexShrink: 0 }}>
       <span className='btns'>
         <ul className="audio-player-buttons">
           <li><HoverButtonWithImage imgSrc={prevIcon} onClickHandler={() => prev(audioPlayer, setAudioPlayerState, audioPlayerState)}/></li>

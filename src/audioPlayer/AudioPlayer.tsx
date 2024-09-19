@@ -7,7 +7,6 @@ import { next, prev, startPlay, pausePlay, } from './audioControls'
 
 import { GlobalAppState } from '../Layout'
 
-
 export interface audioTrackDataIF {
   file: string
   author: string
@@ -39,7 +38,7 @@ const AudioPlayer = () => {
           backgroundColor: isDarkMode ? DARK_MODE_BACKGROUND_COLOR : 'white',
           borderTopColor: audioPlayerIsMobileMode ? `${isDarkMode ? 'white' : NAVY_BLUE_MED }` : '',
         }}
-      >
+        >
         <ul className="audio-player-interface">
           <TrackListing audioPlayerState={audioPlayerState}/>
           <AudioPlayerButtons 

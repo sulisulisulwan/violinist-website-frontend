@@ -34,6 +34,7 @@ const NavBar = ({ navBarIsWide, isDarkMode }: any) => {
 
   return (
     <div className='navbar-wrapper'>
+      
       { navBarIsWide ? 
         <NavLinks isDarkMode={isDarkMode} links={links}/> : 
         <HamburgerWrapper toggle={setHamburgerOpen} toggled={hamburgerOpen}/> 
@@ -57,6 +58,5 @@ const HeaderNameLogo = ({ isDarkMode }: any) => {
     </div>
   )
 }
-
 
 export default Header
