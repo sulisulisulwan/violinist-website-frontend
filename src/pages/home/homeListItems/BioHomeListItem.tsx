@@ -17,9 +17,6 @@ export const BioHomeListItem = () => {
   if (shortFormBioData?.components) {
     components = parser.parseToReactElements(React, shortFormBioData.components)
   }
-  console.log(components)
-
-  return null
 
   return (
     <>

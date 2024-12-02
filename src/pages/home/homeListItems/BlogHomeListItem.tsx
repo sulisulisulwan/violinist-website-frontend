@@ -22,10 +22,6 @@ const BlogHomeListItem = (): any => {
     components = parser.parseToReactElements(React, blogPreview.components)
   }
 
-  console.log(components)
-
-  return null
-
   return (
     <>
       <h2>BLOG</h2>
