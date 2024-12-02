@@ -7,12 +7,20 @@ import { useFetchApiData } from '../../../hooks/useFetcher'
 import { GlobalAppState } from '../../../Layout'
 import UILoading from '../../../sharedComponents/UILoading'
 // import config from '../../../config/config'
+import parser from '../../../utils/parser'
 
-const BlogHomeListItem = () => {
+
+const BlogHomeListItem = (): any => {
+  
 
   const { config, darkModeStateManagement } = React.useContext(GlobalAppState)
   const blogData = useFetchApiData('blog', config)
-  const blogPreview = blogData?.results[0] || null
+  let blogPreview = blogData?.results[0] || null
+
+  let components = null
+  if (blogPreview?.components) {
+    components = parser.parseToReactElements(React, blogPreview.components)
+  }
 
   return (
     <>
@@ -25,7 +33,7 @@ const BlogHomeListItem = () => {
               { getDisplayDate(blogPreview.dateCreated) }
             </div>
             <div>
-              {blogPreview.components.map((component: ParsedHTMLComponent, i: number) => { return <p key={i}>{component.content}</p>})} 
+              { components ? components.map((component: ParsedHTMLComponent, i: number) => component ) : null } 
             </div>
           </>
           : <UILoading isCurved isDarkMode={darkModeStateManagement.isDarkMode} height={300}/>

@@ -5,12 +5,17 @@ import { useFetchApiData } from '../../hooks/useFetcher'
 import { GlobalAppState } from '../../Layout'
 import UILoading from '../../sharedComponents/UILoading'
 import FadeInParagraph from '../../sharedComponents/FadeInParagraph'
+import parser from '../../utils/parser'
 
 const BiographyMain = () => {
 
   const { config, darkModeStateManagement } = useContext(GlobalAppState)
   const longForm = useFetchApiData('longBio', config)
   
+  let components = null
+  if (longForm?.components) {
+    components = parser.parseToReactElements(React, longForm.components)
+  }
 
   return (
     <MainWrapper heroPhotos={heroPhotos1}>
@@ -18,14 +23,8 @@ const BiographyMain = () => {
 
         <h1>BIOGRAPHY</h1>
         {
-          !longForm ? <UILoading isCurved isDarkMode={darkModeStateManagement.isDarkMode} height={300} repeat={3}/> :
-          !longForm.components ? null :
-          longForm.components.map((component, i) => {
-            if (component.type === 'p') {
-              return <FadeInParagraph content={component.content} key={component.type + i}/>
-            }
-            return null
-          })
+          !components ? <UILoading isCurved isDarkMode={darkModeStateManagement.isDarkMode} height={300} repeat={3}/> :
+          components.map((component, i) => components)
         }
       </section>
     </MainWrapper>

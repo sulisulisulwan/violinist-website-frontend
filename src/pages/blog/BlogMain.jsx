@@ -6,8 +6,10 @@ import { useFetchApiData } from '../../hooks/useFetcher'
 import { GlobalAppState } from '../../Layout'
 import UILoading from '../../sharedComponents/UILoading'
 import FadeInParagraph from '../../sharedComponents/FadeInParagraph'
+import parser from '../../utils/parser'
 
 const BlogMain = () => {
+  parser
 
   const { config, darkModeStateManagement } = React.useContext(GlobalAppState)
   const blogData = useFetchApiData('blog', config)
@@ -19,7 +21,7 @@ const BlogMain = () => {
         {
           !blogData ? <UILoading isDarkMode={darkModeStateManagement.isDarkMode} isCurved repeat={3} height={200}/> :
           blogData.results.map((post, i) => {
-            
+            const components = parser.parseToReactElements(React, post.components)
             return (
               <React.Fragment key={i}>
                 <span style={{
@@ -27,12 +29,7 @@ const BlogMain = () => {
                   fontSize: 15
                 }}>{getDisplayDate(post.dateCreated)}</span>
                 {
-                  post.components.map((component, j) => {
-                    if (component.type === 'p') {
-                      return <FadeInParagraph  key={component.type + j} content={component.content}/>
-                    }
-                    return null
-                  })
+                  components.map((component, j) => component)
 
                 }
               </React.Fragment>
