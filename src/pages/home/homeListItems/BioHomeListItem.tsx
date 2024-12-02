@@ -18,6 +18,10 @@ export const BioHomeListItem = () => {
     components = parser.parseToReactElements(React, shortFormBioData.components)
   }
 
+  console.log(components)
+
+  return null
+
   return (
     <>
       <h2>BIOGRAPHY</h2>
