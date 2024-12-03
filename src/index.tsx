@@ -24,7 +24,7 @@ const ContactMain = lazy(() => import('./pages/contact/ContactMain'))
 const BlogMain = lazy(() => import('./pages/blog/BlogMain'))
 const ErrorPage = lazy(() => import('./pages/ErrorPage'))
 const UnderConstruction = lazy(() => import('./pages/UnderConstruction'))
-// const ShopMain = lazy(() => import('./pages/shop/ShopMain'))
+const ShopMain = lazy(() => import('./pages/shop/ShopMain'))
 
 const FallbackMainLoadingScreen = () => {
 
@@ -144,22 +144,22 @@ const router = createBrowserRouter([
       },
       {
         path: 'shop',
-        element: (
-          <React.Suspense fallback={<FallbackMainLoadingScreen/>}>
-            <UnderConstruction/>
-          </React.Suspense>
-        )
-        // element: <ShopMain/>,
-        // children: [
-        //   {
-        //     index: true,
-        //     element: <ShopItemsDisplay/>
-        //   },
-        //   {
-        //     path: 'checkout',
-        //     element: <Checkout/>
-        //   }
-        // ]
+        // element: (
+        //   <React.Suspense fallback={<FallbackMainLoadingScreen/>}>
+        //     <UnderConstruction/>
+        //   </React.Suspense>
+        // )
+        element: <ShopMain/>,
+        children: [
+          {
+            index: true,
+            element: <ShopItemsDisplay/>
+          },
+          {
+            path: 'checkout',
+            element: <Checkout/>
+          }
+        ]
       },
       {
         path: 'contact',
