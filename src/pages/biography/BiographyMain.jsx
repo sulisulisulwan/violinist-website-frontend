@@ -24,7 +24,7 @@ const BiographyMain = () => {
         <h1>BIOGRAPHY</h1>
         {
           !components ? <UILoading isCurved isDarkMode={darkModeStateManagement.isDarkMode} height={300} repeat={3}/> :
-          components.map((component, i) => components)
+          components
         }
       </section>
     </MainWrapper>
