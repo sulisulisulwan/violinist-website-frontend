@@ -31,7 +31,7 @@ class Config {
 
   public async initConfig() {
 
-    // const configJson = await fetch('/config.json')
+    // const configJson = await fetch('/.json')
     const configJson = await fetch('/alt.config.json')
     const json = await configJson.json()
 
