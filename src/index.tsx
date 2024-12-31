@@ -67,14 +67,14 @@ const router = createBrowserRouter([
           </React.Suspense>
         )
       },
-      {
-        path: 'presenters',
-        element: ( 
-          <React.Suspense fallback={<FallbackMainLoadingScreen/>}>
-            <PresentersMain/>
-          </React.Suspense>
-        )
-      },
+      // {
+      //   path: 'presenters',
+      //   element: ( 
+      //     <React.Suspense fallback={<FallbackMainLoadingScreen/>}>
+      //       <PresentersMain/>
+      //     </React.Suspense>
+      //   )
+      // },
       {
         path: 'calendar',
         element: (
