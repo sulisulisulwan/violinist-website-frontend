@@ -24,6 +24,10 @@ const navLinks: navLinkDataIF[] = [
     label: 'SHOP',
     href: '/shop'
   },
+  // {
+  //   label: 'FOR PRESENTERS',
+  //   href: '/presenters'
+  // },
   {
     label: 'CONTACT',
     href: '/contact'

@@ -24,6 +24,7 @@ const ContactMain = lazy(() => import('./pages/contact/ContactMain'))
 const BlogMain = lazy(() => import('./pages/blog/BlogMain'))
 const ErrorPage = lazy(() => import('./pages/ErrorPage'))
 const UnderConstruction = lazy(() => import('./pages/UnderConstruction'))
+// const PresentersMain = lazy(() => import('./pages/presenters/PresentersMain'))
 // const ShopMain = lazy(() => import('./pages/shop/ShopMain'))
 
 const FallbackMainLoadingScreen = () => {
@@ -63,6 +64,14 @@ const router = createBrowserRouter([
         element: ( 
           <React.Suspense fallback={<FallbackMainLoadingScreen/>}>
             <BiographyMain/>
+          </React.Suspense>
+        )
+      },
+      {
+        path: 'presenters',
+        element: ( 
+          <React.Suspense fallback={<FallbackMainLoadingScreen/>}>
+            <PresentersMain/>
           </React.Suspense>
         )
       },
