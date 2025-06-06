@@ -68,14 +68,6 @@ const router = createBrowserRouter([
           </React.Suspense>
         )
       },
-      // {
-      //   path: 'presenters',
-      //   element: ( 
-      //     <React.Suspense fallback={<FallbackMainLoadingScreen/>}>
-      //       <PresentersMain/>
-      //     </React.Suspense>
-      //   )
-      // },
       {
         path: 'calendar',
         element: (
@@ -171,14 +163,14 @@ const router = createBrowserRouter([
         //   }
         // ]
       },
-      {
-        path: 'presskit',
-        element: (
-          <React.Suspense fallback={<FallbackMainLoadingScreen/>}>
-            <PressKitMain/>
-          </React.Suspense>
-        )
-      },
+      // {
+      //   path: 'presskit',
+      //   element: (
+      //     <React.Suspense fallback={<FallbackMainLoadingScreen/>}>
+      //       <PressKitMain/>
+      //     </React.Suspense>
+      //   )
+      // },
       {
         path: 'contact',
         element: (

@@ -24,10 +24,10 @@ const navLinks: navLinkDataIF[] = [
     label: 'SHOP',
     href: '/shop'
   },
-  {
-    label: 'PRESS KIT',
-    href: '/presskit'
-  },
+  // {
+  //   label: 'PRESS KIT',
+  //   href: '/presskit'
+  // },
   {
     label: 'CONTACT',
     href: '/contact'
