@@ -9,6 +9,7 @@ import {
 
 import Layout from './Layout'
 import { DARK_MODE_BACKGROUND_COLOR, NAVY_BLUE_LIGHT } from './sharedStyles/colors';
+import PressKitMain from './pages/presskit/PressKitMain';
 
 const ShopItemsDisplay = lazy(() => import('./pages/shop/ShopItemsDisplay'));
 const Checkout = lazy(() => import('./pages/shop/Checkout'));
@@ -24,7 +25,7 @@ const ContactMain = lazy(() => import('./pages/contact/ContactMain'))
 const BlogMain = lazy(() => import('./pages/blog/BlogMain'))
 const ErrorPage = lazy(() => import('./pages/ErrorPage'))
 const UnderConstruction = lazy(() => import('./pages/UnderConstruction'))
-// const PresentersMain = lazy(() => import('./pages/presenters/PresentersMain'))
+const PressKit = lazy(() => import('./pages/presskit/PressKitMain'))
 // const ShopMain = lazy(() => import('./pages/shop/ShopMain'))
 
 const FallbackMainLoadingScreen = () => {
@@ -169,6 +170,14 @@ const router = createBrowserRouter([
         //     element: <Checkout/>
         //   }
         // ]
+      },
+      {
+        path: 'presskit',
+        element: (
+          <React.Suspense fallback={<FallbackMainLoadingScreen/>}>
+            <PressKitMain/>
+          </React.Suspense>
+        )
       },
       {
         path: 'contact',

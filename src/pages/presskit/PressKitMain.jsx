@@ -3,7 +3,7 @@ import MainWrapper from '../../sharedComponents/MainWrapper'
 import { GlobalAppState } from '../../Layout'
 import { heroPhotos1 } from '../../hero-photos'
 
-const PresentersMain = () => {
+const PressKitMain = () => {
 
   return (
     <MainWrapper heroPhotos={heroPhotos1}>
@@ -17,4 +17,4 @@ const PresentersMain = () => {
   )
 }
 
-export default PresentersMain
+export default PressKitMain
