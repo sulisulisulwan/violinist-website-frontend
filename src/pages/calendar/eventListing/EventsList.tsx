@@ -64,7 +64,7 @@ const EventsList = ({ listKey }: eventsListPropsIF) => {
             href=""
             openInNewTab={false}
             linkText={listControls.text}
-            offColor={NAVY_BLUE_MED}
+            offColor={'silver'}
             overColor={NAVY_BLUE_LIGHT}
             onClickHandler={listControls.onClickHandler}/> : null
         }
