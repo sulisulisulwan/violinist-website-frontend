@@ -4,7 +4,7 @@ import HoverLink from '../../../sharedComponents/HoverLink'
 import EventListing from './EventListing'
 import { NAVY_BLUE_LIGHT, NAVY_BLUE_MED } from '../../../sharedStyles/colors'
 import { GlobalAppState } from '../../../Layout'
-import { useCalendarData } from '../../../hooks'
+import { useCalendarData, useFadeInSection } from '../../../hooks'
 import UILoading from '../../../sharedComponents/UILoading'
 
 interface eventsListPropsIF {
@@ -17,6 +17,7 @@ const EventsList = ({ listKey }: eventsListPropsIF) => {
   const { isDarkMode } = darkModeStateManagement
   const { calendarData, listControls } = useCalendarData(config, listKey)
   const [ accordionOpenId, setAccordionOpenId ] = useState(null)
+  const { domRef, fadeInSectionClassName } = useFadeInSection()
 
   if (calendarData && !calendarData.length) console.log('no events')
 
@@ -49,9 +50,13 @@ const EventsList = ({ listKey }: eventsListPropsIF) => {
           <div style={{ textAlign: 'center', fontSize: 20 }}>Fall calendar coming soon!</div>
          : null 
       }
-      <div style={{
-        textAlign: 'center'
-      }}>
+      <div 
+        ref={domRef}
+        className={fadeInSectionClassName}
+        style={{
+          textAlign: 'center'
+        }}
+      >
         {
           listControls ?
           <HoverLink 
