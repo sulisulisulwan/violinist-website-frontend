@@ -26,7 +26,7 @@ export const MediaHomeListItem = () => {
       <h2>MEDIA</h2>
       {
         firstVideo ? <VideoThumbnail 
-          videoId={firstVideo.id} 
+          thumbnail_id={firstVideo.thumbnail_id} 
           caption={firstVideo.caption} 
           youtubeCode={firstVideo.youtubeCode} 
           setModalIsOpen={setModalIsOpen} 
