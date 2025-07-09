@@ -6,14 +6,14 @@ import { NAVY_BLUE_MED } from '../sharedStyles/colors'
 // import config from '../config/config'
 
 interface videoThumbnailPropsIF {
-  videoId: number
+  thumbnail_id: number
   caption: string
   youtubeCode: string
   setModalIsOpen: React.Dispatch<React.SetStateAction<boolean>>
   setCurrYoutubeCode: React.Dispatch<React.SetStateAction<string>>
 }
 
-const VideoThumbnail = ({ videoId, caption, youtubeCode, setModalIsOpen, setCurrYoutubeCode }: videoThumbnailPropsIF) => {
+const VideoThumbnail = ({ thumbnail_id, caption, youtubeCode, setModalIsOpen, setCurrYoutubeCode }: videoThumbnailPropsIF) => {
   
   const { audioPlayerStateManagement, darkModeStateManagement, config } = useContext(GlobalAppState)
   const { isDarkMode } = darkModeStateManagement
@@ -31,7 +31,7 @@ const VideoThumbnail = ({ videoId, caption, youtubeCode, setModalIsOpen, setCurr
   return (
     <div className='video-thumbnail-wrapper' onClick={ () => playYoutubeVideo() }>
       <div className={`video-thumbnail-img-wrapper${ isDarkMode ? ' video-thumbnail-img-wrapper-isdm' : '' }`}>
-        <img className="video-thumbnail-img" src={`${config.getField('BACKEND_API_BASE_URL')}/videos/thumbnail?id=${videoId}`}/>
+        <img className="video-thumbnail-img" src={`${config.getField('BACKEND_API_BASE_URL')}/photos?id=${thumbnail_id}`}/>
         <img className='video-thumbnail-img-overlay' src={'/images/play-button-overlay.png'}/>
       </div>
       <div className={`video-thumbnail-caption ${isDarkMode ? 'video-thumbnail-caption-isdm' : 'video-thumbnail-caption-notdm' }`}>

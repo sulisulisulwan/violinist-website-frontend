@@ -27,7 +27,7 @@ export const MediaVideos = () => {
                   setCurrYoutubeCode={setCurrYoutubeCode}
                   youtubeCode={video.youtubeCode}
                   setModalIsOpen={setModalIsOpen}
-                  videoId={video.id} 
+                  thumbnail_id={video.thumbnail_id} 
                   caption={video.caption}
                 />
               </li>
