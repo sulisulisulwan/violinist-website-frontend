@@ -196,10 +196,9 @@ body {
   .audio-player-wrapper {
     right: 30px;
     position: fixed;
-    z-index: 4000;
+    z-index: 500;
     top: 0px;
   }
-
   .audio-player {
     padding: 0px,
   }
@@ -813,10 +812,15 @@ a:visited {
 }
 
 .video-thumbnail-caption {
-  font-family: "Mate, serif";
+  /* font-family: "Mate, serif"; */
+  font-family: "Montserrat", cursive;
+  /* font-family: 'Poppins', 'sans-serif'; */
   font-weight: 900px;
   font-size: 20px;
   padding-top: 20px;
+  padding-bottom: 20px;
+  padding-left: 10px;
+  padding-right: 10px;
 }
 
 .video-thumbnail-caption-isdm {
