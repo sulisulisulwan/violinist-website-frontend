@@ -17,7 +17,6 @@ export const MediaVideos = () => {
   const videos = videoData?.results
   return (
     <div className="media-videos-wrapper">
-      <h2>VIDEOS</h2>
       <ul className="media-videos-ul">
         {
           videos ? videos.map((video: VideoDataAPI, i: number) => {

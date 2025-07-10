@@ -10,7 +10,7 @@ export const SocialsHomeListItem = () => {
   const socialIcons = getSocialIcons(isDarkMode ? 'white' : 'light')
   return (
     <>
-      <h2>SOCIALS</h2>
+      <h2 className='section-header'>SOCIALS</h2>
       <div>
         <ul style={{
           listStyleType: 'none',

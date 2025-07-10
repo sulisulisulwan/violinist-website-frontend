@@ -17,7 +17,7 @@ const BlogMain = () => {
   return (
     <MainWrapper heroPhotos={heroPhotos1}>
       <section id="blog" className="blog">
-        <h1>BLOG</h1>
+        <h1 className='section-header'>BLOG</h1>
         {
           !blogData ? <UILoading isDarkMode={darkModeStateManagement.isDarkMode} isCurved repeat={3} height={200}/> :
           blogData.results.map((post, i) => {

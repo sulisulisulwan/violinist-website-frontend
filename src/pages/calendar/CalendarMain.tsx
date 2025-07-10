@@ -17,7 +17,7 @@ const CalendarMain = () => {
     <MainWrapper heroPhotos={heroPhotos1}>
       <section id="concerts" className="concerts">
         <div className="calendar-wrapper">
-          <h1>CONCERTS</h1>
+          <h1 className='section-header'>CONCERTS</h1>
             { pathName === '/calendar' || pathName === '/upcoming-concerts' ? 
               <span className={ isDarkMode ? 'dm-text-color' : '' }>NEXT CONCERTS</span> :
               <HoverLink

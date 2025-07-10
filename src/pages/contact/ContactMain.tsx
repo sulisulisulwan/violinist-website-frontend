@@ -23,7 +23,7 @@ const ContactMain = () => {
   return (
     <MainWrapper heroPhotos={heroPhotos1}>
       <section  id="contact" className="contact">
-        <h1>CONTACT</h1>
+        <h1 className='section-header'>CONTACT</h1>
         <div style={layoutStyle}>
           <div>
             <h2>For bookings within the U.S. contact:</h2>

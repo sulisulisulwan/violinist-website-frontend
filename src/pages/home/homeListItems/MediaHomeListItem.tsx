@@ -23,7 +23,7 @@ export const MediaHomeListItem = () => {
 
   return (
     <>
-      <h2>MEDIA</h2>
+      <h2 className='section-header'>MEDIA</h2>
       {
         firstVideo ? <VideoThumbnail 
           thumbnail_id={firstVideo.thumbnail_id} 

@@ -17,7 +17,7 @@ const CalendarHomeListItem = () => {
 
   return (
     <>
-      <h2>CONCERTS</h2>
+      <h2 className='section-header'>CONCERTS</h2>
       <ul style={{
         listStyleType: 'none',
         padding: 0

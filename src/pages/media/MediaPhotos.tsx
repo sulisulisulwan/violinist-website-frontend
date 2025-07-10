@@ -22,7 +22,6 @@ const MediaPhotos = () => {
 
   return (
     <div className="media-photos-wrapper">
-      <h2>PHOTOS</h2>
       <div className="media-photos-ul-wrapper">
         <ul className="media-photos-ul">
           {

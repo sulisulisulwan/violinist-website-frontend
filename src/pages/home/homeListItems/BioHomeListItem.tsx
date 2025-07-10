@@ -20,7 +20,7 @@ export const BioHomeListItem = () => {
 
   return (
     <>
-      <h2>BIOGRAPHY</h2>
+      <h2 className='section-header'>BIOGRAPHY</h2>
       <div>
         { 
           components ? 

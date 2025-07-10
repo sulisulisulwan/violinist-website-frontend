@@ -130,6 +130,11 @@ body {
   list-style-type: none;
 }
 
+.section-header {
+  font-family: "Montserrat", cursive;
+  font-size: 25px;
+}
+
 /*AUDIO MOBILE MODE*/
 @media (max-width: 764px) {
 
@@ -840,10 +845,12 @@ a:visited {
   display: flex;
   list-style-type: none;
   padding: 0px;
+  justify-content: center;
 }
 
 .media-links-li {
   padding-right: 20px;
+  font-size: 15px;
 }
 
 /*MEDIA PHOTOS*/

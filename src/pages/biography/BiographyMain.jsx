@@ -20,8 +20,7 @@ const BiographyMain = () => {
   return (
     <MainWrapper heroPhotos={heroPhotos1}>
       <section  id="bio" className="bio">
-
-        <h1>BIOGRAPHY</h1>
+        <h1 className='section-header'>BIOGRAPHY</h1>
         {
           !components ? <UILoading isCurved isDarkMode={darkModeStateManagement.isDarkMode} height={300} repeat={3}/> :
           components

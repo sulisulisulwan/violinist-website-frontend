@@ -24,7 +24,7 @@ const BlogHomeListItem = (): any => {
 
   return (
     <>
-      <h2>BLOG</h2>
+      <h2 className='section-header'>BLOG</h2>
       <div></div>
       <div>
         { blogPreview ?

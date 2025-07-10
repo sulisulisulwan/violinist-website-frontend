@@ -16,7 +16,7 @@ const MediaMain = () => {
   return (
     <MainWrapper addPaddingBottom={30} heroPhotos={heroPhotos1}>
       <section id="media" className="media">
-        <h1>MEDIA</h1>
+        <h1 className="section-header">MEDIA</h1>
         <div>
           <ul className="media-links-ul">
             <li className="media-links-li">
@@ -34,7 +34,7 @@ const MediaMain = () => {
                 />
               }
             </li>
-            <li>
+            <li className="media-links-li">
               { 
                 pathName === '/videos' ? 
                 <span className={ isDarkMode ? 'dm-text-color' : '' }>VIDEOS</span> :

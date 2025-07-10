@@ -22,7 +22,7 @@ const ShopHomeListItem = () => {
 
   return (
     <>
-      <h2>SHOP</h2>
+      <h2 className='section-header'>SHOP</h2>
       <div style={{
         display: 'flex',
         maxWidth: '80%',
