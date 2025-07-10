@@ -49,6 +49,7 @@ body {
 }
 
 @media (min-width: 1201px) {
+
   .global-side-padding {
     padding-left: 62px;
     padding-right: 62px;
@@ -60,6 +61,7 @@ body {
 }
 
 @media (max-width: 1200px) {
+
   .global-side-padding {
     padding-left: 52px;
     padding-right: 52px;
@@ -71,6 +73,8 @@ body {
 }
 
 @media (max-width: 1000px) {
+
+
   .global-side-padding {
     padding-left: 42px;
     padding-right: 42px;
@@ -82,6 +86,7 @@ body {
 }
 
 @media (max-width: 800px) {
+
   .global-side-padding {
     padding-left: 32px;
     padding-right: 32px;
@@ -93,6 +98,7 @@ body {
 }
 
 @media (max-width: 600px) {
+
   .global-side-padding {
     padding-left: 22px;
     padding-right: 22px;
@@ -730,14 +736,10 @@ a:visited {
 
 
 
-
-
-
-
-
-
 .hero-image-slideshow-wrapper {
   max-width: 1920px;
+  margin-right: -65px;
+  margin-left: -65px; /*get rid of both of these margin rules to bring the hero image back into line with main wrapper padding*/
 }
 
 .hero-image-slideshow-ul {
