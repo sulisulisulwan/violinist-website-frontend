@@ -48,7 +48,15 @@ body {
   color: white;
 }
 
+
 @media (min-width: 1201px) {
+
+  .hero-image-slideshow-wrapper {
+    max-width: 1920px;
+    margin-right: -62px;
+    margin-left: -62px; /*get rid of both of these margin rules to bring the hero image back into line with main wrapper padding*/
+  }
+
 
   .global-side-padding {
     padding-left: 62px;
@@ -62,6 +70,12 @@ body {
 
 @media (max-width: 1200px) {
 
+  .hero-image-slideshow-wrapper {
+    max-width: 1920px;
+    margin-right: -52px;
+    margin-left: -52px; /*get rid of both of these margin rules to bring the hero image back into line with main wrapper padding*/
+  }
+
   .global-side-padding {
     padding-left: 52px;
     padding-right: 52px;
@@ -73,6 +87,11 @@ body {
 }
 
 @media (max-width: 1000px) {
+  .hero-image-slideshow-wrapper {
+    max-width: 1920px;
+    margin-right: -42px;
+    margin-left: -42px; /*get rid of both of these margin rules to bring the hero image back into line with main wrapper padding*/
+  }
 
 
   .global-side-padding {
@@ -87,6 +106,12 @@ body {
 
 @media (max-width: 800px) {
 
+  .hero-image-slideshow-wrapper {
+    max-width: 1920px;
+    margin-right: -32px;
+    margin-left: -32px; /*get rid of both of these margin rules to bring the hero image back into line with main wrapper padding*/
+  }
+
   .global-side-padding {
     padding-left: 32px;
     padding-right: 32px;
@@ -98,6 +123,12 @@ body {
 }
 
 @media (max-width: 600px) {
+
+  .hero-image-slideshow-wrapper {
+    max-width: 1920px;
+    margin-right: -22px;
+    margin-left: -22px; /*get rid of both of these margin rules to bring the hero image back into line with main wrapper padding*/
+  }
 
   .global-side-padding {
     padding-left: 22px;
@@ -734,13 +765,6 @@ a:visited {
   left: 0px;
 }
 
-
-
-.hero-image-slideshow-wrapper {
-  max-width: 1920px;
-  margin-right: -65px;
-  margin-left: -65px; /*get rid of both of these margin rules to bring the hero image back into line with main wrapper padding*/
-}
 
 .hero-image-slideshow-ul {
   list-style-type: none;
