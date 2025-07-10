@@ -805,7 +805,8 @@ a:visited {
 }
 
 .hero-image-slideshow-img-isdm {
-  border: .2px solid darkgray;
+  /* border-bottom: .2px solid darkgray; */
+  /* border-top: .2px solid darkgray; */
 }
 
 
