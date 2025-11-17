@@ -6,3 +6,6 @@ package-lock.json
 src/assets/config.json
 src/assets/alt.config.json
 dist
+config/config.json
+config/alt.config.json
+.DS_Store
