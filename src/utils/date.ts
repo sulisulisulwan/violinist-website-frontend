@@ -10,9 +10,9 @@ export const parseDateToString = (dateData: string) => {
 
 export const getDisplayDate = (dateTime: string) => {
   const date = new Date(dateTime)
-  const month = date.getMonth() + 1
-  const day = date.getDate() + 1
-  const year = date.getFullYear()
+  const month = date.getUTCMonth() + 1
+  const day = date.getUTCDate() + 1
+  const year = date.getUTCFullYear()
   
   return month + '.' + day + '.' + year
 }

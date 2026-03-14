@@ -40,6 +40,7 @@ export interface audioPlayerStateIF {
 
 const Layout = () => {
 
+
   const windowWidth = useWindowWidth()
   const configInstance = useConfig()
   
@@ -55,6 +56,8 @@ const Layout = () => {
   const html = document.querySelector('html')
   html.style.backgroundColor = globalAppState.darkModeStateManagement.isDarkMode === true ? DARK_MODE_BACKGROUND_COLOR : 'white'
   
+
+
   return (
     <GlobalAppState.Provider value={globalAppState}>
       <div id="isLoaded"></div>

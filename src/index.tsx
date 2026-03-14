@@ -9,10 +9,10 @@ import {
 
 import Layout from './Layout'
 import { DARK_MODE_BACKGROUND_COLOR, NAVY_BLUE_LIGHT } from './sharedStyles/colors';
-import PressKitMain from './pages/presskit/PressKitMain';
+// import PressKitMain from './pages/presskit/PressKitMain';
 
-const ShopItemsDisplay = lazy(() => import('./pages/shop/ShopItemsDisplay'));
-const Checkout = lazy(() => import('./pages/shop/Checkout'));
+// const ShopItemsDisplay = lazy(() => import('./pages/shop/ShopItemsDisplay'));
+// const Checkout = lazy(() => import('./pages/shop/Checkout'));
 const HomeMain = lazy(() => import('./pages/home/HomeMain'))
 const BiographyMain = lazy(() => import('./pages/biography/BiographyMain'))
 const CalendarMain = lazy(() => import('./pages/calendar/CalendarMain'))
@@ -25,7 +25,7 @@ const ContactMain = lazy(() => import('./pages/contact/ContactMain'))
 const BlogMain = lazy(() => import('./pages/blog/BlogMain'))
 const ErrorPage = lazy(() => import('./pages/ErrorPage'))
 const UnderConstruction = lazy(() => import('./pages/UnderConstruction'))
-const PressKit = lazy(() => import('./pages/presskit/PressKitMain'))
+// const PressKit = lazy(() => import('./pages/presskit/PressKitMain'))
 // const ShopMain = lazy(() => import('./pages/shop/ShopMain'))
 
 const FallbackMainLoadingScreen = () => {

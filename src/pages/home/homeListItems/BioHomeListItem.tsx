@@ -17,7 +17,7 @@ export const BioHomeListItem = () => {
   if (shortFormBioData?.components) {
     components = parser.parseToReactElements(React, shortFormBioData.components)
   }
-
+  
   return (
     <>
       <h2 className='section-header'>BIOGRAPHY</h2>

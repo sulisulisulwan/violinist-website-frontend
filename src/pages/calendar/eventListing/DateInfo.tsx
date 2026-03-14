@@ -37,14 +37,14 @@ const DateInfo = ({ eventData }: dateInfoPropsIF) => {
 
   const startDate = eventData.dateTime ? new Date(eventData.dateTime) : new Date(eventData.dateRange.start)
   startDay = startDate.getUTCDate()
-  startMonth = numToMonth[startDate.getMonth()]
+  startMonth = numToMonth[startDate.getUTCMonth()]
   startYear = startDate.getUTCFullYear()
 
 
   if (isEventGroupOnly) {
     const endDate = eventData.dateTime ? new Date(eventData.dateTime) : new Date(eventData.dateRange.end)
     endDay = endDate.getUTCDate()
-    endMonth = numToMonth[endDate.getMonth()]
+    endMonth = numToMonth[endDate.getUTCMonth()]
     endYear = endDate.getUTCFullYear()
   }
 
